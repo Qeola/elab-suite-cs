@@ -38,6 +38,15 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           slug: lystun/elab-suite-cs
+      - name: Cache playwright browsers #cache the browsers
+        uses: actions/cache@v3
+        id: cache-playwright
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('**/playwright.config.ts') }}
+      - name: Install playwright browsers #install the browsers
+        if: steps.cache-playwright.outputs.cache-hit != 'true'
+        run: npx playwright install --with-deps
       - name: Run E2E Tests
         run: npm run test:e2e
       - uses: actions/upload-artifact@v4
