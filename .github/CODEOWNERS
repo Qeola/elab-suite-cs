@@ -1,6 +1,6 @@
-* @lystun @GloryOdunayo
-*.ts @lystun @GloryOdunayo
-*.tsx @lystun @GloryOdunayo
-*.js @lystun @GloryOdunayo
-*.jsx @lystun @GloryOdunayo
-/e2e/ @lystun @GloryOdunayo
+* @lystun
+*.ts @lystun
+*.tsx @lystun
+*.js @lystun
+*.jsx @lystun
+/e2e/ @lystun
