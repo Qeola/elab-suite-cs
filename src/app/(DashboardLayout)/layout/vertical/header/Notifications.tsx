@@ -1,4 +1,3 @@
-
 import { Icon } from "@iconify/react";
 import { Badge, Button, Dropdown } from "flowbite-react";
 import React from "react";
@@ -7,7 +6,6 @@ import SimpleBar from "simplebar-react";
 import Link from "next/link";
 
 const Notifications = () => {
-
   return (
     <div className="relative group/menu">
       <Dropdown
@@ -63,10 +61,7 @@ const Notifications = () => {
           ))}
         </SimpleBar>
         <div className="pt-5 px-6">
-          <Button
-            color={"primary"}
-            className="w-full"
-          >
+          <Button color={"primary"} className="w-full">
             See All Notifications
           </Button>
         </div>

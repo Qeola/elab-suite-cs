@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState } from "react";
 import { IconChevronDown } from "@tabler/icons-react";
 import { Icon } from "@iconify/react";
 import { useTranslation } from "react-i18next";
@@ -10,10 +10,9 @@ const ChildComponent = ({
   handleMouseEnter,
   handleMouseLeave,
   onClick,
-  title
+  title,
 }: any) => {
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
-
 
   const pathname = usePathname();
 
@@ -51,7 +50,9 @@ const ChildComponent = ({
         </p>
       </Link>
       {isSubMenuOpen && item.children && (
-        <div className={`absolute   top-0 mt-0 w-56 bg-white dark:bg-dark rounded-md shadow-lg ${title=="Tables"?"tables-position":"left-full rtl:right-full"}`}>
+        <div
+          className={`absolute   top-0 mt-0 w-56 bg-white dark:bg-dark rounded-md shadow-lg ${title == "Tables" ? "tables-position" : "left-full rtl:right-full"}`}
+        >
           <ul className="p-3 flex flex-col gap-2">
             {item.children.map((child: any) => (
               <li key={child.id}>
@@ -95,4 +96,3 @@ export default ChildComponent;
 function usePathanme() {
   throw new Error("Function not implemented.");
 }
-

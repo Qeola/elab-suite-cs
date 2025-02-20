@@ -22,8 +22,6 @@ export interface MenuItem {
 import { uniqueId } from "lodash";
 
 const SidebarContent: MenuItem[] = [
-  
-
   {
     id: 1,
     name: "Pages",
@@ -42,8 +40,7 @@ const SidebarContent: MenuItem[] = [
             icon: "solar:settings-minimalistic-line-duotone",
             id: uniqueId(),
             url: "/sample-page",
-          }
-         
+          },
         ],
       },
     ],

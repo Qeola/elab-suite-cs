@@ -52,7 +52,7 @@ const Header = ({ layoutType }: HeaderPropsType) => {
 
   const toggleMode = () => {
     setActiveMode((prevMode: string) =>
-      prevMode === "light" ? "dark" : "light"
+      prevMode === "light" ? "dark" : "light",
     );
   };
 
@@ -63,9 +63,7 @@ const Header = ({ layoutType }: HeaderPropsType) => {
     <>
       <header
         className={`top-0 z-[5]  ${
-          isSticky
-            ? "bg-white dark:bg-darkgray sticky"
-            : "bg-transparent"
+          isSticky ? "bg-white dark:bg-darkgray sticky" : "bg-transparent"
         }`}
       >
         <Navbar

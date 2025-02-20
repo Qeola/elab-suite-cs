@@ -24,8 +24,12 @@ export const Cart = () => {
           </span>
         </div>
       </div>
-      <Drawer open={isOpen} onClose={handleClose} position={`${activeDir === "rtl" ? 'left' : 'right'}`} className="dark:bg-darkgray max-w-[350px] w-full">
-
+      <Drawer
+        open={isOpen}
+        onClose={handleClose}
+        position={`${activeDir === "rtl" ? "left" : "right"}`}
+        className="dark:bg-darkgray max-w-[350px] w-full"
+      >
         <div className="border-ld  border-b">
           <div className="flex justify-between items-center p-4">
             <h5 className="text-xl">Shopping Cart</h5>

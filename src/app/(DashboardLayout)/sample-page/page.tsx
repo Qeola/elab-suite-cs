@@ -1,5 +1,5 @@
-import CardBox from '@/app/components/shared/CardBox'
-import React from 'react'
+import CardBox from "@/app/components/shared/CardBox";
+import React from "react";
 
 const page = () => {
   return (
@@ -13,7 +13,7 @@ const page = () => {
         </p>
       </CardBox>
     </>
-  )
-}
+  );
+};
 
-export default page
+export default page;

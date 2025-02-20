@@ -16,7 +16,6 @@ const Miniicons: MiniiconsType[] = [
     icon: "solar:mirror-left-line-duotone",
     tooltip: "Docs & Others",
   },
-
 ];
 
 export default Miniicons;
