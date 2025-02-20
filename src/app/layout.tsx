@@ -7,7 +7,6 @@ import customTheme from "@/utils/theme/custom-theme";
 import { CustomizerContextProvider } from "@/app/context/CustomizerContext";
 import "../utils/i18n";
 
-
 const manrope = Manrope({ subsets: ["latin"] });
 
 export const metadata: Metadata = {

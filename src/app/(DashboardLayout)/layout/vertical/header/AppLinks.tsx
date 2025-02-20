@@ -37,10 +37,7 @@ const AppLinks = () => {
                 <div className="xl:col-span-8 col-span-12 flex items-stretch p-6">
                   <div className="grid grid-cols-12 gap-3 w-full">
                     {AppsData.appsLink.map((links, index) => (
-                      <div
-                        className="col-span-12 xl:col-span-6 "
-                        key={index}
-                      >
+                      <div className="col-span-12 xl:col-span-6 " key={index}>
                         <Link
                           href={links.href}
                           className="flex gap-3 hover:text-primary group relative items-center"

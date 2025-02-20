@@ -8,11 +8,11 @@ import NavCollapse from "./NavCollapse";
 import { CustomizerContext } from "@/app/context/CustomizerContext";
 import SimpleBar from "simplebar-react";
 
-
 const MobileSidebar = () => {
-  const { selectedIconId, setSelectedIconId } = useContext(CustomizerContext) || {};
+  const { selectedIconId, setSelectedIconId } =
+    useContext(CustomizerContext) || {};
   const selectedContent = SidebarContent.find(
-    (data) => data.id === selectedIconId
+    (data) => data.id === selectedIconId,
   );
   return (
     <>

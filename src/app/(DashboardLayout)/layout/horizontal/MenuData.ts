@@ -6,7 +6,7 @@ const Menuitems = [
     title: "Dashboard",
     icon: "solar:layers-line-duotone",
     href: "",
-    column:1,
+    column: 1,
     children: [
       {
         id: uniqueId(),
@@ -22,6 +22,5 @@ const Menuitems = [
       },
     ],
   },
-
 ];
 export default Menuitems;

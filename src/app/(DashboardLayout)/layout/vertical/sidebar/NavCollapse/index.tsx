@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { Sidebar } from "flowbite-react";
 import React, { useEffect, useState } from "react";
 import { ChildItem } from "../Sidebaritems";
@@ -7,7 +7,7 @@ import { Icon } from "@iconify/react";
 import { HiOutlineChevronDown } from "react-icons/hi";
 import { twMerge } from "tailwind-merge";
 import { usePathname } from "next/navigation";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 interface NavCollapseProps {
   item: ChildItem;
@@ -15,13 +15,14 @@ interface NavCollapseProps {
 
 const NavCollapse: React.FC<NavCollapseProps> = ({ item }: any) => {
   const pathname = usePathname();
-  const activeDD = item.children.find((t: { url: string; }) => t.url === pathname);
+  const activeDD = item.children.find(
+    (t: { url: string }) => t.url === pathname,
+  );
   const { t, i18n } = useTranslation();
   const [translatedLabel, setTranslatedLabel] = useState<string | null>(null);
 
   useEffect(() => {
     const loadTranslation = async () => {
-
       const label = t(`${item.name}`);
       setTranslatedLabel(label);
     };
@@ -34,9 +35,11 @@ const NavCollapse: React.FC<NavCollapseProps> = ({ item }: any) => {
         label={translatedLabel || `${item.name}`}
         open={activeDD ? true : false}
         icon={() => <Icon icon={item.icon} height={18} />}
-
-        className={activeDD ? '!text-white bg-primary rounded-xl hover:bg-primary hover:text-white shadow-btnshdw' : ' rounded-xl dark:text-white/80 hover:text-primary'}
-
+        className={
+          activeDD
+            ? "!text-white bg-primary rounded-xl hover:bg-primary hover:text-white shadow-btnshdw"
+            : " rounded-xl dark:text-white/80 hover:text-primary"
+        }
         renderChevronIcon={(theme, open) => {
           const IconComponent = open
             ? HiOutlineChevronDown
@@ -69,10 +72,3 @@ const NavCollapse: React.FC<NavCollapseProps> = ({ item }: any) => {
   );
 };
 export default NavCollapse;
-
-
-
-
-
-
-

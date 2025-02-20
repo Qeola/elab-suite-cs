@@ -15,10 +15,11 @@ const TitleCard: React.FC<MyAppProps> = ({ children, className, title }) => {
   const { activeMode, isCardShadow } = createContext(CustomizerContext);
   return (
     <Card
-      className={`card ${className} ${isCardShadow
-        ? "dark:shadow-dark-md shadow-md p-0"
-        : "shadow-none border border-ld p-0"
-        } `}
+      className={`card ${className} ${
+        isCardShadow
+          ? "dark:shadow-dark-md shadow-md p-0"
+          : "shadow-none border border-ld p-0"
+      } `}
     >
       <div className="border-b border-ld px-6 py-4">
         <h5 className="card-title">{title}</h5>

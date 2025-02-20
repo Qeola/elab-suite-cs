@@ -4,7 +4,6 @@ import { CustomizerContext } from "@/app/context/CustomizerContext";
 import { Card } from "flowbite-react";
 import React, { useContext } from "react";
 
-
 interface MyAppProps {
   children: React.ReactNode;
   className?: string;
@@ -12,9 +11,12 @@ interface MyAppProps {
 const OutlineCard: React.FC<MyAppProps> = ({ children, className }) => {
   const { activeMode, isCardShadow } = useContext(CustomizerContext);
   return (
-    <Card className={`card ${className} ${isCardShadow ? ' border border-ld' : ' border border-ld'} `}>{children}</Card>
+    <Card
+      className={`card ${className} ${isCardShadow ? " border border-ld" : " border border-ld"} `}
+    >
+      {children}
+    </Card>
   );
-
 };
 
 export default OutlineCard;
