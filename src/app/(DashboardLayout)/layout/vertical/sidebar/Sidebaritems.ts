@@ -105,7 +105,7 @@ const SidebarContent: MenuItem[] = [
         children: [
           {
             id: uniqueId(),
-            url: "/sample-page",
+            url: "",
             name: "Applications",
             icon: "solar:check-circle-bold",
             color: "text-primary",

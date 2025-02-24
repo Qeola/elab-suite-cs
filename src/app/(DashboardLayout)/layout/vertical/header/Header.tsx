@@ -92,8 +92,8 @@ const Header = ({ layoutType }: HeaderPropsType) => {
 
               {/* App Link Dropwown   */}
 
-              <Search />
-              <AppLinks />
+              {/* <Search />
+              <AppLinks /> */}
             </div>
           </Navbar.Collapse>
 
@@ -134,7 +134,7 @@ const Header = ({ layoutType }: HeaderPropsType) => {
               <Notifications />
 
               {/* Language Dropdown*/}
-              <Language />
+              {/* <Language /> */}
 
               {/* Profile Dropdown */}
               <Profile />

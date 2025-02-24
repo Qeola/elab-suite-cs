@@ -11,7 +11,7 @@ import "../utils/i18n";
 const manrope = Manrope({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Matdash - Nextjs",
+  title: "Elab Suite",
 };
 
 export default function RootLayout({

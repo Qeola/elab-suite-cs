@@ -42,7 +42,7 @@
     --color-secondary-rgb: 20, 233, 226;
 }
 
-[data-color-theme="AQUA_THEME"] {
+/* [data-color-theme="AQUA_THEME"] {
     --color-primary: #0074BA;
     --color-bghover: #00639e;
     --color-primary-emphasis: #00639e;
@@ -98,4 +98,4 @@
     --color-lightsecondary: #0074BA20;
     --color-primary-rgb: 250, 137, 107;
     --color-secondary-rgb: 0, 116, 186;
-}
+} */
