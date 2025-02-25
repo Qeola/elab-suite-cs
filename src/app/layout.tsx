@@ -4,6 +4,7 @@ import { Manrope } from "next/font/google";
 import "./css/globals.css";
 import { Flowbite, ThemeModeScript } from "flowbite-react";
 import customTheme from "@/utils/theme/custom-theme";
+import NextTopLoader from 'nextjs-toploader';
 import { CustomizerContextProvider } from "@/app/context/CustomizerContext";
 import "../utils/i18n";
 
@@ -27,6 +28,7 @@ export default function RootLayout({
       </head>
       <body className={`${manrope.className}`}>
         <Flowbite theme={{ theme: customTheme }}>
+        <NextTopLoader color="var(--color-primary)" />
           <CustomizerContextProvider>{children}</CustomizerContextProvider>
         </Flowbite>
       </body>
