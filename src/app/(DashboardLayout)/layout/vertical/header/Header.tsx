@@ -1,9 +1,7 @@
 "use client";
 import React, { useState, useEffect, useContext } from "react";
 import { Navbar } from "flowbite-react";
-import Search from "./Search";
 import { Icon } from "@iconify/react";
-import AppLinks from "./AppLinks";
 import Notifications from "./Notifications";
 import Profile from "./Profile";
 import { CustomizerContext } from "@/app/context/CustomizerContext";

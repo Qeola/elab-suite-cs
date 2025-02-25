@@ -4,7 +4,6 @@ import Notifications from "./Notifications";
 import Profile from "./Profile";
 import { Language } from "./Language";
 import { Navbar } from "flowbite-react";
-import AppLinks from "./AppLinks";
 import { CustomizerContext } from "@/app/context/CustomizerContext";
 import { useContext } from "react";
 
@@ -51,10 +50,10 @@ const MobileHeaderItems = () => {
           <Notifications />
 
           {/* App Link Dropwown   */}
-          <AppLinks />
+          {/* <AppLinks /> */}
 
           {/* Language Dropdown*/}
-          <Language />
+          {/* <Language /> */}
           {/* Profile Dropdown */}
           <Profile />
         </div>

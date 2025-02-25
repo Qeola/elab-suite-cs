@@ -58,7 +58,7 @@ const AuthResetPassword = () => {
           onSubmit={handleSubmit}
         >
           {({ values }) => (
-            <Form>
+            <Form className="mt-6">
                 {/* New Password */}
                 <div className="mb-4">
                   <Label htmlFor="password" value="Password" className="mb-2 block" />
@@ -106,7 +106,9 @@ const AuthResetPassword = () => {
                 </div>
       
                 {/* Submit Button */}
+                <div className="mt-6">
                 {loading ? <AuthLoadingButton>Reset Password</AuthLoadingButton> : <AuthButton>Reset Password</AuthButton>}
+                </div>
               </Form>
           )}
         </Formik>

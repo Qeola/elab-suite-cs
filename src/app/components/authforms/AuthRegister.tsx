@@ -104,7 +104,9 @@ const AuthRegister = () => {
           </div>
 
           {/* Submit Button */}
+          <div className="mt-6">
           {loading ? <AuthLoadingButton>Sign Up</AuthLoadingButton> : <AuthButton>Sign Up</AuthButton>}
+          </div>
         </Form>
       )}
     </Formik>

@@ -41,7 +41,7 @@ const AuthVerifyEmail = () => {
       onSubmit={handleSubmit}
     >
       {({ values }) => (
-    <Form>
+    <Form className="mt-6">
        {/* Email */}
             <div className="mb-4">
                   <Label htmlFor="token" value="Token" className="mb-2 block" />
@@ -50,7 +50,10 @@ const AuthVerifyEmail = () => {
                 </div>
 
           {/* Submit Button */}
+          <div className="mt-6">
+
           {loading ? <AuthLoadingButton>Verification Email</AuthLoadingButton> : <AuthButton>Verification Email</AuthButton>}
+          </div>
         </Form>
       )}
       </Formik>

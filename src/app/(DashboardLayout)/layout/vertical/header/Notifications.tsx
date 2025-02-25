@@ -12,7 +12,7 @@ const Notifications = () => {
     <div className="relative group/menu">
       <Dropdown
         label=""
-        className="w-screen sm:w-[360px] py-6  rounded-sm"
+        className="w-screen sm:w-[360px] py-6 rounded-sm"
         dismissOnClick={false}
         renderTrigger={() => (
           <div className="relative">
@@ -20,17 +20,17 @@ const Notifications = () => {
               <Icon icon="solar:bell-bing-line-duotone" height={20} />
             </span>
             <span className="rounded-full absolute end-1 top-1 bg-error text-[10px] h-4 w-4 flex justify-center items-center text-white">
-              5
+              {Notification.Notification.length}
             </span>
           </div>
         )}
       >
         <div className="flex items-center px-6 justify-between">
           <h3 className="mb-0 text-lg font-semibold text-ld">Notifications</h3>
-          <Badge color={"primary"}>5 new</Badge>
+          <Badge color={"primary"}>{Notification.Notification.length} new</Badge>
         </div>
 
-        <SimpleBar className="max-h-80 mt-3">
+        <SimpleBar className="max-h-80 mt-3 overflow-y-auto scrollbar-hide">
           {Notification.Notification.map((links, index) => (
             <Dropdown.Item
               as={Link}

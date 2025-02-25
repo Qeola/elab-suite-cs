@@ -29,7 +29,7 @@ const AuthForgotPassword = () => {
       onSubmit={handleSubmit}
     >
       {({ values }) => (
-    <Form>
+    <Form className="mt-6">
        {/* Email */}
             <div className="mb-4">
                   <Label htmlFor="email" value="Email Address" className="mb-2 block" />
@@ -38,7 +38,9 @@ const AuthForgotPassword = () => {
                 </div>
 
           {/* Submit Button */}
+          <div className="mt-6">
           {loading ? <AuthLoadingButton>Forgot Password</AuthLoadingButton> : <AuthButton>Forgot Password</AuthButton>}
+          </div>
         </Form>
       )}
       </Formik>

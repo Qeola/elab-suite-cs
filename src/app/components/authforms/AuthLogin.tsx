@@ -32,7 +32,7 @@ const AuthLogin = () => {
       onSubmit={handleSubmit}
     >
       {({ values }) => (
-    <Form>
+    <Form className="mt-6">
       {/* Email */}
       <div className="mb-4">
             <Label htmlFor="email" value="Email Address" className="mb-2 block" />
@@ -62,9 +62,25 @@ const AuthLogin = () => {
             </div>
             <ErrorMessage name="password" component="div" className="text-red-500 text-sm mt-1" />
           </div>
+          <div className="flex justify-end my-5">
+          {/* <div className="flex items-center gap-2">
+            <Checkbox id="accept" className="checkbox" />
+            <Label
+              htmlFor="accept" 
+              className="opacity-90 font-normal cursor-pointer"
+            >
+              Remember this Device
+            </Label>
+          </div> */}
+          <Link href={"/auth/forgot-password"} className="text-primary text-sm font-medium">
+            Forgot Password ?
+          </Link>
+        </div>
 
           {/* Submit Button */}
+          <div className="mt-6">
           {loading ? <AuthLoadingButton>Sign In</AuthLoadingButton> : <AuthButton>Sign In</AuthButton>}
+          </div>
         </Form>
       )}
       </Formik>
