@@ -22,7 +22,9 @@ const Forgotpwd = () => {
             <div className="flex h-screen items-center px-3 max-w-md mx-auto ">
               <div className="w-full">
                 <Logo />
-                <h3 className="text-2xl font-bold my-3 mt-5">Forgot Password</h3>
+                <h3 className="text-2xl font-bold my-3 mt-5">
+                  Forgot Password
+                </h3>
                 <p className="text-ld opacity-80 dark:text-white/60 text-sm font-medium">
                   Please enter the email address associated with your account
                   and We will email you a link to reset your password.

@@ -25,7 +25,9 @@ const Notifications = () => {
       >
         <div className="flex items-center px-6 justify-between">
           <h3 className="mb-0 text-lg font-semibold text-ld">Notifications</h3>
-          <Badge color={"primary"}>{Notification.Notification.length} new</Badge>
+          <Badge color={"primary"}>
+            {Notification.Notification.length} new
+          </Badge>
         </div>
 
         <SimpleBar className="max-h-80 mt-3 overflow-y-auto scrollbar-hide">

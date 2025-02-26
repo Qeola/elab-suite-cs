@@ -1,6 +1,6 @@
 "use client";
 import React, { useContext } from "react";
-import { Badge, Breadcrumb } from "flowbite-react";
+import { Badge, Breadcrumb, Button } from "flowbite-react";
 import CardBox from "@/app/components/shared/CardBox";
 import { Icon } from "@iconify/react";
 
@@ -28,6 +28,21 @@ const BreadcrumbComp = ({ items, title }: BreadCrumbType) => {
                           height={20}
                         ></Icon>{" "}
                       </Breadcrumb.Item>
+                    ) : item.button ? (
+                      // <Breadcrumb.Item href={item.to}>
+                      //   <Icon
+                      //     icon="solar:home-2-line-duotone"
+                      //     height={20}
+                      //   ></Icon>{" "}
+                      // </Breadcrumb.Item>
+                      <Button
+                      href={item.button}
+                      color={"primary"}
+                      size="medium"
+                      className="rounded-md w-full px-4 py-2 font-bold"
+                      >
+                        {item.title}
+                      </Button>
                     ) : (
                       <Badge color={"lightprimary"}>{item.title}</Badge>
                     )}

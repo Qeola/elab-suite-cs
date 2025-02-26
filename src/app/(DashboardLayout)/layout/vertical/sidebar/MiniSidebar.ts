@@ -9,12 +9,7 @@ const Miniicons: MiniiconsType[] = [
   {
     id: 1,
     icon: "solar:layers-line-duotone",
-    tooltip: "Dashboards",
-  },
-  {
-    id: 2,
-    icon: "solar:mirror-left-line-duotone",
-    tooltip: "Docs & Others",
+    tooltip: "Accounting",
   },
 ];
 

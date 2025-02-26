@@ -22,28 +22,25 @@ export interface MenuItem {
 import { uniqueId } from "lodash";
 
 const SidebarContent: MenuItem[] = [
-  
-
   {
     id: 1,
-    name: "Pages",
+    name: "Payment",
     items: [
       {
         heading: "Pages",
         children: [
           {
-            name: "Sample Page 1",
+            name: "Invoice",
             icon: "solar:home-angle-outline",
             id: uniqueId(),
             url: "/",
           },
           {
-            name: "Sample Page 2",
+            name: "Receipt",
             icon: "solar:settings-minimalistic-line-duotone",
             id: uniqueId(),
             url: "/sample-page",
-          }
-         
+          },
         ],
       },
     ],

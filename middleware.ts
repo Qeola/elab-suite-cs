@@ -13,19 +13,12 @@ export function middleware(request: NextRequest) {
   if (!accessToken && request.nextUrl.pathname.startsWith("/onboarding")) {
     return NextResponse.redirect(new URL("/auth/signin", request.url));
   }
-  if (
-    accessToken &&
-    request.nextUrl.pathname.startsWith("/auth")
-  ) {
+  if (accessToken && request.nextUrl.pathname.startsWith("/auth")) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
   return response;
 }
 
 export const config = {
-  matcher: [
-    "/auth/:path*",
-    "/onboarding/:path*",
-    "/dashboard/:path*",
-  ],
+  matcher: ["/auth/:path*", "/onboarding/:path*", "/dashboard/:path*"],
 };

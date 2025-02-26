@@ -12,7 +12,7 @@ const MobileHeaderItems = () => {
 
   const toggleMode = () => {
     setActiveMode((prevMode: string) =>
-      prevMode === "light" ? "dark" : "light"
+      prevMode === "light" ? "dark" : "light",
     );
   };
   return (

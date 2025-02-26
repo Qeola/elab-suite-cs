@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -17,27 +17,29 @@ const AuthRegister = () => {
   const validationSchema = Yup.object({
     company_name: Yup.string().required("Company Name is required"),
     name: Yup.string().required("Full Name is required"),
-    email: Yup.string().email("Invalid email format").required("Email Address is required"),
+    email: Yup.string()
+      .email("Invalid email format")
+      .required("Email Address is required"),
     password: Yup.string()
-    .required("Password is required")
-    .matches(
-      RegExp("(.*[a-z].*)"),
-      "Password must contain at least one lowercase letter",
-    )
-    .matches(
-      RegExp("(.*[A-Z].*)"),
-      "Password must contain at least one uppercase letter",
-    )
-    .matches(
-      RegExp("(.*[a-z].*)"),
-      "Password must contain at least one lowercase letter",
-    )
-    .matches(RegExp("(.*\\d.*)"), "Password must contain a number")
-    .matches(
-      RegExp('[!@#$%^&*(),/.?":{}|<>]'),
-      "Password must contain a special character",
-    )
-    .min(8, "Password must be at least 8 characters long"),
+      .required("Password is required")
+      .matches(
+        RegExp("(.*[a-z].*)"),
+        "Password must contain at least one lowercase letter",
+      )
+      .matches(
+        RegExp("(.*[A-Z].*)"),
+        "Password must contain at least one uppercase letter",
+      )
+      .matches(
+        RegExp("(.*[a-z].*)"),
+        "Password must contain at least one lowercase letter",
+      )
+      .matches(RegExp("(.*\\d.*)"), "Password must contain a number")
+      .matches(
+        RegExp('[!@#$%^&*(),/.?":{}|<>]'),
+        "Password must contain a special character",
+      )
+      .min(8, "Password must be at least 8 characters long"),
   });
 
   // Handle form submission
@@ -61,23 +63,64 @@ const AuthRegister = () => {
         <Form className="mt-6">
           {/* Company Name */}
           <div className="mb-4">
-            <Label htmlFor="company_name" value="Company Name" className="mb-2 block" />
-            <Field id="company_name" name="company_name" type="text" className="form-control w-full" sizing='lg' as={TextInput} />
-            <ErrorMessage name="company_name" component="div" className="text-red-500 text-sm mt-1" />
+            <Label
+              htmlFor="company_name"
+              value="Company Name"
+              className="mb-2 block"
+            />
+            <Field
+              id="company_name"
+              name="company_name"
+              type="text"
+              className="form-control w-full"
+              sizing="lg"
+              as={TextInput}
+            />
+            <ErrorMessage
+              name="company_name"
+              component="div"
+              className="text-red-500 text-sm mt-1"
+            />
           </div>
 
           {/* Full Name */}
           <div className="mb-4">
             <Label htmlFor="name" value="Full Name" className="mb-2 block" />
-            <Field id="name" name="name" type="text" className="form-control w-full" sizing='lg' as={TextInput} />
-            <ErrorMessage name="name" component="div" className="text-red-500 text-sm mt-1" />
+            <Field
+              id="name"
+              name="name"
+              type="text"
+              className="form-control w-full"
+              sizing="lg"
+              as={TextInput}
+            />
+            <ErrorMessage
+              name="name"
+              component="div"
+              className="text-red-500 text-sm mt-1"
+            />
           </div>
 
           {/* Email */}
           <div className="mb-4">
-            <Label htmlFor="email" value="Email Address" className="mb-2 block" />
-            <Field id="email" name="email" type="text" className="form-control w-full" sizing='lg' as={TextInput} />
-            <ErrorMessage name="email" component="div" className="text-red-500 text-sm mt-1" />
+            <Label
+              htmlFor="email"
+              value="Email Address"
+              className="mb-2 block"
+            />
+            <Field
+              id="email"
+              name="email"
+              type="text"
+              className="form-control w-full"
+              sizing="lg"
+              as={TextInput}
+            />
+            <ErrorMessage
+              name="email"
+              component="div"
+              className="text-red-500 text-sm mt-1"
+            />
           </div>
 
           {/* Password */}
@@ -87,7 +130,7 @@ const AuthRegister = () => {
               <Field
                 id="password"
                 name="password"
-                sizing='lg'
+                sizing="lg"
                 type={showPassword ? "text" : "password"}
                 className="form-control w-full"
                 as={TextInput}
@@ -100,12 +143,20 @@ const AuthRegister = () => {
                 {showPassword ? <HiEyeOff size={22} /> : <HiEye size={22} />}
               </button>
             </div>
-            <ErrorMessage name="password" component="div" className="text-red-500 text-sm mt-1" />
+            <ErrorMessage
+              name="password"
+              component="div"
+              className="text-red-500 text-sm mt-1"
+            />
           </div>
 
           {/* Submit Button */}
           <div className="mt-6">
-          {loading ? <AuthLoadingButton>Sign Up</AuthLoadingButton> : <AuthButton>Sign Up</AuthButton>}
+            {loading ? (
+              <AuthLoadingButton>Sign Up</AuthLoadingButton>
+            ) : (
+              <AuthButton>Sign Up</AuthButton>
+            )}
           </div>
         </Form>
       )}

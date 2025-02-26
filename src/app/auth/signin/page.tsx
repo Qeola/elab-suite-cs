@@ -22,9 +22,7 @@ const Login = () => {
               <div className="max-w-md w-full mx-auto">
                 <Logo />
                 <h3 className="text-2xl font-bold my-3 mt-5">Sign In</h3>
-                <p className="text-sm font-medium">
-                  Your Admin Dashboard
-                </p>
+                <p className="text-sm font-medium">Your Admin Dashboard</p>
                 <AuthLogin />
                 <div className="flex gap-2 text-sm dark:text-white font-medium mt-6 items-center justify-start">
                   <p>Don't have an Account?</p>

@@ -25,7 +25,7 @@ const columnHelper = createColumnHelper<any>();
 
 const columns = [
   columnHelper.accessor("customer", {
-    cell: (info:any) => (
+    cell: (info: any) => (
       <div className="flex gap-3 items-center">
         <Image
           src={info.getValue()}
@@ -45,7 +45,7 @@ const columns = [
     header: () => <span>Customer</span>,
   }),
   columnHelper.accessor("product_name", {
-    cell: (info:any) => (
+    cell: (info: any) => (
       <p className="text-darklink dark:text-bodytext text-sm">
         {info.getValue()}
       </p>
@@ -53,49 +53,53 @@ const columns = [
     header: () => <span>Product Name</span>,
   }),
   columnHelper.accessor("service", {
-    cell: (info:any) => (
+    cell: (info: any) => (
       <div className="flex gap-2">
-        {info.getValue().map((service:any, index:any) => (
-            <p>
-                {service}
-            </p>
+        {info.getValue().map((service: any, index: any) => (
+          <p>{service}</p>
         ))}
       </div>
     ),
     header: () => <span>Service</span>,
   }),
   columnHelper.accessor("amount", {
-    cell: (info:any) => (
+    cell: (info: any) => (
       <div className="flex gap-3 items-center">
-              <p className="text-darklink dark:text-bodytext text-sm">
-                {info.getValue()}
-              </p>
+        <p className="text-darklink dark:text-bodytext text-sm">
+          {info.getValue()}
+        </p>
       </div>
     ),
     header: () => <span>Amount</span>,
   }),
   columnHelper.accessor("tranche", {
-    cell: (info:any) => (
+    cell: (info: any) => (
       <div className="flex gap-3 items-center">
-              <p className="text-darklink dark:text-bodytext text-sm">
-                {info.getValue()}
-              </p>
+        <p className="text-darklink dark:text-bodytext text-sm">
+          {info.getValue()}
+        </p>
       </div>
     ),
     header: () => <span>Tranche</span>,
   }),
   columnHelper.accessor("status", {
-    cell: (info:any) => (
+    cell: (info: any) => (
       <div className="flex gap-2">
         {/* {info.getValue().map((status:any, index:any) => (
         ))} */}
-          <Badge
-            // key={index}
-            color={info.getValue()=='paid'? "lightsuccess" : info.getValue() == 'pending'? 'lightwarning' : `lighterror`}
-            className="capitalize"
-          >
-            {info.getValue()}
-          </Badge>
+        <Badge
+          // key={index}
+          color={
+            info.getValue() == "paid"
+              ? "lightsuccess"
+              : info.getValue() == "pending"
+                ? "lightwarning"
+                : `lighterror`
+          }
+          className="capitalize"
+        >
+          {info.getValue()}
+        </Badge>
       </div>
     ),
     header: () => <span>Status</span>,
@@ -112,8 +116,8 @@ const columns = [
         )}
       >
         {[
-          { icon: "solar:eye-circle-outline", listtitle: "View" },
-          { icon: "solar:floppy-disk-outline", listtitle: "Generate Receipt" },
+          { icon: "solar:eye-outline", listtitle: "View" },
+          { icon: "solar:diskette-outline", listtitle: "Generate Receipt" },
           { icon: "solar:pen-new-square-broken", listtitle: "Edit" },
           { icon: "solar:trash-bin-minimalistic-outline", listtitle: "Delete" },
         ].map((item, index) => (
@@ -128,10 +132,9 @@ const columns = [
   }),
 ];
 
-function PaginationTable({tableData}:{tableData:any}) {
+function PaginationTable({ tableData }: { tableData: any }) {
   const [data] = React.useState(() => [...tableData]);
   const [columnFilters, setColumnFilters] = React.useState([]);
-  const rerender = React.useReducer(() => ({}), {})[1];
 
   const table = useReactTable({
     data,
@@ -156,7 +159,7 @@ function PaginationTable({tableData}:{tableData:any}) {
       item.name,
       item.handle,
       item.users,
-      item.courses.map((course:any) => course.status).join(", "),
+      item.courses.map((course: any) => course.status).join(", "),
     ]);
 
     const csvContent = [
@@ -182,9 +185,9 @@ function PaginationTable({tableData}:{tableData:any}) {
           <div className="overflow-x-auto">
             <table className="min-w-full">
               <thead>
-                {table.getHeaderGroups().map((headerGroup:any) => (
+                {table.getHeaderGroups().map((headerGroup: any) => (
                   <tr key={headerGroup.id}>
-                    {headerGroup.headers.map((header:any) => (
+                    {headerGroup.headers.map((header: any) => (
                       <th
                         key={header.id}
                         className="text-base text-ld font-semibold py-3 text-left border-b border-ld px-4 py-3"
@@ -193,7 +196,7 @@ function PaginationTable({tableData}:{tableData:any}) {
                           ? null
                           : flexRender(
                               header.column.columnDef.header,
-                              header.getContext()
+                              header.getContext(),
                             )}
                       </th>
                     ))}
@@ -201,13 +204,13 @@ function PaginationTable({tableData}:{tableData:any}) {
                 ))}
               </thead>
               <tbody className="divide-y divide-border dark:divide-darkborder">
-                {table.getRowModel().rows.map((row:any) => (
+                {table.getRowModel().rows.map((row: any) => (
                   <tr key={row.id}>
-                    {row.getVisibleCells().map((cell:any) => (
+                    {row.getVisibleCells().map((cell: any) => (
                       <td key={cell.id} className="whitespace-nowrap py-3 px-4">
                         {flexRender(
                           cell.column.columnDef.cell,
-                          cell.getContext()
+                          cell.getContext(),
                         )}
                       </td>
                     ))}
@@ -218,7 +221,6 @@ function PaginationTable({tableData}:{tableData:any}) {
           </div>
           <div className="sm:flex  gap-2 p-3 items-center justify-end">
             <div className="sm:flex  items-center gap-2 sm:mt-0 mt-3">
-             
               <div className="sm:flex items-center gap-2">
                 <div className="flex ">
                   <h2 className="text-gray-700 pe-1">Page</h2>

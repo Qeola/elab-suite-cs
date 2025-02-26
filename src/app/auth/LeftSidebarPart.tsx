@@ -22,7 +22,9 @@ const LeftSidebarPart = () => {
             MatDash helps developers to build organized and well coded
             dashboards full of beautiful and rich modules.
           </p>
-          <Button className="mt-6" color={"primary"}>Learn More</Button>
+          <Button className="mt-6" color={"primary"}>
+            Learn More
+          </Button>
         </div>
       </div>
     </>
