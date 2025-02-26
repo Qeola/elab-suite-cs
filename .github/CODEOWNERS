@@ -1,0 +1,6 @@
+* @lystun
+*.ts @lystun
+*.tsx @lystun
+*.js @lystun
+*.jsx @lystun
+/e2e/ @lystun

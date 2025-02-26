@@ -14,7 +14,7 @@ const SidebarLayout = () => {
   const { selectedIconId, setSelectedIconId } =
     useContext(CustomizerContext) || {};
   const selectedContent = SidebarContent.find(
-    (data) => data.id === selectedIconId
+    (data) => data.id === selectedIconId,
   );
 
   const pathname = usePathname();
