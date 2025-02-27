@@ -56,7 +56,7 @@ const columns = [
     cell: (info: any) => (
       <div className="flex gap-2">
         {info.getValue().map((service: any, index: any) => (
-          <p>{service}</p>
+          <p key={index}>{service}</p>
         ))}
       </div>
     ),
@@ -105,35 +105,66 @@ const columns = [
     header: () => <span>Status</span>,
   }),
   columnHelper.accessor("actions", {
-    cell: () => (
-      <Dropdown
-        label=""
-        dismissOnClick={false}
-        renderTrigger={() => (
-          <span className="h-9 w-9 flex justify-center items-center rounded-full hover:bg-lightprimary hover:text-primary cursor-pointer">
-            <IconDots size={22} />
-          </span>
-        )}
-      >
-        {[
-          { icon: "solar:eye-outline", listtitle: "View" },
-          { icon: "solar:diskette-outline", listtitle: "Generate Receipt" },
-          { icon: "solar:pen-new-square-broken", listtitle: "Edit" },
-          { icon: "solar:trash-bin-minimalistic-outline", listtitle: "Delete" },
-        ].map((item, index) => (
-          <Dropdown.Item key={index} className="flex gap-3">
-            <Icon icon={item.icon} height={18} />
-            <span>{item.listtitle}</span>
-          </Dropdown.Item>
-        ))}
-      </Dropdown>
-    ),
+    cell: (info: any) => {
+      const rowData = info.row.original;
+      const slug = rowData.slug;
+
+      return (
+        <Dropdown
+          label=""
+          dismissOnClick={false}
+          renderTrigger={() => (
+            <span className="h-9 w-9 flex justify-center items-center rounded-full hover:bg-lightprimary hover:text-primary cursor-pointer">
+              <IconDots size={22} />
+            </span>
+          )}
+        >
+          {[
+            {
+              icon: "solar:eye-outline",
+              listtitle: "View",
+              link: `/dashboard/invoice/${slug}/view`,
+            },
+            { icon: "solar:diskette-outline", listtitle: "Generate Receipt" },
+            {
+              icon: "solar:pen-new-square-broken",
+              listtitle: "Edit",
+              link: `/dashboard/invoice/${slug}/edit`,
+            },
+            {
+              icon: "solar:trash-bin-minimalistic-outline",
+              listtitle: "Delete",
+            },
+          ].map((item, index) => (
+            <Dropdown.Item key={index} className="flex gap-3">
+              {item.link ? (
+                <a href={item.link} className="flex gap-3 items-center w-full">
+                  <Icon icon={item.icon} height={18} />
+                  <span>{item.listtitle}</span>
+                </a>
+              ) : (
+                <>
+                  <Icon icon={item.icon} height={18} />
+                  <span>{item.listtitle}</span>
+                </>
+              )}
+            </Dropdown.Item>
+          ))}
+        </Dropdown>
+      );
+    },
     header: () => <span></span>,
   }),
 ];
 
 function PaginationTable({ tableData }: { tableData: any }) {
-  const [data] = React.useState(() => [...tableData]);
+  //   const [data] = React.useState(() => [...tableData]);
+  const [data, setData] = React.useState(tableData);
+
+  React.useEffect(() => {
+    setData(tableData);
+  }, [tableData]);
+
   const [columnFilters, setColumnFilters] = React.useState([]);
 
   const table = useReactTable({
@@ -155,7 +186,7 @@ function PaginationTable({ tableData }: { tableData: any }) {
 
   const handleDownload = () => {
     const headers = ["Name", "Handle", "Users", "Courses"];
-    const rows = data.map((item) => [
+    const rows = data.map((item: any) => [
       item.name,
       item.handle,
       item.users,
@@ -164,7 +195,7 @@ function PaginationTable({ tableData }: { tableData: any }) {
 
     const csvContent = [
       headers.join(","),
-      ...rows.map((e) => e.join(",")),
+      ...rows.map((e: any) => e.join(",")),
     ].join("\n");
 
     const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });

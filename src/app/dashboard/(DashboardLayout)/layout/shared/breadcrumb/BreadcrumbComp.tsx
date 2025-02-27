@@ -36,10 +36,10 @@ const BreadcrumbComp = ({ items, title }: BreadCrumbType) => {
                       //   ></Icon>{" "}
                       // </Breadcrumb.Item>
                       <Button
-                      href={item.button}
-                      color={"primary"}
-                      size="medium"
-                      className="rounded-md w-full px-4 py-2 font-bold"
+                        href={item.button}
+                        color={"primary"}
+                        size="medium"
+                        className="rounded-md w-full px-4 py-2 font-bold"
                       >
                         {item.title}
                       </Button>

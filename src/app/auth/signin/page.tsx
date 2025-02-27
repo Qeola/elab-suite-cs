@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "@/app/(DashboardLayout)/layout/shared/logo/Logo";
+import Logo from "@/app/dashboard/(DashboardLayout)/layout/shared/logo/Logo";
 import AuthLogin from "../../components/authforms/AuthLogin";
 import LeftSidebarPart from "../LeftSidebarPart";
 import type { Metadata } from "next";

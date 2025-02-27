@@ -1,4 +1,4 @@
-import Logo from "@/app/(DashboardLayout)/layout/shared/logo/Logo";
+import Logo from "@/app/dashboard/(DashboardLayout)/layout/shared/logo/Logo";
 import React from "react";
 import LeftSidebarPart from "../../LeftSidebarPart";
 import Link from "next/link";

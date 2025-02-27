@@ -19,7 +19,7 @@ const NavItems: React.FC<NavItemsProps> = ({ item }) => {
         href={item.url}
         as={Link}
         className={`${
-          item.url == pathname
+          pathname.includes(item.url)
             ? "text-white bg-primary rounded-xl  hover:text-white hover:bg-primary dark:hover:text-white shadow-btnshdw active"
             : "text-link bg-transparent group/link "
         } `}
@@ -30,7 +30,7 @@ const NavItems: React.FC<NavItemsProps> = ({ item }) => {
           ) : (
             <span
               className={`${
-                item.url == pathname
+                pathname.includes(item.url)
                   ? "dark:bg-white rounded-full mx-1.5 group-hover/link:bg-primary !bg-primary h-[6px] w-[6px]"
                   : "h-[6px] w-[6px] bg-black/40 dark:bg-white rounded-full mx-1.5 group-hover/link:bg-primary"
               } `}

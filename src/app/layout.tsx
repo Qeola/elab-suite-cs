@@ -7,6 +7,7 @@ import customTheme from "@/utils/theme/custom-theme";
 import NextTopLoader from "nextjs-toploader";
 import { CustomizerContextProvider } from "@/app/context/CustomizerContext";
 import "../utils/i18n";
+import { Providers } from "@/utils/stores/providers";
 
 const manrope = Manrope({ subsets: ["latin"] });
 
@@ -28,7 +29,9 @@ export default function RootLayout({
       <body className={`${manrope.className}`}>
         <Flowbite theme={{ theme: customTheme }}>
           <NextTopLoader color="var(--color-primary)" />
-          <CustomizerContextProvider>{children}</CustomizerContextProvider>
+          <Providers>
+            <CustomizerContextProvider>{children}</CustomizerContextProvider>
+          </Providers>
         </Flowbite>
       </body>
     </html>

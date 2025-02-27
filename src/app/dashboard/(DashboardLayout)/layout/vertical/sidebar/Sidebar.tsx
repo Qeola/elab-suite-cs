@@ -7,7 +7,7 @@ import NavItems from "./NavItems";
 import NavCollapse from "./NavCollapse";
 import { CustomizerContext } from "@/app/context/CustomizerContext";
 import SimpleBar from "simplebar-react";
-import FullLogo from "@/app/(DashboardLayout)/layout/shared/logo/FullLogo";
+import FullLogo from "@/app/dashboard/(DashboardLayout)/layout/shared/logo/FullLogo";
 import { usePathname } from "next/navigation";
 
 const SidebarLayout = () => {

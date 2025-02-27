@@ -1,13 +1,19 @@
 import { Button } from "flowbite-react";
 import { ReactNode } from "react";
 
-const AuthButton = ({ children }: { children: ReactNode }) => {
+const AuthButton = ({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) => {
   return (
     <Button
       color={"primary"}
-      size="large"
+      size="md"
       type="submit"
-      className="rounded-md w-full py-4 font-bold"
+      className={`rounded-md w-full py-2 font-bold ${className}`}
     >
       {children}
     </Button>

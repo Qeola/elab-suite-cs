@@ -27,19 +27,19 @@ const SidebarContent: MenuItem[] = [
     name: "Payment",
     items: [
       {
-        heading: "Pages",
+        heading: "Payment",
         children: [
           {
             name: "Invoice",
             icon: "solar:home-angle-outline",
             id: uniqueId(),
-            url: "/",
+            url: "/dashboard/invoice",
           },
           {
             name: "Receipt",
             icon: "solar:settings-minimalistic-line-duotone",
             id: uniqueId(),
-            url: "/sample-page",
+            url: "/dashboard/sample-page",
           },
         ],
       },
