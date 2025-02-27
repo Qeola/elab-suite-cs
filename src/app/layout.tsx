@@ -4,13 +4,15 @@ import { Manrope } from "next/font/google";
 import "./css/globals.css";
 import { Flowbite, ThemeModeScript } from "flowbite-react";
 import customTheme from "@/utils/theme/custom-theme";
+import NextTopLoader from "nextjs-toploader";
 import { CustomizerContextProvider } from "@/app/context/CustomizerContext";
 import "../utils/i18n";
+import { Providers } from "@/utils/stores/providers";
 
 const manrope = Manrope({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Matdash - Nextjs",
+  title: "Elab Suite",
 };
 
 export default function RootLayout({
@@ -26,7 +28,10 @@ export default function RootLayout({
       </head>
       <body className={`${manrope.className}`}>
         <Flowbite theme={{ theme: customTheme }}>
-          <CustomizerContextProvider>{children}</CustomizerContextProvider>
+          <NextTopLoader color="var(--color-primary)" />
+          <Providers>
+            <CustomizerContextProvider>{children}</CustomizerContextProvider>
+          </Providers>
         </Flowbite>
       </body>
     </html>

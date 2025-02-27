@@ -61,6 +61,12 @@ export const CustomizerContextProvider: React.FC<CustomizerContextProps> = ({
     document.documentElement.setAttribute("data-boxed-layout", isLayout);
     document.documentElement.setAttribute("data-sidebar-type", isCollapse);
   }, [activeMode, activeDir, activeTheme, activeLayout, isLayout, isCollapse]);
+  useEffect(() => {
+    const systemPrefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)",
+    ).matches;
+    setActiveMode(systemPrefersDark ? "dark" : "light");
+  }, []);
 
   return (
     <CustomizerContext.Provider

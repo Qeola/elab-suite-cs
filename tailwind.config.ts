@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss";
 import flowbite from "flowbite-react/tailwind";
 const config: Config = {
-  darkMode: ["class", "class"],
+  darkMode: "class",
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -21,11 +21,15 @@ const config: Config = {
         "btn-shadow": "box-shadow: rgba(0, 0, 0, .05) 0 9px 17.5px",
         tw: "rgba(175, 182, 201, 0.2) 0px 2px 4px -1px",
         btnshdw: "0 17px 20px -8px rgba(77, 91, 236, .231372549)",
+        elevation1: "0px 12px 30px -2px rgba(58,75,116,0.14);",
+        elevation2: "0px 24px 24px -12px rgba(0,0,0,0.05);",
+        elevation3: "0px 24px 24px -12px rgba(99,91,255,0.15);",
+        elevation4: "0px 12px 12px -6px rgba(0,0,0,0.15);",
       },
       borderRadius: {
-        sm: "calc(var(--radius) - 4px)",
-        md: "calc(var(--radius) - 2px)",
-        lg: "var(--radius)",
+        sm: "6px",
+        md: "9px",
+        lg: "24px",
         tw: "12px",
         bb: "20px",
       },
@@ -53,11 +57,16 @@ const config: Config = {
       },
       fontSize: {
         "15": "15px",
+        "17": "17px",
         "13": "13px",
         "22": "22px",
         "28": "28px",
         "34": "34px",
         "40": "40px",
+        "44": "44px",
+        "50": "50px",
+        "56": "56px",
+        "64": "64px",
       },
       colors: {
         cyan: {
@@ -104,6 +113,7 @@ const config: Config = {
     //Add Flowbite Plugin
     require("flowbite/plugin"),
     require("tailwindcss-animate"),
+    require("tailwind-scrollbar-hide"),
   ],
 };
 export default config;
