@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import { IconChevronDown } from "@tabler/icons-react";
 import { Icon } from "@iconify/react";
@@ -93,6 +94,3 @@ const ChildComponent = ({
 };
 
 export default ChildComponent;
-function usePathanme() {
-  throw new Error("Function not implemented.");
-}

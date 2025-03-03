@@ -10,8 +10,7 @@ interface MyAppProps {
   className?: string;
 }
 const CardBox: React.FC<MyAppProps> = ({ children, className }) => {
-  const { activeMode, isCardShadow, isBorderRadius } =
-    useContext(CustomizerContext);
+  const { isCardShadow, isBorderRadius } = useContext(CustomizerContext);
   return (
     <Card
       className={`card p-[30px]  ${className} ${isCardShadow ? " shadow-md dark:shadow-none" : "shadow-none border border-ld"} `}

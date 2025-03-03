@@ -1,19 +1,8 @@
 "use client";
 
-import React, { useState, useContext, useEffect } from "react";
-import {
-  Alert,
-  Button,
-  Label,
-  Select,
-  TextInput,
-  Table,
-  Tooltip,
-} from "flowbite-react";
-import { Icon } from "@iconify/react";
-import { useRouter } from "next/navigation";
-import { format, isValid } from "date-fns";
-import { invoices } from "@/app/context/invoices";
+import React from "react";
+import { Label, TextInput } from "flowbite-react";
+import { menuItems } from "@/app/context/invoices";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import AuthButton from "../resuable/button/AuthButton";
@@ -36,8 +25,7 @@ const validationSchema = Yup.object({
 });
 
 function GenerateInvoiceForm() {
-  const [showAlert, setShowAlert] = useState(false);
-  const router = useRouter();
+  // const [showAlert, setShowAlert] = useState(false);
 
   const initialValues = {
     client_name: "",
@@ -52,23 +40,23 @@ function GenerateInvoiceForm() {
     discount: "",
   };
 
-  const calculateTotals = (orders: any[]) => {
-    let subtotal = 0;
+  // const calculateTotals = (orders: any[]) => {
+  //   let subtotal = 0;
 
-    orders.forEach((order) => {
-      const unitPrice = parseFloat(order.unitPrice) || 0;
-      const units = parseInt(order.units) || 0;
-      const totalCost = unitPrice * units;
+  //   orders.forEach((order) => {
+  //     const unitPrice = parseFloat(order.unitPrice) || 0;
+  //     const units = parseInt(order.units) || 0;
+  //     const totalCost = unitPrice * units;
 
-      subtotal += totalCost;
-      order.unitTotalPrice = totalCost;
-    });
+  //     subtotal += totalCost;
+  //     order.unitTotalPrice = totalCost;
+  //   });
 
-    const vat = subtotal * 0.1;
-    const grandTotal = subtotal + vat;
+  //   const vat = subtotal * 0.1;
+  //   const grandTotal = subtotal + vat;
 
-    return { subtotal, vat, grandTotal };
-  };
+  //   return { subtotal, vat, grandTotal };
+  // };
 
   const handleSubmit = async () => {
     // e.preventDefault();
@@ -98,7 +86,7 @@ function GenerateInvoiceForm() {
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({ values }) => (
+        {({}) => (
           <Form>
             <div className="bg-lightgray dark:bg-gray-800/70 p-6 my-6 rounded-md">
               {/* Client */}
@@ -110,13 +98,31 @@ function GenerateInvoiceForm() {
                   <div className="mb-2 block">
                     <Label htmlFor="client_name" value="Client Name" />
                   </div>
+                  {/* <select id="large" className="block w-full px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+    <option selected>Choose a country</option>
+    {menuItems.map((val, i)=>(
+    <option value={val}>{val}</option>
+    ))}
+  </select> */}
                   <Field
+                    as="select"
                     id="client_name"
                     name="client_name"
-                    type="text"
-                    as={TextInput}
                     sizing="lg"
-                    className="form-control"
+                    // size={6}
+                    className="rounded-md form-control block w-full p-3.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+                  >
+                    <option value="">Choose a country</option>
+                    {menuItems.map((val, i) => (
+                      <option key={i} value={val}>
+                        {val}
+                      </option>
+                    ))}
+                  </Field>
+                  <ErrorMessage
+                    name="client_name"
+                    component="div"
+                    className="text-red-500 text-sm mt-1"
                   />
                 </div>
                 <div className="lg:col-span-6 md:col-span-6 col-span-12">
@@ -131,6 +137,11 @@ function GenerateInvoiceForm() {
                     type="email"
                     className="form-control"
                   />
+                  <ErrorMessage
+                    name="client_email"
+                    component="div"
+                    className="text-red-500 text-sm mt-1"
+                  />
                 </div>
               </div>
 
@@ -139,7 +150,7 @@ function GenerateInvoiceForm() {
                 Product Details
               </div>
               <div className="grid grid-cols-12 gap-6">
-                <div className="lg:col-span-6 md:col-span-6 col-span-12">
+                <div className="lg:col-span-6 md:col-span-6 col-span-12 mb-5">
                   <div className="mb-2 block">
                     <Label htmlFor="project_name" value="Product Name" />
                   </div>
@@ -151,8 +162,13 @@ function GenerateInvoiceForm() {
                     sizing="lg"
                     className="form-control"
                   />
+                  <ErrorMessage
+                    name="project_name"
+                    component="div"
+                    className="text-red-500 text-sm mt-1"
+                  />
                 </div>
-                <div className="lg:col-span-6 md:col-span-6 col-span-12">
+                <div className="lg:col-span-6 md:col-span-6 col-span-12 mb-5">
                   <div className="mb-2 block">
                     <Label
                       htmlFor="project_timeline"
@@ -166,6 +182,49 @@ function GenerateInvoiceForm() {
                     sizing="lg"
                     type="email"
                     className="form-control"
+                  />
+                  <ErrorMessage
+                    name="project_timeline"
+                    component="div"
+                    className="text-red-500 text-sm mt-1"
+                  />
+                </div>
+              </div>
+              <div className="grid grid-cols-12 gap-6">
+                <div className="lg:col-span-6 md:col-span-6 col-span-12 mb-5">
+                  <div className="mb-2 block">
+                    <Label htmlFor="amount" value="Amount" />
+                  </div>
+                  <Field
+                    id="amount"
+                    name="amount"
+                    as={TextInput}
+                    sizing="lg"
+                    type="number"
+                    className="form-control"
+                  />
+                  <ErrorMessage
+                    name="amount"
+                    component="div"
+                    className="text-red-500 text-sm mt-1"
+                  />
+                </div>
+                <div className="lg:col-span-6 md:col-span-6 col-span-12 mb-5">
+                  <div className="mb-2 block">
+                    <Label htmlFor="currency" value="Currency" />
+                  </div>
+                  <Field
+                    id="currency"
+                    name="currency"
+                    type="text"
+                    as={TextInput}
+                    sizing="lg"
+                    className="form-control"
+                  />
+                  <ErrorMessage
+                    name="currency"
+                    component="div"
+                    className="text-red-500 text-sm mt-1"
                   />
                 </div>
               </div>
@@ -200,11 +259,11 @@ function GenerateInvoiceForm() {
           </Form>
         )}
       </Formik>
-      {showAlert && (
+      {/* {showAlert && (
         <Alert color="warning" rounded className="fixed top-3">
           Invoice added successfully.
         </Alert>
-      )}
+      )} */}
     </div>
   );
 }

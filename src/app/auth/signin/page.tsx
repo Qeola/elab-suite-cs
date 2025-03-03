@@ -25,7 +25,7 @@ const Login = () => {
                 <p className="text-sm font-medium">Your Admin Dashboard</p>
                 <AuthLogin />
                 <div className="flex gap-2 text-sm dark:text-white font-medium mt-6 items-center justify-start">
-                  <p>Don't have an Account?</p>
+                  <p>Don&apos;t have an Account?</p>
                   <Link
                     href={"/auth/register"}
                     className="text-primary text-sm font-medium"

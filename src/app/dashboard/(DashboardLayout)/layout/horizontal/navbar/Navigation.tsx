@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import { Navbar } from "flowbite-react";
 import { IconChevronDown } from "@tabler/icons-react";
@@ -37,14 +38,14 @@ const Navigation = () => {
             let isActive = false;
             item.children.find((item: any) => {
               if (item?.children) {
-                let nestedvalue = item.children.find(
+                const nestedvalue = item.children.find(
                   (value: any) => value.href === pathname,
                 );
                 if (nestedvalue) {
                   isActive = true;
                 }
               } else {
-                let value = item.href === pathname;
+                const value = item.href === pathname;
                 if (value) {
                   isActive = true;
                 }

@@ -1,19 +1,19 @@
 "use client";
-import React, { useContext, useEffect, useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import Link from "next/link";
-import { Badge, Button, Table } from "flowbite-react";
+import { Button, Table } from "flowbite-react";
 import { format, isValid, parseISO } from "date-fns";
 import FullLogo from "@/app/dashboard/(DashboardLayout)/layout/shared/logo/FullLogo";
-import { invoices } from "@/app/context/invoices";
+import { companyDetails, invoices } from "@/app/context/invoices";
 import { RootState } from "@/utils/stores/store";
-import { useDispatch, useSelector } from "@/utils/stores/hooks";
+import { useSelector } from "@/utils/stores/hooks";
 
 const InvoiceCardDetail = () => {
   const [selectedInvoice, setSelectedInvoice]: any = useState(null);
 
   const company: any = useSelector((state: RootState) => state.company.company);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   useEffect(() => {
     // Set the first invoice as the default selected invoice initially
@@ -64,7 +64,7 @@ const InvoiceCardDetail = () => {
             <h6 className="text-base">Bill From</h6>
             <p> {}</p>
             <p>{company.name || "Qeola"}</p>
-            <p>{company.address}</p>
+            <p>{company.address || "Ogbomoso"}</p>
             <p>{company.phone}</p>
           </div>
         </div>
@@ -102,86 +102,54 @@ const InvoiceCardDetail = () => {
       <div className="overflow-x-auto">
         <Table hoverable>
           <Table.Head>
-            <Table.HeadCell>Item Name</Table.HeadCell>
-            <Table.HeadCell>Unit Price</Table.HeadCell>
-            <Table.HeadCell>Unit</Table.HeadCell>
-            <Table.HeadCell className="text-end">Total Cost</Table.HeadCell>
+            <Table.HeadCell>Description</Table.HeadCell>
+            <Table.HeadCell className="text-end">Rate</Table.HeadCell>
           </Table.Head>
           <Table.Body className="divide-y divide-border dark:divide-darkborder ">
-            {/* {selectedInvoice.orders.map(
+            {selectedInvoice.service.map(
               (
                 order: {
-                  itemName:
-                  | string
-                  | number
-                  | bigint
-                  | boolean
-                  | React.ReactElement<
-                    any,
-                    string | React.JSXElementConstructor<any>
-                  >
-                  | Iterable<React.ReactNode>
-                  | React.ReactPortal
-                  | Promise<React.AwaitedReactNode>
-                  | null
-                  | undefined;
-                  unitPrice:
-                  | string
-                  | number
-                  | bigint
-                  | boolean
-                  | React.ReactElement<
-                    any,
-                    string | React.JSXElementConstructor<any>
-                  >
-                  | Iterable<React.ReactNode>
-                  | React.ReactPortal
-                  | Promise<React.AwaitedReactNode>
-                  | null
-                  | undefined;
-                  units:
-                  | string
-                  | number
-                  | bigint
-                  | boolean
-                  | React.ReactElement<
-                    any,
-                    string | React.JSXElementConstructor<any>
-                  >
-                  | Iterable<React.ReactNode>
-                  | React.ReactPortal
-                  | Promise<React.AwaitedReactNode>
-                  | null
-                  | undefined;
-                  unitTotalPrice:
-                  | string
-                  | number
-                  | bigint
-                  | boolean
-                  | React.ReactElement<
-                    any,
-                    string | React.JSXElementConstructor<any>
-                  >
-                  | Iterable<React.ReactNode>
-                  | React.ReactPortal
-                  | Promise<React.AwaitedReactNode>
-                  | null
-                  | undefined;
+                  name:
+                    | string
+                    | number
+                    | bigint
+                    | boolean
+                    | React.ReactElement<
+                        any,
+                        string | React.JSXElementConstructor<any>
+                      >
+                    | Iterable<React.ReactNode>
+                    | React.ReactPortal
+                    | Promise<React.AwaitedReactNode>
+                    | null
+                    | undefined;
+                  amount:
+                    | string
+                    | number
+                    | bigint
+                    | boolean
+                    | React.ReactElement<
+                        any,
+                        string | React.JSXElementConstructor<any>
+                      >
+                    | Iterable<React.ReactNode>
+                    | React.ReactPortal
+                    | Promise<React.AwaitedReactNode>
+                    | null
+                    | undefined;
                 },
-                index: React.Key | null | undefined
+                index: React.Key | null | undefined,
               ) => (
                 <Table.Row key={index}>
                   <Table.Cell className="whitespace-nowrap ">
-                    <h5 className="text-sm">{order.itemName}</h5>
+                    <h5 className="text-sm">{order.name}</h5>
                   </Table.Cell>
-                  <Table.Cell className="text-ld">{order.unitPrice}</Table.Cell>
-                  <Table.Cell className="text-ld">{order.units}</Table.Cell>
                   <Table.Cell className="text-end">
-                    <h4 className="text-sm">{order.unitTotalPrice}</h4>
+                    <h4 className="text-sm">{order.amount}</h4>
                   </Table.Cell>
                 </Table.Row>
-              )
-            )} */}
+              ),
+            )}
           </Table.Body>
         </Table>
         <div className="border-t border-ld  py-5 px-4">
@@ -211,25 +179,34 @@ const InvoiceCardDetail = () => {
 
         {/* Payment Detail */}
         <div className="flex justify-start">
-          {company?.payment?.map((detail: any, index: any) => (
-            <div key={index} className="me-3">
-              <h6>{detail.name}</h6>
-              <p>{detail.bank_name}</p>
-              {detail.dollar_account && <p>{detail.dollar_account}</p>}
-              {detail.account && <p>{detail.account}</p>}
-            </div>
-          ))}
+          {companyDetails?.payment?.map(
+            (
+              detail: {
+                account_name: string;
+                bank_name: string;
+                dollar_account: number | string;
+                account: number | string;
+              },
+              index: number,
+            ) => (
+              <div key={index} className="me-3">
+                <h6>{detail.account_name}</h6>
+                <p>{detail.bank_name}</p>
+                {detail.dollar_account && <p>{detail.dollar_account}</p>}
+                {detail.account && <p>{detail.account}</p>}
+              </div>
+            ),
+          )}
         </div>
 
         <div className="flex justify-end gap-3 mt-4">
-          <Button color={"warning"}>
-            <Link href={`/dashboard/invoice/${selectedInvoice.slug}/edit`}>
-              Edit Invoice
-            </Link>
+          <Button
+            color={"warning"}
+            href={`/dashboard/invoice/${selectedInvoice.slug}/edit`}
+          >
+            Edit Invoice
           </Button>
-          <Button color="primary">
-            <Link href="/dashboard/invoice">Back to Invoice List</Link>
-          </Button>
+          <Button color="primary">Download</Button>
         </div>
       </div>
     </>

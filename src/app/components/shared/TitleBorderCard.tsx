@@ -2,7 +2,6 @@
 import { CustomizerContext } from "@/app/context/CustomizerContext";
 
 import { Card } from "flowbite-react";
-import { title } from "process";
 import React from "react";
 import { createContext } from "vm";
 
@@ -12,7 +11,7 @@ interface MyAppProps {
   title?: string;
 }
 const TitleCard: React.FC<MyAppProps> = ({ children, className, title }) => {
-  const { activeMode, isCardShadow } = createContext(CustomizerContext);
+  const { isCardShadow } = createContext(CustomizerContext);
   return (
     <Card
       className={`card ${className} ${

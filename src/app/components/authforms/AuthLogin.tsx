@@ -1,12 +1,17 @@
 "use client";
-import { Button, Checkbox, Label, TextInput } from "flowbite-react";
+import { Label, TextInput } from "flowbite-react";
 import Link from "next/link";
 import React, { useState } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import { HiEye, HiEyeOff } from "react-icons/hi";
 import AuthLoadingButton from "@/app/components/resuable/button/AuthLoading";
 import AuthButton from "@/app/components/resuable/button/AuthButton";
+
+interface FormValues {
+  email: string;
+  password: string;
+}
 
 const AuthLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -18,7 +23,10 @@ const AuthLogin = () => {
     password: Yup.string().required("Password is required"),
   });
 
-  const handleSubmit = (values: any, { resetForm }: any) => {
+  const handleSubmit = (
+    values: FormValues,
+    { resetForm }: FormikHelpers<FormValues>,
+  ) => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
@@ -33,7 +41,7 @@ const AuthLogin = () => {
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({ values }) => (
+        {({}) => (
           <Form className="mt-6">
             {/* Email */}
             <div className="mb-4">

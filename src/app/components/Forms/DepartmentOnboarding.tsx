@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup";
@@ -7,10 +8,10 @@ import AuthButton from "../resuable/button/AuthButton";
 
 interface FormValues {
   name: string;
-  // lead: string;
+  lead: string;
 }
 
-const DepartmentModal = ({
+const DepartmentOnboarding = ({
   loading,
   setLoading,
 }: {
@@ -18,7 +19,8 @@ const DepartmentModal = ({
   setLoading: (e: boolean) => void;
 }) => {
   const validationSchema = Yup.object({
-    name: Yup.string().required("Password is required"),
+    name: Yup.string().required("Email is required"),
+    lead: Yup.string().required("Password is required"),
   });
 
   const handleSubmit = (
@@ -33,21 +35,17 @@ const DepartmentModal = ({
     }, 1500);
   };
   return (
-    <div className="space-y-6">
+    <div>
       <Formik
-        initialValues={{ name: "" }}
+        initialValues={{ name: "", lead: "" }}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
         {({}) => (
           <Form className="mt-6">
-            {/* Email */}
+            {/* Name */}
             <div className="mb-4">
-              <Label
-                htmlFor="email"
-                value="Department Name"
-                className="mb-2 block"
-              />
+              <Label htmlFor="name" value="Name" className="mb-2 block" />
               <Field
                 id="name"
                 name="name"
@@ -62,13 +60,28 @@ const DepartmentModal = ({
                 className="text-red-500 text-sm mt-1"
               />
             </div>
-            <div className="mt-6">
-              {loading ? (
-                <AuthLoadingButton>Onboarding</AuthLoadingButton>
-              ) : (
-                <AuthButton>Onboarding</AuthButton>
-              )}
+            {/* Lead */}
+            <div className="mb-4">
+              <Label htmlFor="lead" value="Lead" className="mb-2 block" />
+              <Field
+                id="lead"
+                name="lead"
+                type="text"
+                className="form-control w-full"
+                sizing="lg"
+                as={TextInput}
+              />
+              <ErrorMessage
+                name="lead"
+                component="div"
+                className="text-red-500 text-sm mt-1"
+              />
             </div>
+            {loading ? (
+              <AuthLoadingButton>Onboard Department</AuthLoadingButton>
+            ) : (
+              <AuthButton>Onboard Department</AuthButton>
+            )}
           </Form>
         )}
       </Formik>
@@ -76,4 +89,4 @@ const DepartmentModal = ({
   );
 };
 
-export default DepartmentModal;
+export default DepartmentOnboarding;

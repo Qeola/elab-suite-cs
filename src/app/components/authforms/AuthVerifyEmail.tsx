@@ -26,7 +26,7 @@ const AuthVerifyEmail = () => {
     }
   }, [token]);
 
-  const handleSubmit = (values: any) => {
+  const handleSubmit = (values: { token: string | string[] }) => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
@@ -40,7 +40,7 @@ const AuthVerifyEmail = () => {
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({ values }) => (
+        {({}) => (
           <Form className="mt-6">
             {/* Email */}
             <div className="mb-4">

@@ -11,6 +11,7 @@ const InvoiceHeaderCard = ({
   amount,
 }: {
   activeTab: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   handleTabClick: any;
   invoice: number;
   icon: string;

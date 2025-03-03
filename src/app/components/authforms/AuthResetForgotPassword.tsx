@@ -1,13 +1,18 @@
 "use client";
-import { Button, Label, TextInput } from "flowbite-react";
-import Link from "next/link";
+import { Label, TextInput } from "flowbite-react";
 import React, { useState } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import AuthLoadingButton from "@/app/components/resuable/button/AuthLoading";
 import AuthButton from "@/app/components/resuable/button/AuthButton";
 import { useParams } from "next/navigation";
 import { HiEye, HiEyeOff } from "react-icons/hi";
+
+interface FormValues {
+  token: string | string[] | undefined;
+  password: string;
+  confirm_Password: string;
+}
 
 const AuthResetPassword = () => {
   const [loading, setLoading] = useState(false);
@@ -17,7 +22,7 @@ const AuthResetPassword = () => {
   const initialValues = {
     token: params.token,
     password: "",
-    confirmPassword: "",
+    confirm_Password: "",
   };
   const validationSchema = Yup.object({
     password: Yup.string()
@@ -37,12 +42,15 @@ const AuthResetPassword = () => {
         "Password must contain a special character",
       )
       .min(8, "Password must be at least 8 characters long"),
-    confirmPassword: Yup.string()
+    confirm_password: Yup.string()
       .oneOf([Yup.ref("password")], "Passwords must match")
       .required("Confirm password is required"),
   });
 
-  const handleSubmit = (values: any, { resetForm }: any) => {
+  const handleSubmit = (
+    values: FormValues,
+    { resetForm }: FormikHelpers<FormValues>,
+  ) => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
@@ -57,7 +65,7 @@ const AuthResetPassword = () => {
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({ values }) => (
+        {({}) => (
           <Form className="mt-6">
             {/* New Password */}
             <div className="mb-4">

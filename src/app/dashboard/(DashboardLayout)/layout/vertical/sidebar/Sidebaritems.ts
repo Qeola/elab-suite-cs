@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface ChildItem {
   id?: number | string;
   name?: string;
@@ -26,6 +27,23 @@ const SidebarContent: MenuItem[] = [
     id: 1,
     name: "Payment",
     items: [
+      {
+        heading: "Onboarding",
+        children: [
+          {
+            name: "Department",
+            icon: "solar:home-angle-outline",
+            id: uniqueId(),
+            url: "/dashboard/onboarding/department",
+          },
+          {
+            name: "Employee",
+            icon: "solar:settings-minimalistic-line-duotone",
+            id: uniqueId(),
+            url: "/dashboard/onboarding/employee",
+          },
+        ],
+      },
       {
         heading: "Payment",
         children: [

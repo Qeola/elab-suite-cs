@@ -1,13 +1,13 @@
 "use client";
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import CardBox from "../../components/shared/CardBox";
-import PaginationTable from "../../components/resuable/Pagination";
-import { Icon } from "@iconify/react/dist/iconify.js";
+import PaginationTable from "../../components/tables/InvoicePagination";
 import InvoiceHeaderCard from "../../components/resuable/cards/InvoiceHeaderCard";
 import { invoices } from "../../context/invoices";
 import BreadcrumbComp from "./layout/shared/breadcrumb/BreadcrumbComp";
+import SearchBar from "@/app/components/resuable/SearchBar";
 
-const page = () => {
+const Dashboard = () => {
   const BCrumb = [
     {
       button: "/dashboard/invoice/add",
@@ -22,6 +22,7 @@ const page = () => {
   };
 
   // Search invoice
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const filteredInvoices = invoices.filter((invoice: any) => {
     return (
       (invoice.customer_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -44,7 +45,8 @@ const page = () => {
     <>
       <BreadcrumbComp title="Invoice" items={BCrumb} />
       <CardBox>
-        <h5 className="card-title mb-3">Sample page 1</h5>
+        <h5 className="card-title mb-3">Sample Dashboard 1</h5>
+        <SearchBar onSearchChange={setSearchTerm} />
         <div className="flex justify-between overflow-x-auto mb-8 gap-6 ">
           <InvoiceHeaderCard
             activeTab={activeTab}
@@ -67,6 +69,15 @@ const page = () => {
           <InvoiceHeaderCard
             activeTab={activeTab}
             handleTabClick={handleTabClick}
+            icon="solar:map-point-wave-linear"
+            color="success"
+            invoice={Shipped}
+            type="Shipped"
+            amount={8370}
+          />
+          <InvoiceHeaderCard
+            activeTab={activeTab}
+            handleTabClick={handleTabClick}
             icon="solar:camera-rotate-broken"
             color="warning"
             invoice={Pending}
@@ -81,4 +92,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Dashboard;

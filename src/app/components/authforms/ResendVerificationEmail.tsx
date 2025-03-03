@@ -1,12 +1,21 @@
 "use client";
-import { Button, Label, TextInput } from "flowbite-react";
-import Link from "next/link";
+import { Label, TextInput } from "flowbite-react";
 import React, { useState } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import {
+  Formik,
+  Form,
+  Field,
+  ErrorMessage,
+  FormikHelpers,
+  FormikValues,
+} from "formik";
 import * as Yup from "yup";
 import AuthLoadingButton from "@/app/components/resuable/button/AuthLoading";
 import AuthButton from "@/app/components/resuable/button/AuthButton";
 
+interface FormValues {
+  email: string;
+}
 const ResendVerificationEmail = () => {
   const [loading, setLoading] = useState(false);
   const validationSchema = Yup.object({
@@ -15,7 +24,10 @@ const ResendVerificationEmail = () => {
       .required("Email is required"),
   });
 
-  const handleSubmit = (values: any, { resetForm }: any) => {
+  const handleSubmit = (
+    values: FormikValues,
+    { resetForm }: FormikHelpers<FormValues>,
+  ) => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
@@ -30,7 +42,7 @@ const ResendVerificationEmail = () => {
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({ values }) => (
+        {({}) => (
           <Form className="mt-6">
             {/* Email */}
             <div className="mb-4">
