@@ -1,15 +1,21 @@
 "use client";
 
 import { useState } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import { Label, TextInput } from "flowbite-react";
 import { HiEye, HiEyeOff } from "react-icons/hi";
 import AuthLoadingButton from "@/app/components/resuable/button/AuthLoading";
 import AuthButton from "@/app/components/resuable/button/AuthButton";
 
+interface FormValues {
+  name: string;
+  company_name: string;
+  email: string;
+  password: string;
+}
+
 const AuthRegister = () => {
-  const [formDataArray, setFormDataArray] = useState([]);
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -43,10 +49,12 @@ const AuthRegister = () => {
   });
 
   // Handle form submission
-  const handleSubmit = (values: any, { resetForm }: any) => {
+  const handleSubmit = (
+    values: FormValues,
+    { resetForm }: FormikHelpers<FormValues>,
+  ) => {
     setLoading(true);
     setTimeout(() => {
-      setFormDataArray(values);
       setLoading(false);
       resetForm();
       console.log("Submitted Data:", values);
@@ -59,7 +67,7 @@ const AuthRegister = () => {
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      {({ values }) => (
+      {({}) => (
         <Form className="mt-6">
           {/* Company Name */}
           <div className="mb-4">

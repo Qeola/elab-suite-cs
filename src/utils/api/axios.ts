@@ -5,6 +5,7 @@ let token: string | null = "";
 
 // token = Cookies.get("awaHealthUSr_token") || "";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getToken: any = () => (token ? token : null);
 
 export const getAuthorizationHeader = () => `Bearer ${getToken()}`;

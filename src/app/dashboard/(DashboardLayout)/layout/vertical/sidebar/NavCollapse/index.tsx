@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Sidebar } from "flowbite-react";
 import React, { useEffect, useState } from "react";
 import { ChildItem } from "../Sidebaritems";

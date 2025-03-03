@@ -29,7 +29,7 @@ const VerifyEmail = () => {
                 </p>
                 <AuthVerifyEmail />
                 <div className="flex gap-2 text-base text-dark dark:text-white font-medium mt-6 items-center justify-left">
-                  <p>Didn't get the mail?</p>
+                  <p>Didn&apos;t get the mail?</p>
                   <Link
                     href={"/auth/resend-verification-email"}
                     className="text-primary text-sm font-medium"

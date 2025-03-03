@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import {
   flexRender,
@@ -8,10 +9,8 @@ import {
   getSortedRowModel,
   useReactTable,
   createColumnHelper,
-  ColumnFiltersState,
 } from "@tanstack/react-table";
 import { Badge, Button, Dropdown } from "flowbite-react";
-import Image from "next/image";
 import {
   IconChevronLeft,
   IconChevronRight,
@@ -24,85 +23,94 @@ import { Icon } from "@iconify/react";
 const columnHelper = createColumnHelper<any>();
 
 const columns = [
-  columnHelper.accessor("customer", {
-    cell: (info: any) => (
-      <div className="flex gap-3 items-center">
-        <Image
-          src={info.getValue()}
-          width={50}
-          height={50}
-          alt="icon"
-          className="h-10 w-10 rounded-md"
-        />
-        <div className="truncate line-clamp-2 max-w-56">
-          <h6 className="text-base">{info.row.original.customer_name}</h6>
-          <p className="text-sm text-darklink dark:text-bodytext">
-            {info.row.original.handle}
-          </p>
-        </div>
-      </div>
-    ),
-    header: () => <span>Customer</span>,
-  }),
-  columnHelper.accessor("product_name", {
+  //   columnHelper.accessor("customer", {
+  //     cell: (info: any) => (
+  //       <div className="flex gap-3 items-center">
+  //         <Image
+  //           src={info.getValue()}
+  //           width={50}
+  //           height={50}
+  //           alt="icon"
+  //           className="h-10 w-10 rounded-md"
+  //         />
+  //         <div className="truncate line-clamp-2 max-w-56">
+  //           <h6 className="text-base">{info.row.original.customer_name}</h6>
+  //           <p className="text-sm text-darklink dark:text-bodytext">
+  //             {info.row.original.handle}
+  //           </p>
+  //         </div>
+  //       </div>
+  //     ),
+  //     header: () => <span>Customer</span>,
+  //   }),
+  columnHelper.accessor("first_name", {
     cell: (info: any) => (
       <p className="text-darklink dark:text-bodytext text-sm">
         {info.getValue()}
       </p>
     ),
-    header: () => <span>Product Name</span>,
+    header: () => <span className="text-nowrap">First Name</span>,
   }),
-  columnHelper.accessor("service", {
+  columnHelper.accessor("last_name", {
     cell: (info: any) => (
-      <div className="flex gap-2">
-        {info.getValue().map((service: any, index: any) => (
-          <p key={index}>{service}</p>
-        ))}
-      </div>
+      <p className="text-darklink dark:text-bodytext text-sm">
+        {info.getValue()}
+      </p>
     ),
-    header: () => <span>Service</span>,
+    header: () => <span className="text-nowrap">Last Name</span>,
   }),
-  columnHelper.accessor("amount", {
+  columnHelper.accessor("email", {
     cell: (info: any) => (
-      <div className="flex gap-3 items-center">
-        <p className="text-darklink dark:text-bodytext text-sm">
-          {info.getValue()}
-        </p>
-      </div>
+      <p className="text-darklink dark:text-bodytext text-sm">
+        {info.getValue()}
+      </p>
     ),
-    header: () => <span>Amount</span>,
+    header: () => <span className="text-nowrap">Email</span>,
   }),
-  columnHelper.accessor("tranche", {
+  columnHelper.accessor("employee_id", {
     cell: (info: any) => (
-      <div className="flex gap-3 items-center">
-        <p className="text-darklink dark:text-bodytext text-sm">
-          {info.getValue()}
-        </p>
-      </div>
+      <p className="text-darklink dark:text-bodytext text-sm">
+        {info.getValue()}
+      </p>
     ),
-    header: () => <span>Tranche</span>,
+    header: () => <span className="text-nowrap">Employee ID</span>,
+  }),
+  columnHelper.accessor("phone_number", {
+    cell: (info: any) => (
+      <p className="text-darklink dark:text-bodytext text-sm">
+        {info.getValue()}
+      </p>
+    ),
+    header: () => <span className="text-nowrap">Phone Number</span>,
+  }),
+  columnHelper.accessor("department", {
+    cell: (info: any) => (
+      <p className="text-darklink dark:text-bodytext text-sm">
+        {info.getValue()}
+      </p>
+    ),
+    header: () => <span className="text-nowrap">Department</span>,
+  }),
+  columnHelper.accessor("role", {
+    cell: (info: any) => (
+      <p className="text-darklink dark:text-bodytext text-sm">
+        {info.getValue()}
+      </p>
+    ),
+    header: () => <span className="text-nowrap">Role</span>,
   }),
   columnHelper.accessor("status", {
     cell: (info: any) => (
       <div className="flex gap-2">
-        {/* {info.getValue().map((status:any, index:any) => (
-        ))} */}
         <Badge
-          // key={index}
-          color={
-            info.getValue() == "paid"
-              ? "lightsuccess"
-              : info.getValue() == "pending"
-                ? "lightwarning"
-                : `lighterror`
-          }
+          color={info.getValue() == "active" ? "lightsuccess" : `lighterror`}
           className="capitalize"
         >
           {info.getValue()}
         </Badge>
       </div>
     ),
-    header: () => <span>Status</span>,
+    header: () => <span className="text-nowrap">Status</span>,
   }),
   columnHelper.accessor("actions", {
     cell: (info: any) => {
@@ -123,13 +131,12 @@ const columns = [
             {
               icon: "solar:eye-outline",
               listtitle: "View",
-              link: `/dashboard/invoice/${slug}/view`,
+              link: `/dashboard/onboarding/employee/${slug}`,
             },
-            { icon: "solar:diskette-outline", listtitle: "Generate Receipt" },
             {
               icon: "solar:pen-new-square-broken",
               listtitle: "Edit",
-              link: `/dashboard/invoice/${slug}/edit`,
+              link: `/dashboard/onboarding/employee/${slug}/edit`,
             },
             {
               icon: "solar:trash-bin-minimalistic-outline",
@@ -157,8 +164,8 @@ const columns = [
   }),
 ];
 
-function PaginationTable({ tableData }: { tableData: any }) {
-  //   const [data] = React.useState(() => [...tableData]);
+function EmployeePaginationTable({ tableData }: { tableData: any }) {
+  // const [data] = React.useState(() => [...tableData]);
   const [data, setData] = React.useState(tableData);
 
   React.useEffect(() => {
@@ -184,30 +191,30 @@ function PaginationTable({ tableData }: { tableData: any }) {
     debugColumns: false,
   });
 
-  const handleDownload = () => {
-    const headers = ["Name", "Handle", "Users", "Courses"];
-    const rows = data.map((item: any) => [
-      item.name,
-      item.handle,
-      item.users,
-      item.courses.map((course: any) => course.status).join(", "),
-    ]);
+  //   const handleDownload = () => {
+  //     const headers = ["Name", "Handle", "Users", "Courses"];
+  //     const rows = data.map((item: any) => [
+  //       item.name,
+  //       item.handle,
+  //       item.users,
+  //       item.courses.map((course: any) => course.status).join(", "),
+  //     ]);
 
-    const csvContent = [
-      headers.join(","),
-      ...rows.map((e: any) => e.join(",")),
-    ].join("\n");
+  //     const csvContent = [
+  //       headers.join(","),
+  //       ...rows.map((e: any) => e.join(",")),
+  //     ].join("\n");
 
-    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-    const url = URL.createObjectURL(blob);
+  //     const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+  //     const url = URL.createObjectURL(blob);
 
-    const link = document.createElement("a");
-    link.href = url;
-    link.setAttribute("download", "table-data.csv");
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+  //     const link = document.createElement("a");
+  //     link.href = url;
+  //     link.setAttribute("download", "table-data.csv");
+  //     document.body.appendChild(link);
+  //     link.click();
+  //     document.body.removeChild(link);
+  //   };
 
   return (
     <>
@@ -296,7 +303,7 @@ function PaginationTable({ tableData }: { tableData: any }) {
                     size="small"
                     onClick={() => table.setPageIndex(0)}
                     disabled={!table.getCanPreviousPage()}
-                    className="bg-lightgray dark:bg-dark hover:bg-lightprimary dark:hover:bg-lightprimary disabled:opacity-50"
+                    className="bg-lightgray dark:bg-dark hover:bg-lightprimary dark:hover:bg-lightprimary disabled:opacity-50 text-primary"
                   >
                     <IconChevronsLeft className="text-ld" size={20} />
                   </Button>
@@ -304,7 +311,7 @@ function PaginationTable({ tableData }: { tableData: any }) {
                     size="small"
                     onClick={() => table.previousPage()}
                     disabled={!table.getCanPreviousPage()}
-                    className="bg-lightgray dark:bg-dark hover:bg-lightprimary dark:hover:bg-lightprimary disabled:opacity-50"
+                    className="bg-lightgray dark:bg-dark hover:bg-lightprimary dark:hover:bg-lightprimary disabled:opacity-50 text-primary"
                   >
                     <IconChevronLeft className="text-ld" size={20} />
                   </Button>
@@ -312,7 +319,7 @@ function PaginationTable({ tableData }: { tableData: any }) {
                     size="small"
                     onClick={() => table.nextPage()}
                     disabled={!table.getCanNextPage()}
-                    className="bg-lightgray dark:bg-dark hover:bg-lightprimary dark:hover:bg-lightprimary disabled:opacity-50"
+                    className="bg-lightgray dark:bg-dark hover:bg-lightprimary dark:hover:bg-lightprimary disabled:opacity-50 text-primary"
                   >
                     <IconChevronRight className="text-ld" size={20} />
                   </Button>
@@ -320,7 +327,7 @@ function PaginationTable({ tableData }: { tableData: any }) {
                     size="small"
                     onClick={() => table.setPageIndex(table.getPageCount() - 1)}
                     disabled={!table.getCanNextPage()}
-                    className="bg-lightgray dark:bg-dark hover:bg-lightprimary dark:hover:bg-lightprimary disabled:opacity-50"
+                    className="bg-lightgray dark:bg-dark hover:bg-lightprimary dark:hover:bg-lightprimary disabled:opacity-50 text-primary"
                   >
                     <IconChevronsRight className="text-ld" size={20} />
                   </Button>
@@ -334,4 +341,4 @@ function PaginationTable({ tableData }: { tableData: any }) {
   );
 }
 
-export default PaginationTable;
+export default EmployeePaginationTable;

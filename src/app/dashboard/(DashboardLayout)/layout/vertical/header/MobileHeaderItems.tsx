@@ -2,7 +2,6 @@
 import { Icon } from "@iconify/react";
 import Notifications from "./Notifications";
 import Profile from "./Profile";
-import { Language } from "./Language";
 import { Navbar } from "flowbite-react";
 import { CustomizerContext } from "@/app/context/CustomizerContext";
 import { useContext } from "react";

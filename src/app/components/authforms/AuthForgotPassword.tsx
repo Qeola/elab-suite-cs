@@ -1,11 +1,14 @@
 "use client";
-import { Button, Label, TextInput } from "flowbite-react";
-import Link from "next/link";
+import { Label, TextInput } from "flowbite-react";
 import React, { useState } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import AuthLoadingButton from "@/app/components/resuable/button/AuthLoading";
 import AuthButton from "@/app/components/resuable/button/AuthButton";
+
+interface FormValues {
+  email: string;
+}
 
 const AuthForgotPassword = () => {
   const [loading, setLoading] = useState(false);
@@ -15,7 +18,10 @@ const AuthForgotPassword = () => {
       .required("Email is required"),
   });
 
-  const handleSubmit = (values: any, { resetForm }: any) => {
+  const handleSubmit = (
+    values: FormValues,
+    { resetForm }: FormikHelpers<FormValues>,
+  ) => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
@@ -30,7 +36,7 @@ const AuthForgotPassword = () => {
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({ values }) => (
+        {({}) => (
           <Form className="mt-6">
             {/* Email */}
             <div className="mb-4">

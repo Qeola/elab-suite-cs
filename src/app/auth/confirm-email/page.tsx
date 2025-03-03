@@ -1,10 +1,7 @@
 import Logo from "@/app/dashboard/(DashboardLayout)/layout/shared/logo/Logo";
 import React from "react";
 import LeftSidebarPart from "../LeftSidebarPart";
-import { Button } from "flowbite-react";
-import Link from "next/link";
 import type { Metadata } from "next";
-import AuthResetPassword from "../../components/authforms/AuthResetForgotPassword";
 import AuthConfirmEmail from "@/app/components/authforms/AuthConfirmEmail";
 export const metadata: Metadata = {
   title: "Auth - Reset Password",

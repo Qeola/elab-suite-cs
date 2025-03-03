@@ -3,7 +3,7 @@ import React, { useContext, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { CustomizerContext } from "@/app/context/CustomizerContext";
 import Image from "next/image";
-import { Button, Dropdown } from "flowbite-react";
+import { Dropdown } from "flowbite-react";
 
 const Languages = [
   {

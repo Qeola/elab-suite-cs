@@ -1,27 +1,16 @@
 import { getRequest } from "@/utils/api/apiRequestsMethod";
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 
-type User = {
-  id: string;
-  name: string;
-  email: string;
-};
-
 type InitialState = {
   loading: boolean;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   users: any;
   error: string;
 };
 
 const initialState: InitialState = {
   loading: false,
-  users: [
-    {
-      name: "Qeola",
-      address: "Ogbomoso",
-      phone: "9028838484",
-    },
-  ],
+  users: [],
   error: "",
 };
 
@@ -37,11 +26,14 @@ const companySlice = createSlice({
     builder.addCase(getUser.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(getUser.fulfilled, (state, action: PayloadAction<any>) => {
-      state.loading = false;
-      state.users = action.payload;
-      state.error = "";
-    });
+    builder.addCase(
+      getUser.fulfilled,
+      (state, action: PayloadAction<InitialState>) => {
+        state.loading = false;
+        state.users = action.payload;
+        state.error = "";
+      },
+    );
     builder.addCase(getUser.rejected, (state, action) => {
       state.loading = false;
       state.error = action.error.message || "Something went wrong";

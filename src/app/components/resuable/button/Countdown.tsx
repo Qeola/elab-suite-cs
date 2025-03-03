@@ -5,7 +5,7 @@ import { Button } from "flowbite-react";
 
 const Countdown = () => {
   const [showButton, setShowButton] = useState(false);
-  const [remainingTime, setRemainingTime] = useState<any>(
+  const [remainingTime, setRemainingTime] = useState(
     moment.duration(2, "minutes"),
   );
 

@@ -18,7 +18,7 @@ const AuthConfirmEmail = ({ text }: { text: string }) => {
     <div className="mt-6">
       <div className="text-start pb-2">
         <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
-          If you don't see an email from us within 2 minutes, one of these
+          If you don&apos;t see an email from us within 2 minutes, one of these
           things could have happened:
         </p>
         <ul className="list-disc list-outside pl-5 ps-4 text-sm text-gray-700 dark:text-gray-300 font-medium">
@@ -32,7 +32,7 @@ const AuthConfirmEmail = ({ text }: { text: string }) => {
             with auto-complete.)
           </li>
           <li className="mb-2">
-            We can't deliver the email to the address (Usually because of
+            We can&apos;t deliver the email to the address (Usually because of
             corporate firewalls or filtering.)
           </li>
         </ul>

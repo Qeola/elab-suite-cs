@@ -9,7 +9,7 @@ interface MyAppProps {
   className?: string;
 }
 const OutlineCard: React.FC<MyAppProps> = ({ children, className }) => {
-  const { activeMode, isCardShadow } = useContext(CustomizerContext);
+  const { isCardShadow } = useContext(CustomizerContext);
   return (
     <Card
       className={`card ${className} ${isCardShadow ? " border border-ld" : " border border-ld"} `}
