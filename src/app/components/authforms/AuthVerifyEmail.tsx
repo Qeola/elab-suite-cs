@@ -63,7 +63,7 @@ const AuthVerifyEmail = () => {
             {/* Submit Button */}
             <div className="mt-6">
               {loading ? (
-                <AuthLoadingButton>Verification Email</AuthLoadingButton>
+                <AuthLoadingButton />
               ) : (
                 <AuthButton>Verification Email</AuthButton>
               )}

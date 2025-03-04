@@ -71,17 +71,19 @@ export const department = [
   {
     name: "Engineering",
     member: [
-      { name: "Gee" },
-      { name: "Zitere" },
-      { name: "Ziglo" },
-      { name: "Temi" },
+      { name: "Gee Ola", email: "", avatar: "", role: "member" },
+      { name: "Zitere Duru", email: "", avatar: "", role: "member" },
+      { name: "Ziglo Ade", email: "", avatar: "", role: "member" },
+      { name: "Temi Oke", email: "", avatar: "", role: "member" },
+      { name: "Ola Oke", email: "ola@mail.me", avatar: "", role: "lead" },
     ],
-    lead: "Ola",
   },
   {
     name: "Design",
-    member: [{ name: "Bambo" }, { name: "Israel" }],
-    lead: "Nil",
+    member: [
+      { name: "Bambo", email: "", avatar: "", role: "member" },
+      { name: "Israel", email: "", avatar: "isr@mail.me", role: "member" },
+    ],
   },
 ];
 

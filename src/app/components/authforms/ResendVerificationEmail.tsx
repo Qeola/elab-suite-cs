@@ -69,7 +69,7 @@ const ResendVerificationEmail = () => {
             {/* Submit Button */}
             <div className="mt-6">
               {loading ? (
-                <AuthLoadingButton>Resend Verification Email</AuthLoadingButton>
+                <AuthLoadingButton />
               ) : (
                 <AuthButton>Resend Verification Email</AuthButton>
               )}

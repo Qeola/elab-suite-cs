@@ -136,7 +136,7 @@ const AuthResetPassword = () => {
             {/* Submit Button */}
             <div className="mt-6">
               {loading ? (
-                <AuthLoadingButton>Reset Password</AuthLoadingButton>
+                <AuthLoadingButton />
               ) : (
                 <AuthButton>Reset Password</AuthButton>
               )}

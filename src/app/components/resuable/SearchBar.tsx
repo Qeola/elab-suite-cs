@@ -23,7 +23,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearchChange }) => {
         placeholder="Search..."
         value={searchField}
         onChange={handleInputChange}
-        className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500"
+        className="form-control !rounded-md px-4 py-2"
         // icon={Search}
       />
     </div>

@@ -19,54 +19,46 @@ import {
   IconDots,
 } from "@tabler/icons-react";
 import { Icon } from "@iconify/react";
+import Image from "next/image";
+import UserAvatar from "../resuable/UserAvatar";
 
 const columnHelper = createColumnHelper<any>();
 
 const columns = [
-  //   columnHelper.accessor("customer", {
-  //     cell: (info: any) => (
-  //       <div className="flex gap-3 items-center">
-  //         <Image
-  //           src={info.getValue()}
-  //           width={50}
-  //           height={50}
-  //           alt="icon"
-  //           className="h-10 w-10 rounded-md"
-  //         />
-  //         <div className="truncate line-clamp-2 max-w-56">
-  //           <h6 className="text-base">{info.row.original.customer_name}</h6>
-  //           <p className="text-sm text-darklink dark:text-bodytext">
-  //             {info.row.original.handle}
-  //           </p>
-  //         </div>
-  //       </div>
-  //     ),
-  //     header: () => <span>Customer</span>,
-  //   }),
-  columnHelper.accessor("first_name", {
+  columnHelper.accessor("avatar", {
     cell: (info: any) => (
-      <p className="text-darklink dark:text-bodytext text-sm">
-        {info.getValue()}
-      </p>
+      <UserAvatar
+        name={`${info.row.original.first_name} ${info.row.original.last_name}`}
+        avatar={info.getValue()}
+        email={info.row.original.email}
+      />
     ),
-    header: () => <span className="text-nowrap">First Name</span>,
+    header: () => <span>Name</span>,
   }),
-  columnHelper.accessor("last_name", {
-    cell: (info: any) => (
-      <p className="text-darklink dark:text-bodytext text-sm">
-        {info.getValue()}
-      </p>
-    ),
-    header: () => <span className="text-nowrap">Last Name</span>,
-  }),
-  columnHelper.accessor("email", {
-    cell: (info: any) => (
-      <p className="text-darklink dark:text-bodytext text-sm">
-        {info.getValue()}
-      </p>
-    ),
-    header: () => <span className="text-nowrap">Email</span>,
-  }),
+  // columnHelper.accessor("first_name", {
+  //   cell: (info: any) => (
+  //     <p className="text-darklink dark:text-bodytext text-sm">
+  //       {info.getValue()}
+  //     </p>
+  //   ),
+  //   header: () => <span className="text-nowrap">First Name</span>,
+  // }),
+  // columnHelper.accessor("last_name", {
+  //   cell: (info: any) => (
+  //     <p className="text-darklink dark:text-bodytext text-sm">
+  //       {info.getValue()}
+  //     </p>
+  //   ),
+  //   header: () => <span className="text-nowrap">Last Name</span>,
+  // }),
+  // columnHelper.accessor("email", {
+  //   cell: (info: any) => (
+  //     <p className="text-darklink dark:text-bodytext text-sm">
+  //       {info.getValue()}
+  //     </p>
+  //   ),
+  //   header: () => <span className="text-nowrap">Email</span>,
+  // }),
   columnHelper.accessor("employee_id", {
     cell: (info: any) => (
       <p className="text-darklink dark:text-bodytext text-sm">
@@ -97,7 +89,7 @@ const columns = [
         {info.getValue()}
       </p>
     ),
-    header: () => <span className="text-nowrap">Role</span>,
+    header: () => <span className="text-nowrap">Job Title</span>,
   }),
   columnHelper.accessor("status", {
     cell: (info: any) => (

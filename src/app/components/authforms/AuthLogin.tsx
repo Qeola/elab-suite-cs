@@ -116,7 +116,7 @@ const AuthLogin = () => {
             {/* Submit Button */}
             <div className="mt-6">
               {loading ? (
-                <AuthLoadingButton>Sign In</AuthLoadingButton>
+                <AuthLoadingButton />
               ) : (
                 <AuthButton>Sign In</AuthButton>
               )}
