@@ -11,7 +11,6 @@ import {
   createColumnHelper,
 } from "@tanstack/react-table";
 import { Badge, Button, Dropdown } from "flowbite-react";
-import Image from "next/image";
 import {
   IconChevronLeft,
   IconChevronRight,
@@ -20,27 +19,18 @@ import {
   IconDots,
 } from "@tabler/icons-react";
 import { Icon } from "@iconify/react";
+import UserAvatar from "../resuable/UserAvatar";
 
 const columnHelper = createColumnHelper<any>();
 
 const columns = [
-  columnHelper.accessor("customer", {
+  columnHelper.accessor("avatar", {
     cell: (info: any) => (
-      <div className="flex gap-3 items-center">
-        <Image
-          src={info.getValue()}
-          width={50}
-          height={50}
-          alt="icon"
-          className="h-10 w-10 rounded-md"
-        />
-        <div className="truncate line-clamp-2 max-w-56">
-          <h6 className="text-base">{info.row.original.customer_name}</h6>
-          <p className="text-sm text-darklink dark:text-bodytext">
-            {info.row.original.handle}
-          </p>
-        </div>
-      </div>
+      <UserAvatar
+      name={info.row.original.customer_name}
+      avatar={info.getValue()}
+      email={info.row.original.handle}
+    />
     ),
     header: () => <span>Customer</span>,
   }),

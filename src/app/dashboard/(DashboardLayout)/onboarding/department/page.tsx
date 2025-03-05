@@ -1,12 +1,11 @@
 "use client";
 import React, { useState } from "react";
 import { department } from "@/app/context/invoices";
-import { Modal, Table, Button, Avatar } from "flowbite-react";
+import { Modal, Table, Button } from "flowbite-react";
 import { Icon } from "@iconify/react";
 import BreadcrumbComp from "../../layout/shared/breadcrumb/BreadcrumbComp";
 import CardBox from "@/app/components/shared/CardBox";
 import DepartmentOnboarding from "@/app/components/Forms/DepartmentOnboarding";
-import Image from "next/image";
 import UserAvatar from "@/app/components/resuable/UserAvatar";
 
 const OnboardingDepartment = () => {

@@ -22,13 +22,13 @@ export const invoices = [
   {
     id: 2,
     customer: "/images/blog/blog-img2.jpg",
-    customer_name: "Popular Authors",
+    customer_name: "Micheal Authors",
     handle: "Most Successful",
     tranche: "50%",
     amount: "$700",
     status: "pending",
     slug: "two",
-    product_name: "PF",
+    product_name: "Product Field",
     total_amount: 9983,
     grand_total: 9993,
     vat: 7.5,
@@ -37,7 +37,7 @@ export const invoices = [
   {
     id: 3,
     customer: "/images/blog/blog-img2.jpg",
-    customer_name: "Popular Authors",
+    customer_name: "Popular Listeners",
     handle: "Most Successful",
     tranche: "60%",
     amount: "$20000",
@@ -98,6 +98,7 @@ export const employees = [
     role: "HR",
     start_date: "2025-01-28",
     status: "non-active",
+    avatar: "",
   },
   {
     department: "Engineering",
@@ -109,6 +110,7 @@ export const employees = [
     role: "Accountant",
     start_date: "2024-02-01",
     status: "active",
+    avatar: "",
   },
 ];
 

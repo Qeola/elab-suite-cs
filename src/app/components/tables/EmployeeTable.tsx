@@ -19,7 +19,6 @@ import {
   IconDots,
 } from "@tabler/icons-react";
 import { Icon } from "@iconify/react";
-import Image from "next/image";
 import UserAvatar from "../resuable/UserAvatar";
 
 const columnHelper = createColumnHelper<any>();
