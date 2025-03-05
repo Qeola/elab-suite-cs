@@ -20,6 +20,7 @@ import {
 } from "@tabler/icons-react";
 import { Icon } from "@iconify/react";
 import UserAvatar from "../resuable/UserAvatar";
+import EmptyState from "../resuable/EmptyState";
 
 const columnHelper = createColumnHelper<any>();
 
@@ -212,41 +213,48 @@ function EmployeePaginationTable({ tableData }: { tableData: any }) {
       <div>
         <div className="border rounded-md border-ld overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="min-w-full">
-              <thead>
-                {table.getHeaderGroups().map((headerGroup: any) => (
-                  <tr key={headerGroup.id}>
-                    {headerGroup.headers.map((header: any) => (
-                      <th
-                        key={header.id}
-                        className="text-base text-ld font-semibold py-3 text-left border-b border-ld px-4 py-3"
-                      >
-                        {header.isPlaceholder
-                          ? null
-                          : flexRender(
-                              header.column.columnDef.header,
-                              header.getContext(),
-                            )}
-                      </th>
-                    ))}
-                  </tr>
-                ))}
-              </thead>
-              <tbody className="divide-y divide-border dark:divide-darkborder">
-                {table.getRowModel().rows.map((row: any) => (
-                  <tr key={row.id}>
-                    {row.getVisibleCells().map((cell: any) => (
-                      <td key={cell.id} className="whitespace-nowrap py-3 px-4">
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext(),
-                        )}
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            {table.getRowModel().rows.length === 0 ? (
+              <EmptyState text={"No Employee Yet."} />
+            ) : (
+              <table className="min-w-full">
+                <thead>
+                  {table.getHeaderGroups().map((headerGroup: any) => (
+                    <tr key={headerGroup.id}>
+                      {headerGroup.headers.map((header: any) => (
+                        <th
+                          key={header.id}
+                          className="text-base text-ld font-semibold py-3 text-left border-b border-ld px-4 py-3"
+                        >
+                          {header.isPlaceholder
+                            ? null
+                            : flexRender(
+                                header.column.columnDef.header,
+                                header.getContext(),
+                              )}
+                        </th>
+                      ))}
+                    </tr>
+                  ))}
+                </thead>
+                <tbody className="divide-y divide-border dark:divide-darkborder">
+                  {table.getRowModel().rows.map((row: any) => (
+                    <tr key={row.id}>
+                      {row.getVisibleCells().map((cell: any) => (
+                        <td
+                          key={cell.id}
+                          className="whitespace-nowrap py-3 px-4"
+                        >
+                          {flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext(),
+                          )}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
           </div>
           <div className="sm:flex  gap-2 p-3 items-center justify-end">
             <div className="sm:flex  items-center gap-2 sm:mt-0 mt-3">

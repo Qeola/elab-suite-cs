@@ -21,8 +21,8 @@ const LeftSidebarPart = () => {
           <Image
             src={"/images/backgrounds/auth-bg.png"}
             alt="illustration"
-            width={500}
-            height={500}
+            width={800}
+            height={800}
           />
         </div>
       </div>

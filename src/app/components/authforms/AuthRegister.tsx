@@ -69,6 +69,24 @@ const AuthRegister = () => {
     >
       {({}) => (
         <Form className="mt-6">
+          {/* Full Name */}
+          <div className="mb-4">
+            <Label htmlFor="name" value="Full Name" className="mb-2 block" />
+            <Field
+              id="name"
+              name="name"
+              type="text"
+              className="form-control w-full"
+              sizing="lg"
+              as={TextInput}
+            />
+            <ErrorMessage
+              name="name"
+              component="div"
+              className="text-red-500 text-sm mt-1"
+            />
+          </div>
+
           {/* Company Name */}
           <div className="mb-4">
             <Label
@@ -86,24 +104,6 @@ const AuthRegister = () => {
             />
             <ErrorMessage
               name="company_name"
-              component="div"
-              className="text-red-500 text-sm mt-1"
-            />
-          </div>
-
-          {/* Full Name */}
-          <div className="mb-4">
-            <Label htmlFor="name" value="Full Name" className="mb-2 block" />
-            <Field
-              id="name"
-              name="name"
-              type="text"
-              className="form-control w-full"
-              sizing="lg"
-              as={TextInput}
-            />
-            <ErrorMessage
-              name="name"
               component="div"
               className="text-red-500 text-sm mt-1"
             />
