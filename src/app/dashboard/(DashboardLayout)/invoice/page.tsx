@@ -46,7 +46,9 @@ const Invoice = () => {
       <BreadcrumbComp title="Invoice" items={BCrumb} />
       <CardBox>
         <h5 className="card-title mb-3">Sample page 1</h5>
-        <SearchBar onSearchChange={setSearchTerm} />
+        <div className="col-4 text-left">
+          <SearchBar onSearchChange={setSearchTerm} />
+        </div>
         <div className="flex justify-between overflow-x-auto mb-8 gap-6 ">
           <InvoiceHeaderCard
             activeTab={activeTab}

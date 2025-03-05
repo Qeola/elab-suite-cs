@@ -1,7 +1,7 @@
 import { Button, Spinner } from "flowbite-react";
 import { ReactNode } from "react";
 
-const AuthLoadingButton = ({ children }: { children: ReactNode }) => {
+const AuthLoadingButton = ({ children }: { children?: ReactNode }) => {
   return (
     <Button
       color={"primary"}
@@ -10,7 +10,7 @@ const AuthLoadingButton = ({ children }: { children: ReactNode }) => {
       className="rounded-md w-full py-4 font-bold"
     >
       {children}
-      <Spinner size="sm" />
+      <Spinner size="sm" className="!text-white" />
     </Button>
   );
 };

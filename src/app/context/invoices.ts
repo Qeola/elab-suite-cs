@@ -22,13 +22,13 @@ export const invoices = [
   {
     id: 2,
     customer: "/images/blog/blog-img2.jpg",
-    customer_name: "Popular Authors",
+    customer_name: "Micheal Authors",
     handle: "Most Successful",
     tranche: "50%",
     amount: "$700",
     status: "pending",
     slug: "two",
-    product_name: "PF",
+    product_name: "Product Field",
     total_amount: 9983,
     grand_total: 9993,
     vat: 7.5,
@@ -37,7 +37,7 @@ export const invoices = [
   {
     id: 3,
     customer: "/images/blog/blog-img2.jpg",
-    customer_name: "Popular Authors",
+    customer_name: "Popular Listeners",
     handle: "Most Successful",
     tranche: "60%",
     amount: "$20000",
@@ -71,17 +71,19 @@ export const department = [
   {
     name: "Engineering",
     member: [
-      { name: "Gee" },
-      { name: "Zitere" },
-      { name: "Ziglo" },
-      { name: "Temi" },
+      { name: "Gee Ola", email: "", avatar: "", role: "member" },
+      { name: "Zitere Duru", email: "", avatar: "", role: "member" },
+      { name: "Ziglo Ade", email: "", avatar: "", role: "member" },
+      { name: "Temi Oke", email: "", avatar: "", role: "member" },
+      { name: "Ola Oke", email: "ola@mail.me", avatar: "", role: "lead" },
     ],
-    lead: "Ola",
   },
   {
     name: "Design",
-    member: [{ name: "Bambo" }, { name: "Israel" }],
-    lead: "Nil",
+    member: [
+      { name: "Bambo", email: "", avatar: "", role: "member" },
+      { name: "Israel", email: "", avatar: "isr@mail.me", role: "member" },
+    ],
   },
 ];
 
@@ -96,6 +98,7 @@ export const employees = [
     role: "HR",
     start_date: "2025-01-28",
     status: "non-active",
+    avatar: "",
   },
   {
     department: "Engineering",
@@ -107,6 +110,7 @@ export const employees = [
     role: "Accountant",
     start_date: "2024-02-01",
     status: "active",
+    avatar: "",
   },
 ];
 

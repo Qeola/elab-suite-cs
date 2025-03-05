@@ -6,6 +6,7 @@ import { Icon } from "@iconify/react";
 import BreadcrumbComp from "../../layout/shared/breadcrumb/BreadcrumbComp";
 import CardBox from "@/app/components/shared/CardBox";
 import DepartmentOnboarding from "@/app/components/Forms/DepartmentOnboarding";
+import UserAvatar from "@/app/components/resuable/UserAvatar";
 
 const OnboardingDepartment = () => {
   const BCrumb = [
@@ -48,7 +49,20 @@ const OnboardingDepartment = () => {
                       </p>
                     </Table.Cell>
                     <Table.Cell className="whitespace-nowrap">
-                      <p className="text-bodytext text-sm">{item.lead}</p>
+                      {(() => {
+                        const lead = item.member?.find(
+                          (member) => member.role === "lead",
+                        );
+                        return lead ? (
+                          <UserAvatar
+                            name={lead.name}
+                            email={lead.email}
+                            avatar={lead.avatar}
+                          />
+                        ) : (
+                          <p>Nil</p>
+                        );
+                      })()}
                     </Table.Cell>
                     <Table.Cell className="whitespace-nowrap">
                       <div className="flex gap-3">
@@ -64,12 +78,12 @@ const OnboardingDepartment = () => {
         </div>
         <Button
           onClick={() => setOpenModal(true)}
-          className="w-full"
+          // className="w-full"
           color="primary"
         >
           Default Modal
         </Button>
-        <Modal show={openModal} onClose={() => setOpenModal(false)}>
+        <Modal show={openModal} onClose={() => setOpenModal(false)} size="lg">
           <Modal.Header className="rounded-t-md pb-0">
             Add Department
           </Modal.Header>

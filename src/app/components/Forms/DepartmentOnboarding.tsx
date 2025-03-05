@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import { Label, TextInput } from "flowbite-react";
 import AuthLoadingButton from "../resuable/button/AuthLoading";
 import AuthButton from "../resuable/button/AuthButton";
+import { employees } from "@/app/context/invoices";
 
 interface FormValues {
   name: string;
@@ -19,8 +20,8 @@ const DepartmentOnboarding = ({
   setLoading: (e: boolean) => void;
 }) => {
   const validationSchema = Yup.object({
-    name: Yup.string().required("Email is required"),
-    lead: Yup.string().required("Password is required"),
+    name: Yup.string().required("Name is required"),
+    lead: Yup.string(),
   });
 
   const handleSubmit = (
@@ -64,13 +65,20 @@ const DepartmentOnboarding = ({
             <div className="mb-4">
               <Label htmlFor="lead" value="Lead" className="mb-2 block" />
               <Field
+                as="select"
                 id="lead"
                 name="lead"
-                type="text"
-                className="form-control w-full"
                 sizing="lg"
-                as={TextInput}
-              />
+                // size={6}
+                className="rounded-md form-control block w-full p-3.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+              >
+                <option value="">Nil</option>
+                {employees.map((val, i) => (
+                  <option key={i} value={val.first_name}>
+                    {val.first_name}
+                  </option>
+                ))}
+              </Field>
               <ErrorMessage
                 name="lead"
                 component="div"

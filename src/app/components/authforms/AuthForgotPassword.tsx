@@ -63,7 +63,7 @@ const AuthForgotPassword = () => {
             {/* Submit Button */}
             <div className="mt-6">
               {loading ? (
-                <AuthLoadingButton>Forgot Password</AuthLoadingButton>
+                <AuthLoadingButton />
               ) : (
                 <AuthButton>Forgot Password</AuthButton>
               )}

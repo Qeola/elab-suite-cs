@@ -160,11 +160,7 @@ const AuthRegister = () => {
 
           {/* Submit Button */}
           <div className="mt-6">
-            {loading ? (
-              <AuthLoadingButton>Sign Up</AuthLoadingButton>
-            ) : (
-              <AuthButton>Sign Up</AuthButton>
-            )}
+            {loading ? <AuthLoadingButton /> : <AuthButton>Sign Up</AuthButton>}
           </div>
         </Form>
       )}
