@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { department } from "@/app/context/invoices";
-import { Modal, Table, Button } from "flowbite-react";
+import { Modal, Table } from "flowbite-react";
 import { Icon } from "@iconify/react";
 import BreadcrumbComp from "../../layout/shared/breadcrumb/BreadcrumbComp";
 import CardBox from "@/app/components/shared/CardBox";

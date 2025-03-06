@@ -1,5 +1,5 @@
 import React from "react";
-import { IconX } from "@tabler/icons-react"; // Importing X icon from Tabler Icons
+import { IconX } from "@tabler/icons-react";
 
 interface DeleteModalProps {
   isOpen: boolean;
