@@ -6,11 +6,11 @@ import InvoiceHeaderCard from "../../../components/resuable/cards/InvoiceHeaderC
 import { invoices } from "../../../context/invoices";
 import BreadcrumbComp from "../layout/shared/breadcrumb/BreadcrumbComp";
 import SearchBar from "@/app/components/resuable/SearchBar";
+import LinkButton from "@/app/components/resuable/button/LinkButton";
 
 const Invoice = () => {
   const BCrumb = [
     {
-      button: "/dashboard/invoice/add",
       title: "Generate Invoice",
     },
   ];
@@ -26,6 +26,7 @@ const Invoice = () => {
   const filteredInvoices = invoices.filter((invoice: any) => {
     return (
       (invoice.customer_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        invoice.product_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         invoice.handle.toLowerCase().includes(searchTerm.toLowerCase())) &&
       (activeTab === "All" || invoice.status === activeTab.toLowerCase())
     );
@@ -46,8 +47,15 @@ const Invoice = () => {
       <BreadcrumbComp title="Invoice" items={BCrumb} />
       <CardBox>
         <h5 className="card-title mb-3">Sample page 1</h5>
-        <div className="col-4 d-flex justify-content-start">
-          <SearchBar onSearchChange={setSearchTerm} />
+        <div className="sm:flex items-center justify-between mb-4">
+          <div className="w-full max-w-md">
+            <SearchBar onSearchChange={setSearchTerm} />
+          </div>
+          <div className="mt-2 sm:mt-0">
+            <LinkButton link="/dashboard/invoice/add">
+              Generate Invoice
+            </LinkButton>
+          </div>
         </div>
         <div className="flex justify-between overflow-x-auto mb-8 gap-6 ">
           <InvoiceHeaderCard

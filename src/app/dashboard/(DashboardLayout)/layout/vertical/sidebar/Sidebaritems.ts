@@ -32,15 +32,15 @@ const SidebarContent: MenuItem[] = [
         children: [
           {
             name: "Department",
-            icon: "solar:home-angle-outline",
+            icon: "healthicons:outpatient-department-outline",
             id: uniqueId(),
-            url: "/dashboard/onboarding/department",
+            url: "/dashboard/onboarding/departments",
           },
           {
             name: "Employee",
-            icon: "solar:settings-minimalistic-line-duotone",
+            icon: "clarity:employee-group-line",
             id: uniqueId(),
-            url: "/dashboard/onboarding/employee",
+            url: "/dashboard/onboarding/employees",
           },
         ],
       },

@@ -42,7 +42,7 @@ const DepartmentOnboarding = ({
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({}) => (
+        {({ touched, errors }) => (
           <Form className="mt-6">
             {/* Name */}
             <div className="mb-4">
@@ -51,7 +51,7 @@ const DepartmentOnboarding = ({
                 id="name"
                 name="name"
                 type="text"
-                className="form-control w-full"
+                className={`form-control w-full ${touched.name && errors.name ? "error" : ""}`}
                 sizing="lg"
                 as={TextInput}
               />
@@ -69,8 +69,7 @@ const DepartmentOnboarding = ({
                 id="lead"
                 name="lead"
                 sizing="lg"
-                // size={6}
-                className="rounded-md form-control block w-full p-3.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+                className={`rounded-md form-control block w-full p-3.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white ${touched.lead && errors.lead ? "error" : ""}`}
               >
                 <option value="">Nil</option>
                 {employees.map((val, i) => (
@@ -86,7 +85,7 @@ const DepartmentOnboarding = ({
               />
             </div>
             {loading ? (
-              <AuthLoadingButton>Onboard Department</AuthLoadingButton>
+              <AuthLoadingButton></AuthLoadingButton>
             ) : (
               <AuthButton>Onboard Department</AuthButton>
             )}
