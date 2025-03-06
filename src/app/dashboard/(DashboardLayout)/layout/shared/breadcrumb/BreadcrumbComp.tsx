@@ -8,7 +8,7 @@ interface BreadCrumbType {
   subtitle?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   items?: any[];
-  title: string;
+  title?: string;
   children?: JSX.Element;
 }
 
@@ -44,9 +44,9 @@ const BreadcrumbComp = ({ items, title }: BreadCrumbType) => {
                       >
                         {item.title}
                       </Button>
-                    ) : (
+                    ) : item.title ? (
                       <Badge color={"lightprimary"}>{item.title}</Badge>
-                    )}
+                    ) : null}
                   </div>
                 ))
               : ""}

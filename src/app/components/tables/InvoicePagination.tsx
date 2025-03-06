@@ -1,6 +1,6 @@
 "use client";
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React from "react";
+import React, { useState } from "react";
 import {
   flexRender,
   getCoreRowModel,
@@ -21,10 +21,11 @@ import {
 import { Icon } from "@iconify/react";
 import UserAvatar from "../resuable/UserAvatar";
 import EmptyState from "../resuable/EmptyState";
+import DeleteModal from "../modals/DeleteModal";
 
 const columnHelper = createColumnHelper<any>();
 
-const columns = [
+const columns = (handleDeleteClick: (slug: string) => void) => [
   columnHelper.accessor("avatar", {
     cell: (info: any) => (
       <UserAvatar
@@ -125,9 +126,14 @@ const columns = [
             {
               icon: "solar:trash-bin-minimalistic-outline",
               listtitle: "Delete",
+              action: () => handleDeleteClick(slug),
             },
           ].map((item, index) => (
-            <Dropdown.Item key={index} className="flex gap-3">
+            <Dropdown.Item
+              key={index}
+              className="flex gap-3"
+              onClick={item.action}
+            >
               {item.link ? (
                 <a href={item.link} className="flex gap-3 items-center w-full">
                   <Icon icon={item.icon} height={18} />
@@ -151,6 +157,22 @@ const columns = [
 function InvoicePaginationTable({ tableData }: { tableData: any }) {
   //   const [data] = React.useState(() => [...tableData]);
   const [data, setData] = React.useState(tableData);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
+
+  const handleDeleteClick = (slug: string) => {
+    console.log("working...", slug);
+    setSelectedSlug(slug);
+    setIsDeleteModalOpen(true);
+  };
+
+  const confirmDelete = () => {
+    if (selectedSlug) {
+      console.log("Deleting employee with slug:", selectedSlug);
+      // Call your delete API function here
+    }
+    setIsDeleteModalOpen(false);
+  };
 
   React.useEffect(() => {
     setData(tableData);
@@ -160,7 +182,7 @@ function InvoicePaginationTable({ tableData }: { tableData: any }) {
 
   const table = useReactTable({
     data,
-    columns,
+    columns: columns(handleDeleteClick),
     filterFns: {},
     state: {
       columnFilters,
@@ -294,7 +316,7 @@ function InvoicePaginationTable({ tableData }: { tableData: any }) {
                     size="small"
                     onClick={() => table.setPageIndex(0)}
                     disabled={!table.getCanPreviousPage()}
-                    className="bg-lightgray dark:bg-dark hover:bg-lightprimary dark:hover:bg-lightprimary disabled:opacity-50 text-primary"
+                    className="bg-dark hover:bg-lightprimary dark:hover:bg-lightprimary disabled:opacity-50"
                   >
                     <IconChevronsLeft className="text-ld" size={20} />
                   </Button>
@@ -302,7 +324,7 @@ function InvoicePaginationTable({ tableData }: { tableData: any }) {
                     size="small"
                     onClick={() => table.previousPage()}
                     disabled={!table.getCanPreviousPage()}
-                    className="bg-lightgray dark:bg-dark hover:bg-lightprimary dark:hover:bg-lightprimary disabled:opacity-50 text-primary"
+                    className="bg-dark hover:bg-lightprimary dark:hover:bg-lightprimary disabled:opacity-50"
                   >
                     <IconChevronLeft className="text-ld" size={20} />
                   </Button>
@@ -310,7 +332,7 @@ function InvoicePaginationTable({ tableData }: { tableData: any }) {
                     size="small"
                     onClick={() => table.nextPage()}
                     disabled={!table.getCanNextPage()}
-                    className="bg-lightgray dark:bg-dark hover:bg-lightprimary dark:hover:bg-lightprimary disabled:opacity-50 text-primary"
+                    className="bg-dark hover:bg-lightprimary dark:hover:bg-lightprimary disabled:opacity-50"
                   >
                     <IconChevronRight className="text-ld" size={20} />
                   </Button>
@@ -318,13 +340,19 @@ function InvoicePaginationTable({ tableData }: { tableData: any }) {
                     size="small"
                     onClick={() => table.setPageIndex(table.getPageCount() - 1)}
                     disabled={!table.getCanNextPage()}
-                    className="bg-lightgray dark:bg-dark hover:bg-lightprimary dark:hover:bg-lightprimary disabled:opacity-50 text-primary"
+                    className="bg-dark hover:bg-lightprimary dark:hover:bg-lightprimary disabled:opacity-50"
                   >
                     <IconChevronsRight className="text-ld" size={20} />
                   </Button>
                 </div>
               </div>
             </div>
+            <DeleteModal
+              isOpen={isDeleteModalOpen}
+              title="Employee"
+              onClose={() => setIsDeleteModalOpen(false)}
+              onConfirm={confirmDelete}
+            />
           </div>
         </div>
       </div>

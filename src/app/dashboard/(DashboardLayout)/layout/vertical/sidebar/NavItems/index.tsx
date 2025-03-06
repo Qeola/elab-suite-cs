@@ -20,8 +20,8 @@ const NavItems: React.FC<NavItemsProps> = ({ item }) => {
         as={Link}
         className={`${
           pathname.includes(item.url)
-            ? "text-white bg-primary rounded-xl  hover:text-white hover:bg-primary dark:hover:text-white shadow-btnshdw active"
-            : "text-link bg-transparent group/link "
+            ? "text-white bg-primary rounded-xl hover:text-white hover:bg-primary dark:hover:text-white shadow-btnshdw active"
+            : "text-link bg-transparent group/link hover:bg-primary hover:!text-white rounded-xl"
         } `}
       >
         <span className="flex gap-3 align-center items-center">
