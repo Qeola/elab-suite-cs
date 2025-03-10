@@ -54,6 +54,63 @@ export const invoices = [
   },
 ];
 
+export const receipt = [
+  {
+    id: "INV-001",
+    customer: "/images/blog/blog-img2.jpg",
+    customer_name: "Popular Authors",
+    handle: "Most Successful",
+    tranche: "40%",
+    amount: "$9000",
+    status: "pending",
+    product_name: "awaHealth",
+    slug: "one",
+    total_amount: 9983,
+    grand_total: 9933,
+    vat: 7.5,
+    service: [
+      { name: "Brand Design", amount: 150000 },
+      { name: "UI/Ux", amount: 250000 },
+      { name: "Web dev", amount: 580000 },
+    ],
+    // service: ["Brand Design, UI/Ux, Web dev"],
+  },
+  {
+    id: "INV-082",
+    customer: "/images/blog/blog-img2.jpg",
+    customer_name: "Micheal Authors",
+    handle: "Most Successful",
+    tranche: "50%",
+    amount: "$700",
+    status: "pending",
+    slug: "two",
+    product_name: "Product Field",
+    total_amount: 9983,
+    grand_total: 9993,
+    vat: 7.5,
+    service: [{ name: "Web dev", amount: 580000 }],
+  },
+  {
+    id: "INV-1920",
+    customer: "/images/blog/blog-img2.jpg",
+    customer_name: "Popular Listeners",
+    handle: "Most Successful",
+    tranche: "60%",
+    amount: "$20000",
+    total_amount: 9983,
+    grand_total: 99834,
+    vat: 7.5,
+    status: "paid",
+    slug: "three",
+    date: "22-08-2024",
+    product_name: "Venture Nation",
+    service: [
+      { name: "Brand Design", amount: 150000 },
+      { name: "Web dev", amount: 580000 },
+    ],
+  },
+];
+
 export const menuItems = [
   "Dashboard",
   "Settings",

@@ -10,15 +10,16 @@ import {
   useReactTable,
   createColumnHelper,
 } from "@tanstack/react-table";
-import { Badge, Button, Dropdown } from "flowbite-react";
+import { Button, Dropdown } from "flowbite-react";
 import {
   IconChevronLeft,
   IconChevronRight,
   IconChevronsLeft,
   IconChevronsRight,
-  IconDots,
+  IconDotsVertical,
 } from "@tabler/icons-react";
 import { Icon } from "@iconify/react";
+import { format, parse } from "date-fns";
 import UserAvatar from "../resuable/UserAvatar";
 import EmptyState from "../resuable/EmptyState";
 import DeleteModal from "../modals/DeleteModal";
@@ -26,6 +27,16 @@ import DeleteModal from "../modals/DeleteModal";
 const columnHelper = createColumnHelper<any>();
 
 const columns = (handleDeleteClick: (slug: string) => void) => [
+  columnHelper.accessor("id", {
+    cell: (info: any) => (
+      <div className="flex gap-3 items-center">
+        <p className="text-darklink dark:text-bodytext text-sm">
+          {info.getValue()}
+        </p>
+      </div>
+    ),
+    header: () => <span>Invoice No.</span>,
+  }),
   columnHelper.accessor("avatar", {
     cell: (info: any) => (
       <UserAvatar
@@ -44,16 +55,25 @@ const columns = (handleDeleteClick: (slug: string) => void) => [
     ),
     header: () => <span>Product Name</span>,
   }),
-  columnHelper.accessor("service", {
-    cell: (info: any) => (
-      <div className="flex gap-2">
-        {info.getValue().map((service: any, index: any) => (
-          <p key={index}>{service.name}</p>
-        ))}
-      </div>
-    ),
-    header: () => <span>Service</span>,
+
+  columnHelper.accessor("date", {
+    cell: (info: any) => {
+      const rawDate = info.getValue();
+      if (!rawDate) return null;
+
+      const parsedDate = parse(rawDate, "dd-MM-yyyy", new Date());
+      const formattedDate = format(parsedDate, "do MMM., yyyy");
+      //   const formattedDate = format(new Date(rawDate), "do MMM., yyyy");
+
+      return (
+        <p className="text-darklink dark:text-bodytext text-sm">
+          {formattedDate}
+        </p>
+      );
+    },
+    header: () => <span>Payment Date</span>,
   }),
+
   columnHelper.accessor("amount", {
     cell: (info: any) => (
       <div className="flex gap-3 items-center">
@@ -74,28 +94,6 @@ const columns = (handleDeleteClick: (slug: string) => void) => [
     ),
     header: () => <span>Tranche</span>,
   }),
-  columnHelper.accessor("status", {
-    cell: (info: any) => (
-      <div className="flex gap-2">
-        {/* {info.getValue().map((status:any, index:any) => (
-        ))} */}
-        <Badge
-          // key={index}
-          color={
-            info.getValue() == "paid"
-              ? "lightsuccess"
-              : info.getValue() == "pending"
-                ? "lightwarning"
-                : `lighterror`
-          }
-          className="capitalize"
-        >
-          {info.getValue()}
-        </Badge>
-      </div>
-    ),
-    header: () => <span>Status</span>,
-  }),
   columnHelper.accessor("actions", {
     cell: (info: any) => {
       const rowData = info.row.original;
@@ -107,7 +105,7 @@ const columns = (handleDeleteClick: (slug: string) => void) => [
           dismissOnClick={false}
           renderTrigger={() => (
             <span className="h-9 w-9 flex justify-center items-center rounded-full hover:bg-lightprimary hover:text-primary cursor-pointer">
-              <IconDots size={22} />
+              <IconDotsVertical size={22} />
             </span>
           )}
         >
@@ -154,20 +152,21 @@ const columns = (handleDeleteClick: (slug: string) => void) => [
   }),
 ];
 
-function InvoicePaginationTable({ tableData }: { tableData: any }) {
+function ReceiptPaginationTable({ tableData }: { tableData: any }) {
   //   const [data] = React.useState(() => [...tableData]);
   const [data, setData] = React.useState(tableData);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
 
   const handleDeleteClick = (slug: string) => {
+    console.log("working...", slug);
     setSelectedSlug(slug);
     setIsDeleteModalOpen(true);
   };
 
   const confirmDelete = () => {
     if (selectedSlug) {
-      console.log("Deleting invoice with slug:", selectedSlug);
+      console.log("Deleting receipt with slug:", selectedSlug);
       // Call your delete API function here
     }
     setIsDeleteModalOpen(false);
@@ -224,10 +223,10 @@ function InvoicePaginationTable({ tableData }: { tableData: any }) {
   return (
     <>
       <div>
-        <div className="border rounded-md border-ld overflow-hidden">
+        <div className="overflow-hidden">
           <div className="overflow-x-auto">
             {table.getRowModel().rows.length === 0 ? (
-              <EmptyState text={"No Employee Yet."} />
+              <EmptyState text={"No Receipt Yet."} />
             ) : (
               <table className="min-w-full">
                 <thead>
@@ -359,4 +358,4 @@ function InvoicePaginationTable({ tableData }: { tableData: any }) {
   );
 }
 
-export default InvoicePaginationTable;
+export default ReceiptPaginationTable;

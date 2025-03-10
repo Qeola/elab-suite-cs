@@ -57,7 +57,7 @@ const SidebarContent: MenuItem[] = [
             name: "Receipt",
             icon: "solar:settings-minimalistic-line-duotone",
             id: uniqueId(),
-            url: "/dashboard/sample-page",
+            url: "/dashboard/receipt",
           },
         ],
       },
