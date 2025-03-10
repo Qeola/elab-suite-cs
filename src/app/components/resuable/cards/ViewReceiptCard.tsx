@@ -3,35 +3,35 @@
 import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Button, Table } from "flowbite-react";
-import { format } from "date-fns";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import FullLogo from "@/app/dashboard/(DashboardLayout)/layout/shared/logo/FullLogo";
-import { companyDetails, invoices } from "@/app/context/invoices";
+import { companyDetails, receipt } from "@/app/context/invoices";
 import { RootState } from "@/utils/stores/store";
 import { useSelector } from "@/utils/stores/hooks";
 import { PDFFormat } from "./PDFFormat";
 import CurrencyFormatter from "@/utils/CurrencyFormatter";
+import FormatDate from "@/utils/FormatDate";
 
-const InvoiceCardDetails = () => {
+const ViewReceiptCard = () => {
   const [selectedInvoice, setSelectedInvoice]: any = useState(null);
   const company: any = useSelector((state: RootState) => state.company.company);
   const pathName = usePathname();
   const getTitle = pathName.split("/").pop();
 
   useEffect(() => {
-    if (invoices.length > 0) {
-      setSelectedInvoice(invoices[0]);
+    if (receipt.length > 0) {
+      setSelectedInvoice(receipt[1]);
     }
-  }, [invoices]);
+  }, [receipt]);
 
   useEffect(() => {
     if (getTitle) {
-      const invoice = invoices.find(
+      const invoice = receipt.find(
         (p: { slug: string }) => p.slug === getTitle,
       );
       if (invoice) setSelectedInvoice(invoice);
     }
-  }, [getTitle, invoices]);
+  }, [getTitle, receipt]);
 
   if (!selectedInvoice) {
     return <div>Loading...</div>;
@@ -69,12 +69,12 @@ const InvoiceCardDetails = () => {
         {/* Invoice detail */}
         <div className="md:col-span-6 col-span-12 flex md:justify-end">
           <div className="md:text-left">
-            <h1 className="text-xl">INVOICE</h1>
+            <h1 className="text-xl">RECEIPT</h1>
             <p className="items-center mt-1 text-xl">
-              Invoice No: {selectedInvoice.id}
+              Receipt No: {selectedInvoice.id}
             </p>
             <p className="items-center mt-1 text-lg">
-              Date: {format(new Date(), "MMMM dd, yyyy")}
+              Date: <FormatDate date={selectedInvoice.date} />
             </p>
           </div>
         </div>
@@ -192,4 +192,4 @@ const InvoiceCardDetails = () => {
   );
 };
 
-export default InvoiceCardDetails;
+export default ViewReceiptCard;

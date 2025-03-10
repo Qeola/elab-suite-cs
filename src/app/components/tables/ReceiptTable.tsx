@@ -19,10 +19,10 @@ import {
   IconDotsVertical,
 } from "@tabler/icons-react";
 import { Icon } from "@iconify/react";
-import { format, parse } from "date-fns";
 import UserAvatar from "../resuable/UserAvatar";
 import EmptyState from "../resuable/EmptyState";
 import DeleteModal from "../modals/DeleteModal";
+import FormatDate from "@/utils/FormatDate";
 
 const columnHelper = createColumnHelper<any>();
 
@@ -57,20 +57,11 @@ const columns = (handleDeleteClick: (slug: string) => void) => [
   }),
 
   columnHelper.accessor("date", {
-    cell: (info: any) => {
-      const rawDate = info.getValue();
-      if (!rawDate) return null;
-
-      const parsedDate = parse(rawDate, "dd-MM-yyyy", new Date());
-      const formattedDate = format(parsedDate, "do MMM., yyyy");
-      //   const formattedDate = format(new Date(rawDate), "do MMM., yyyy");
-
-      return (
-        <p className="text-darklink dark:text-bodytext text-sm">
-          {formattedDate}
-        </p>
-      );
-    },
+    cell: (info: any) => (
+      <p className="text-darklink dark:text-bodytext text-sm">
+        <FormatDate date={info.getValue()} />
+      </p>
+    ),
     header: () => <span>Payment Date</span>,
   }),
 
@@ -113,13 +104,13 @@ const columns = (handleDeleteClick: (slug: string) => void) => [
             {
               icon: "solar:eye-outline",
               listtitle: "View",
-              link: `/dashboard/invoice/${slug}`,
+              link: `/dashboard/receipt/${slug}`,
             },
             { icon: "solar:diskette-outline", listtitle: "Generate Receipt" },
             {
               icon: "solar:pen-new-square-broken",
               listtitle: "Edit",
-              link: `/dashboard/invoice/${slug}/edit`,
+              link: `/dashboard/receipt/${slug}/edit`,
             },
             {
               icon: "solar:trash-bin-minimalistic-outline",
