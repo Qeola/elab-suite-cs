@@ -65,7 +65,7 @@ const AuthResetPassword = () => {
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({}) => (
+        {({ touched, errors }) => (
           <Form className="mt-6">
             {/* New Password */}
             <div className="mb-4">
@@ -80,7 +80,7 @@ const AuthResetPassword = () => {
                   name="password"
                   sizing="lg"
                   type={showPassword ? "text" : "password"}
-                  className="form-control w-full"
+                  className={`form-control w-full ${touched.password && errors.password ? "error" : ""}`}
                   as={TextInput}
                 />
                 <button
@@ -111,7 +111,7 @@ const AuthResetPassword = () => {
                   name="confirm_password"
                   sizing="lg"
                   type={showNewPassword ? "text" : "password"}
-                  className="form-control w-full"
+                  className={`form-control w-full ${touched.confirm_Password && errors.confirm_Password ? "error" : ""}`}
                   as={TextInput}
                 />
                 <button

@@ -86,6 +86,10 @@
     @apply border-primary dark:border-primary outline-none shadow-none ring-offset-0 ring-transparent;
   }
 
+  .form-control.error input {
+    @apply border-red-500 focus:border-red-500 focus:ring-red-500;
+  }
+
   .form-control-input {
     @apply rounded-md border border-border dark:border-darkborder bg-transparent dark:bg-transparent w-full text-sm;
   }

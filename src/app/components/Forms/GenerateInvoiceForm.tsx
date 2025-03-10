@@ -86,7 +86,7 @@ function GenerateInvoiceForm() {
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({}) => (
+        {({ touched, errors }) => (
           <Form>
             <div className="bg-lightgray dark:bg-gray-800/70 p-6 my-6 rounded-md">
               {/* Client */}
@@ -110,7 +110,7 @@ function GenerateInvoiceForm() {
                     name="client_name"
                     sizing="lg"
                     // size={6}
-                    className="rounded-md form-control block w-full p-3.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+                    className={`rounded-md form-control block w-full p-3.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white ${touched.client_name && errors.client_name ? "error" : ""}`}
                   >
                     <option value="">Choose a country</option>
                     {menuItems.map((val, i) => (

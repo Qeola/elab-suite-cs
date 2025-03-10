@@ -10,76 +10,80 @@ import {
   useReactTable,
   createColumnHelper,
 } from "@tanstack/react-table";
-import { Badge, Button, Dropdown } from "flowbite-react";
+import { Button, Dropdown } from "flowbite-react";
 import {
   IconChevronLeft,
   IconChevronRight,
   IconChevronsLeft,
   IconChevronsRight,
-  IconDots,
+  IconDotsVertical,
 } from "@tabler/icons-react";
 import { Icon } from "@iconify/react";
 import UserAvatar from "../resuable/UserAvatar";
 import EmptyState from "../resuable/EmptyState";
 import DeleteModal from "../modals/DeleteModal";
+import FormatDate from "@/utils/FormatDate";
 
 const columnHelper = createColumnHelper<any>();
 
 const columns = (handleDeleteClick: (slug: string) => void) => [
+  columnHelper.accessor("id", {
+    cell: (info: any) => (
+      <div className="flex gap-3 items-center">
+        <p className="text-darklink dark:text-bodytext text-sm">
+          {info.getValue()}
+        </p>
+      </div>
+    ),
+    header: () => <span>Invoice No.</span>,
+  }),
   columnHelper.accessor("avatar", {
     cell: (info: any) => (
       <UserAvatar
-        name={`${info.row.original.first_name} ${info.row.original.last_name}`}
+        name={info.row.original.customer_name}
         avatar={info.getValue()}
-        email={info.row.original.email}
+        email={info.row.original.handle}
       />
     ),
-    header: () => <span>Name</span>,
+    header: () => <span>Customer</span>,
   }),
-  columnHelper.accessor("employee_id", {
+  columnHelper.accessor("product_name", {
     cell: (info: any) => (
       <p className="text-darklink dark:text-bodytext text-sm">
         {info.getValue()}
       </p>
     ),
-    header: () => <span className="text-nowrap">Employee ID</span>,
+    header: () => <span>Product Name</span>,
   }),
-  columnHelper.accessor("phone_number", {
+
+  columnHelper.accessor("date", {
     cell: (info: any) => (
       <p className="text-darklink dark:text-bodytext text-sm">
-        {info.getValue()}
+        <FormatDate date={info.getValue()} />
       </p>
     ),
-    header: () => <span className="text-nowrap">Phone Number</span>,
+    header: () => <span>Payment Date</span>,
   }),
-  columnHelper.accessor("department", {
+
+  columnHelper.accessor("amount", {
     cell: (info: any) => (
-      <p className="text-darklink dark:text-bodytext text-sm">
-        {info.getValue()}
-      </p>
-    ),
-    header: () => <span className="text-nowrap">Department</span>,
-  }),
-  columnHelper.accessor("role", {
-    cell: (info: any) => (
-      <p className="text-darklink dark:text-bodytext text-sm">
-        {info.getValue()}
-      </p>
-    ),
-    header: () => <span className="text-nowrap">Job Title</span>,
-  }),
-  columnHelper.accessor("status", {
-    cell: (info: any) => (
-      <div className="flex gap-2">
-        <Badge
-          color={info.getValue() == "active" ? "lightsuccess" : `lighterror`}
-          className="capitalize"
-        >
+      <div className="flex gap-3 items-center">
+        <p className="text-darklink dark:text-bodytext text-sm">
           {info.getValue()}
-        </Badge>
+        </p>
       </div>
     ),
-    header: () => <span className="text-nowrap">Status</span>,
+    header: () => <span>Amount</span>,
+  }),
+  columnHelper.accessor("tranche", {
+    cell: (info: any) => (
+      <div className="flex gap-3 items-center">
+        <p className="text-darklink dark:text-bodytext text-sm">
+          {info.getValue()}
+        </p>
+      </div>
+    ),
+    header: () => <span>Tranche</span>,
   }),
   columnHelper.accessor("actions", {
     cell: (info: any) => {
@@ -92,7 +96,7 @@ const columns = (handleDeleteClick: (slug: string) => void) => [
           dismissOnClick={false}
           renderTrigger={() => (
             <span className="h-9 w-9 flex justify-center items-center rounded-full hover:bg-lightprimary hover:text-primary cursor-pointer">
-              <IconDots size={22} />
+              <IconDotsVertical size={22} />
             </span>
           )}
         >
@@ -100,12 +104,13 @@ const columns = (handleDeleteClick: (slug: string) => void) => [
             {
               icon: "solar:eye-outline",
               listtitle: "View",
-              link: `/dashboard/onboarding/employee/${slug}`,
+              link: `/dashboard/receipt/${slug}`,
             },
+            { icon: "solar:diskette-outline", listtitle: "Generate Receipt" },
             {
               icon: "solar:pen-new-square-broken",
               listtitle: "Edit",
-              link: `/dashboard/onboarding/employee/${slug}/edit`,
+              link: `/dashboard/receipt/${slug}/edit`,
             },
             {
               icon: "solar:trash-bin-minimalistic-outline",
@@ -138,8 +143,8 @@ const columns = (handleDeleteClick: (slug: string) => void) => [
   }),
 ];
 
-function EmployeePaginationTable({ tableData }: { tableData: any }) {
-  // const [data] = React.useState(() => [...tableData]);
+function ReceiptPaginationTable({ tableData }: { tableData: any }) {
+  //   const [data] = React.useState(() => [...tableData]);
   const [data, setData] = React.useState(tableData);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
@@ -152,7 +157,7 @@ function EmployeePaginationTable({ tableData }: { tableData: any }) {
 
   const confirmDelete = () => {
     if (selectedSlug) {
-      console.log("Deleting employee with slug:", selectedSlug);
+      console.log("Deleting receipt with slug:", selectedSlug);
       // Call your delete API function here
     }
     setIsDeleteModalOpen(false);
@@ -181,38 +186,38 @@ function EmployeePaginationTable({ tableData }: { tableData: any }) {
     debugColumns: false,
   });
 
-  //   const handleDownload = () => {
-  //     const headers = ["Name", "Handle", "Users", "Courses"];
-  //     const rows = data.map((item: any) => [
-  //       item.name,
-  //       item.handle,
-  //       item.users,
-  //       item.courses.map((course: any) => course.status).join(", "),
-  //     ]);
+  // const handleDownload = () => {
+  //   const headers = ["Name", "Handle", "Users", "Courses"];
+  //   const rows = data.map((item: any) => [
+  //     item.name,
+  //     item.handle,
+  //     item.users,
+  //     item.courses.map((course: any) => course.status).join(", "),
+  //   ]);
 
-  //     const csvContent = [
-  //       headers.join(","),
-  //       ...rows.map((e: any) => e.join(",")),
-  //     ].join("\n");
+  //   const csvContent = [
+  //     headers.join(","),
+  //     ...rows.map((e: any) => e.join(",")),
+  //   ].join("\n");
 
-  //     const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-  //     const url = URL.createObjectURL(blob);
+  //   const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+  //   const url = URL.createObjectURL(blob);
 
-  //     const link = document.createElement("a");
-  //     link.href = url;
-  //     link.setAttribute("download", "table-data.csv");
-  //     document.body.appendChild(link);
-  //     link.click();
-  //     document.body.removeChild(link);
-  //   };
+  //   const link = document.createElement("a");
+  //   link.href = url;
+  //   link.setAttribute("download", "table-data.csv");
+  //   document.body.appendChild(link);
+  //   link.click();
+  //   document.body.removeChild(link);
+  // };
 
   return (
     <>
       <div>
-        <div className="rounded-md overflow-hidden">
+        <div className="overflow-hidden">
           <div className="overflow-x-auto">
             {table.getRowModel().rows.length === 0 ? (
-              <EmptyState text={"No Employee Yet."} />
+              <EmptyState text={"No Receipt Yet."} />
             ) : (
               <table className="min-w-full">
                 <thead>
@@ -344,4 +349,4 @@ function EmployeePaginationTable({ tableData }: { tableData: any }) {
   );
 }
 
-export default EmployeePaginationTable;
+export default ReceiptPaginationTable;
