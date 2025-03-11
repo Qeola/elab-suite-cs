@@ -9,6 +9,11 @@ const Miniicons: MiniiconsType[] = [
   {
     id: 1,
     icon: "solar:layers-line-duotone",
+    tooltip: "HR",
+  },
+  {
+    id: 2,
+    icon: "solar:layers-line-duotone",
     tooltip: "Accounting",
   },
 ];
