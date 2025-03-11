@@ -92,7 +92,7 @@ const InvoiceCardDetails = () => {
           </Table.Head>
           <Table.Body className="min-h-[27rem] relative">
             {selectedInvoice.service.map((order: any, index: number) => (
-              <Table.Row key={index} className="bg-gray-100 dark:bg-gray-500">
+              <Table.Row key={index} className="bg-gray-200 dark:bg-gray-500">
                 <Table.Cell>{order.name}</Table.Cell>
                 <Table.Cell className="text-end bg-gray-400 dark:bg-gray-700">
                   {order.amount.toLocaleString()}

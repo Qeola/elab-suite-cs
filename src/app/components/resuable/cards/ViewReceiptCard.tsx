@@ -83,38 +83,38 @@ const ViewReceiptCard = () => {
       <div className="overflow-x-auto">
         <Table>
           <Table.Head>
-            <Table.HeadCell className="w-5/6 bg-primary dark:bg-darkprimary">
+            <Table.HeadCell className="w-5/6 bg-primary dark:bg-darkprimary text-white">
               Description
             </Table.HeadCell>
-            <Table.HeadCell className="w-1/6 text-end bg-yellow-300 dark:bg-yellow-600">
+            <Table.HeadCell className="w-1/6 text-end bg-gray-400 dark:bg-gray-900">
               Rate
             </Table.HeadCell>
           </Table.Head>
           <Table.Body className="min-h-[27rem] relative">
             {selectedInvoice.service.map((order: any, index: number) => (
-              <Table.Row key={index} className="bg-gray-100 dark:bg-gray-500">
+              <Table.Row key={index} className="bg-gray-200 dark:bg-gray-500">
                 <Table.Cell>{order.name}</Table.Cell>
-                <Table.Cell className="text-end bg-gray-400 dark:bg-gray-700">
-                  {order.amount.toLocaleString()}
+                <Table.Cell className="text-end bg-gray-300 dark:bg-gray-700">
+                  <CurrencyFormatter amount={order.amount} />
                 </Table.Cell>
               </Table.Row>
             ))}
 
-            <Table.Row className="bg-gray-100 dark:bg-gray-500">
+            <Table.Row className="bg-gray-200 dark:bg-gray-500">
               <Table.Cell>
                 <div className="h-full min-h-[8rem]"></div>
               </Table.Cell>
-              <Table.Cell className="bg-gray-400 dark:bg-gray-700">
+              <Table.Cell className="bg-gray-300 dark:bg-gray-700">
                 <div className="h-full min-h-[8rem]"></div>
               </Table.Cell>
             </Table.Row>
 
             {/* Total Amount */}
-            <Table.Row className="bg-gray-100 dark:bg-gray-500">
+            <Table.Row className="bg-gray-200 dark:bg-gray-500">
               <Table.Cell className="font-semibold text-end col-span-10">
                 Total
               </Table.Cell>
-              <Table.Cell className="text-end font-semibold col-span-2 bg-gray-400 dark:bg-gray-700">
+              <Table.Cell className="text-end font-semibold col-span-2 bg-gray-300 dark:bg-gray-700">
                 <CurrencyFormatter
                   amount={selectedInvoice.service.reduce(
                     (sum: number, order: any) => sum + order.amount,
@@ -125,11 +125,11 @@ const ViewReceiptCard = () => {
             </Table.Row>
 
             {/* VAT (7.5%) */}
-            <Table.Row className="bg-gray-100 dark:bg-gray-500">
+            <Table.Row className="bg-gray-200 dark:bg-gray-500">
               <Table.Cell className="font-semibold text-end">
                 VAT (7.5%)
               </Table.Cell>
-              <Table.Cell className="text-end font-semibold bg-gray-400 dark:bg-gray-700">
+              <Table.Cell className="text-end font-semibold bg-gray-300 dark:bg-gray-700">
                 <CurrencyFormatter
                   amount={
                     selectedInvoice.service.reduce(
@@ -159,9 +159,9 @@ const ViewReceiptCard = () => {
         </Table>
       </div>
 
-      <div className="flex justify-start">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
         {companyDetails?.payment?.map((detail: any, index: any) => (
-          <div key={index} className="me-3">
+          <div key={index} className="space-y-1">
             <h6>{detail.account_name}</h6>
             <p>{detail.bank_name}</p>
             {detail.dollar_account && <p>{detail.dollar_account}</p>}
