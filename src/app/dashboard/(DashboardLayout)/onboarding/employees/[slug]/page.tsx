@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 import { Tabs } from "flowbite-react";
 import ProfileCard from "@/app/components/resuable/cards/employeeData/ProfileCard";
 import EditEmployeeForm from "@/app/components/Forms/EditEmployeeForm";

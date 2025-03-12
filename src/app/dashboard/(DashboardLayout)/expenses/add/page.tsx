@@ -13,48 +13,50 @@ import { Icon } from "@iconify/react";
 import AuthButton from "@/app/components/resuable/button/AuthButton";
 import { department } from "@/app/context/invoices";
 
-interface Employee {
-  first_name: string;
-  last_name: string;
-  email: string;
-  phone_number: string;
-  employee_id: string;
-  department: string;
-  role: string;
-  start_date: string;
+interface Expense {
+  name: string;
+  description: string;
+  category: string;
+  currency: string;
+  amount: number;
+  recurring: string;
+  date: string;
+  status: string;
 }
 
 interface FormValues {
-  employee: Employee[];
+  expenses: Expense[];
 }
 
 const page = () => {
   const initialValues = {
-    employee: [
+    expenses: [
       {
-        first_name: "",
-        last_name: "",
-        email: "",
-        phone_number: "",
-        employee_id: "",
-        department: "",
-        role: "",
-        start_date: "",
+        name: "",
+        description: "",
+        category: "",
+        currency: "",
+        amount: 0,
+        recurring: "",
+        date: "",
+        status: "",
       },
     ],
   };
 
   const validationSchema = Yup.object().shape({
-    employee: Yup.array().of(
+    expenses: Yup.array().of(
       Yup.object().shape({
-        first_name: Yup.string().required("Required"),
-        last_name: Yup.string().required("Required"),
-        email: Yup.string().email("Invalid Email").required("Required"),
-        phone_number: Yup.number().required("Required"),
-        employee_id: Yup.string().required("Required"),
-        department: Yup.string().required("Required"),
-        role: Yup.string().required("Required"),
-        start_date: Yup.string().required("Required"),
+        name: Yup.string().required("Required"),
+        description: Yup.string().required("Required"),
+        amount: Yup.number()
+          .required("Required")
+          .min(1, "Amount must be greater than 0"),
+        category: Yup.string().required("Required"),
+        currency: Yup.string().required("Required"),
+        date: Yup.string().required("Required"),
+        status: Yup.string().required("Required"),
+        recurring: Yup.string().required("Required"),
       }),
     ),
   });
@@ -81,36 +83,36 @@ const page = () => {
             <Table className="">
               <Table.Head>
                 <Table.HeadCell className="sticky left-0 bg-lightgray dark:bg-dark z-10"></Table.HeadCell>
-                <Table.HeadCell>First Name</Table.HeadCell>
-                <Table.HeadCell>Last Name</Table.HeadCell>
-                <Table.HeadCell>Email</Table.HeadCell>
-                <Table.HeadCell>Phone Number</Table.HeadCell>
-                <Table.HeadCell>Employee ID</Table.HeadCell>
-                <Table.HeadCell>Department</Table.HeadCell>
-                <Table.HeadCell>Role</Table.HeadCell>
-                <Table.HeadCell>Start Date</Table.HeadCell>
+                <Table.HeadCell>Name *</Table.HeadCell>
+                <Table.HeadCell>Category *</Table.HeadCell>
+                <Table.HeadCell>Description *</Table.HeadCell>
+                <Table.HeadCell>Amount *</Table.HeadCell>
+                <Table.HeadCell>Currency *</Table.HeadCell>
+                <Table.HeadCell>Date *</Table.HeadCell>
+                <Table.HeadCell>Recurring</Table.HeadCell>
+                <Table.HeadCell>Status</Table.HeadCell>
                 <Table.HeadCell></Table.HeadCell>
                 <Table.HeadCell>Actions</Table.HeadCell>
               </Table.Head>
-              <FieldArray name="employee">
+              <FieldArray name="expenses">
                 {({ push, remove }) => (
                   <Table.Body className="divide-y divide-border dark:divide-darkborder">
-                    {values.employee.map((emp, index) => (
+                    {values.expenses.map((emp: any, index: number) => (
                       <Table.Row key={index} className="">
                         <Table.Cell className="whitespace-nowrap sticky left-0 bg-lightgray dark:bg-dark z-10">
-                          <Tooltip content="Add Employee" placement="bottom">
+                          <Tooltip content="Add expense" placement="bottom">
                             <Button
                               className="p-0 mb-2 bg-lightprimary text-primary h-8 w-8 rounded-full flex justify-center items-center hover:bg-primary hover:text-white"
                               onClick={() =>
                                 push({
-                                  first_name: "",
-                                  last_name: "",
-                                  email: "",
-                                  phone_number: "",
-                                  employee_id: "",
-                                  department: "",
-                                  role: "",
-                                  start_date: "",
+                                  name: "",
+                                  description: "",
+                                  category: "",
+                                  amount: "",
+                                  currency: "",
+                                  date: "",
+                                  status: "",
+                                  recurring: "",
                                 })
                               }
                               type="button"
@@ -122,74 +124,14 @@ const page = () => {
 
                         <Table.Cell className="whitespace-nowrap min-w-44">
                           <Field
-                            name={`employee[${index}].first_name`}
+                            name={`expenses[${index}].name`}
                             as={TextInput}
                             sizing="lg"
-                            placeholder="First Name"
-                            className={`form-control w-full ${touched.employee?.[index]?.first_name && (errors.employee as any)?.[index]?.first_name ? "error" : ""}`}
+                            placeholder="Name"
+                            className={`form-control w-full ${touched.expenses?.[index]?.name && (errors.expenses as any)?.[index]?.name ? "error" : ""}`}
                           />
                           <ErrorMessage
-                            name={`employee[${index}].first_name`}
-                            component="div"
-                            className="text-red-500 text-sm"
-                          />
-                        </Table.Cell>
-
-                        <Table.Cell className="whitespace-nowrap min-w-44">
-                          <Field
-                            name={`employee[${index}].last_name`}
-                            as={TextInput}
-                            sizing="lg"
-                            placeholder="Last Name"
-                            className={`form-control w-full ${touched.employee?.[index]?.last_name && (errors.employee as any)?.[index]?.last_name ? "error" : ""}`}
-                          />
-                          <ErrorMessage
-                            name={`employee[${index}].last_name`}
-                            component="div"
-                            className="text-red-500 text-sm"
-                          />
-                        </Table.Cell>
-
-                        <Table.Cell className="whitespace-nowrap min-w-44">
-                          <Field
-                            name={`employee[${index}].email`}
-                            as={TextInput}
-                            sizing="lg"
-                            placeholder="Email Address"
-                            className={`form-control w-full ${touched.employee?.[index]?.email && (errors.employee as any)?.[index]?.email ? "error" : ""}`}
-                          />
-                          <ErrorMessage
-                            name={`employee[${index}].email`}
-                            component="div"
-                            className="text-red-500 text-sm"
-                          />
-                        </Table.Cell>
-
-                        <Table.Cell className="whitespace-nowrap min-w-44">
-                          <Field
-                            name={`employee[${index}].phone_number`}
-                            as={TextInput}
-                            sizing="lg"
-                            placeholder="Phone Number"
-                            className={`form-control w-full ${touched.employee?.[index]?.phone_number && (errors.employee as any)?.[index]?.phone_number ? "error" : ""}`}
-                          />
-                          <ErrorMessage
-                            name={`employee[${index}].phone_number`}
-                            component="div"
-                            className="text-red-500 text-sm"
-                          />
-                        </Table.Cell>
-
-                        <Table.Cell className="whitespace-nowrap min-w-44">
-                          <Field
-                            name={`employee[${index}].employee_id`}
-                            as={TextInput}
-                            sizing="lg"
-                            placeholder="ID"
-                            className={`form-control w-full ${touched.employee?.[index]?.employee_id && (errors.employee as any)?.[index]?.employee_id ? "error" : ""}`}
-                          />
-                          <ErrorMessage
-                            name={`employee[${index}].employee_id`}
+                            name={`expenses[${index}].name`}
                             component="div"
                             className="text-red-500 text-sm"
                           />
@@ -198,11 +140,11 @@ const page = () => {
                         <Table.Cell className="whitespace-nowrap min-w-44">
                           <Field
                             as={Select}
-                            name={`employee[${index}].department`}
+                            name={`expenses[${index}].category`}
                             sizing="lg"
-                            className={`form-control select-md w-full ${touched.employee?.[index]?.department && (errors.employee as any)?.[index]?.department ? "error" : ""}`}
+                            className={`form-control select-md w-full ${touched.expenses?.[index]?.category && (errors.expenses as any)?.[index]?.category ? "error" : ""}`}
                           >
-                            <option value="">Choose a department</option>
+                            <option value="">Choose a category</option>
                             {department.map((val, i) => (
                               <option key={i} value={val.name}>
                                 {val.name}
@@ -210,7 +152,7 @@ const page = () => {
                             ))}
                           </Field>
                           <ErrorMessage
-                            name={`employee[${index}].department`}
+                            name={`expenses[${index}].category`}
                             component="div"
                             className="text-red-500 text-sm"
                           />
@@ -218,14 +160,14 @@ const page = () => {
 
                         <Table.Cell className="whitespace-nowrap min-w-44">
                           <Field
-                            name={`employee[${index}].role`}
+                            name={`expenses[${index}].description`}
                             as={TextInput}
                             sizing="lg"
-                            placeholder="Role"
-                            className={`form-control w-full ${touched.employee?.[index]?.role && (errors.employee as any)?.[index]?.role ? "error" : ""}`}
+                            placeholder="Description"
+                            className={`form-control w-full ${touched.expenses?.[index]?.description && (errors.expenses as any)?.[index]?.description ? "error" : ""}`}
                           />
                           <ErrorMessage
-                            name={`employee[${index}].role`}
+                            name={`expenses[${index}].description`}
                             component="div"
                             className="text-red-500 text-sm"
                           />
@@ -233,15 +175,78 @@ const page = () => {
 
                         <Table.Cell className="whitespace-nowrap min-w-44">
                           <Field
-                            name={`employee[${index}].start_date`}
+                            name={`expenses[${index}].amount`}
                             as={TextInput}
                             sizing="lg"
-                            placeholder="Date"
+                            placeholder="0"
+                            className={`form-control w-full ${touched.expenses?.[index]?.amount && (errors.expenses as any)?.[index]?.amount ? "error" : ""}`}
+                          />
+                          <ErrorMessage
+                            name={`expenses[${index}].amount`}
+                            component="div"
+                            className="text-red-500 text-sm"
+                          />
+                        </Table.Cell>
+
+                        <Table.Cell className="whitespace-nowrap min-w-44">
+                          <Field
+                            name={`expenses[${index}].currency`}
+                            as={TextInput}
+                            sizing="lg"
+                            placeholder="NGN"
+                            className={`form-control w-full ${touched.expenses?.[index]?.currency && (errors.expenses as any)?.[index]?.currency ? "error" : ""}`}
+                          />
+                          <ErrorMessage
+                            name={`expenses[${index}].currency`}
+                            component="div"
+                            className="text-red-500 text-sm"
+                          />
+                        </Table.Cell>
+
+                        <Table.Cell className="whitespace-nowrap min-w-44">
+                          <Field
+                            name={`expenses[${index}].date`}
+                            as={TextInput}
+                            sizing="lg"
+                            placeholder="date"
                             type="date"
-                            className={`form-control w-full ${touched.employee?.[index]?.start_date && (errors.employee as any)?.[index]?.start_date ? "error" : ""}`}
+                            className={`form-control w-full ${touched.expenses?.[index]?.date && (errors.expenses as any)?.[index]?.date ? "error" : ""}`}
                           />
                           <ErrorMessage
-                            name={`employee[${index}].start_date`}
+                            name={`expenses[${index}].date`}
+                            component="div"
+                            className="text-red-500 text-sm"
+                          />
+                        </Table.Cell>
+
+                        <Table.Cell className="whitespace-nowrap min-w-44">
+                          <Field
+                            as={Select}
+                            name={`expenses[${index}].recurring`}
+                            sizing="lg"
+                            className={`form-control select-md ${touched.expenses?.[index]?.recurring && (errors.expenses as any)?.[index]?.recurring ? "error" : ""}`}
+                          >
+                            <option value=""></option>
+                            <option value={"yes"}>Yes</option>
+                            <option value={"no"}>No</option>
+                          </Field>
+                          <ErrorMessage
+                            name={`expenses[${index}].recurring`}
+                            component="div"
+                            className="text-red-500 text-sm mt-1"
+                          />
+                        </Table.Cell>
+
+                        <Table.Cell className="whitespace-nowrap min-w-44">
+                          <Field
+                            name={`expenses[${index}].status`}
+                            as={TextInput}
+                            sizing="lg"
+                            placeholder="Status"
+                            className={`form-control w-full ${touched.expenses?.[index]?.status && (errors.expenses as any)?.[index]?.status ? "error" : ""}`}
+                          />
+                          <ErrorMessage
+                            name={`expenses[${index}].status`}
                             component="div"
                             className="text-red-500 text-sm"
                           />
@@ -249,12 +254,12 @@ const page = () => {
 
                         <Table.Cell className="whitespace-nowrap"></Table.Cell>
                         <Table.Cell className="whitespace-nowrap">
-                          <Tooltip content="Delete Employee" placement="bottom">
+                          <Tooltip content="Delete expense" placement="bottom">
                             <Button
                               color="lighterror"
                               className="btn-circle py-2 mb-2"
-                              disabled={values.employee.length == 1}
-                              onClick={() => remove(index)}
+                              disabled={values.expenses.length == 1}
+                              onClick={() => remove(Number(index))}
                               type="button"
                             >
                               <Icon
@@ -273,7 +278,7 @@ const page = () => {
           </div>
           <div className="flex justify-end mt-3">
             <div className="flex justify-end gap-3 mt-2">
-              <AuthButton>Invite Employee(s)</AuthButton>
+              <AuthButton>Add Expense(s)</AuthButton>
             </div>
           </div>
         </Form>

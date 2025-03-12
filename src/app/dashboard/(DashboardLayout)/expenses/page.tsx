@@ -1,5 +1,13 @@
+"use client";
+import LinkButton from "@/app/components/resuable/button/LinkButton";
 import ColorBoxes from "@/app/components/resuable/cards/expenses/ColorBoxes";
-import React from "react";
+import ExpensesCategoryChart from "@/app/components/resuable/charts/ExpensesCategoryChart";
+import ExpensesPieChart from "@/app/components/resuable/charts/ExpensesPieChart";
+import SearchBar from "@/app/components/resuable/SearchBar";
+import CardBox from "@/app/components/shared/CardBox";
+import ExpensesTable from "@/app/components/tables/ExpensesTable";
+import { ChartData, ChartData2, employees } from "@/app/context/invoices";
+import React, { useEffect, useState } from "react";
 
 const ColorboxData = [
   {
@@ -45,9 +53,56 @@ const ColorboxData = [
 ];
 
 const page = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredEmployees, setFilteredEmployees] = useState(employees);
+
+  useEffect(() => {
+    const filtered = employees.filter((employee) =>
+      [
+        employee.first_name,
+        employee.last_name,
+        employee.department,
+        employee.email,
+      ].some((field) => field.toLowerCase().includes(searchTerm.toLowerCase())),
+    );
+    setFilteredEmployees(filtered);
+  }, [searchTerm, employees]);
   return (
     <div>
-      <ColorBoxes item={ColorboxData[0]} />
+      <CardBox>
+        <div className="grid grid-cols-12 gap-6">
+          <div className="lg:col-span-3 md:col-span-5 col-span-12">
+            <ColorBoxes item={ColorboxData[0]} />
+          </div>
+          <div className="lg:col-span-3 md:col-span-5 col-span-12">
+            <ColorBoxes item={ColorboxData[1]} />
+          </div>
+          <div className="lg:col-span-3 md:col-span-5 col-span-12">
+            <ColorBoxes item={ColorboxData[2]} />
+          </div>
+        </div>
+      </CardBox>
+      <div className="mt-9">
+        <CardBox>
+          <div className="sm:flex items-center justify-between mb-4">
+            <div className="w-full max-w-md">
+              <SearchBar onSearchChange={setSearchTerm} />
+            </div>
+            <div className="mt-2 sm:mt-0">
+              <LinkButton link="/dashboard/expenses/add">
+                Add Expense
+              </LinkButton>
+            </div>
+          </div>
+          <ExpensesTable tableData={filteredEmployees} />
+        </CardBox>
+      </div>
+      <div className="mt-9">
+        <ExpensesCategoryChart data={ChartData2} />
+      </div>
+      <div className="mt-9">
+        <ExpensesPieChart data={ChartData} />
+      </div>
     </div>
   );
 };

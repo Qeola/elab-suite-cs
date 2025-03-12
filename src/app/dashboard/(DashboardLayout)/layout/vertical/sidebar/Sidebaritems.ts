@@ -48,7 +48,7 @@ const SidebarContent: MenuItem[] = [
   },
   {
     id: 2,
-    name: "Payment",
+    name: "Accounting",
     items: [
       {
         heading: "Payment",

@@ -45,7 +45,7 @@ const SidebarLayout = () => {
     if (result) {
       setSelectedIconId(result);
     }
-  }, [pathname, setSelectedIconId, SidebarContent]);
+  }, [pathname, setSelectedIconId]);
 
   return (
     <>

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Label, TextInput } from "flowbite-react";
+import { Label, Select, TextInput } from "flowbite-react";
 import { menuItems } from "@/app/context/invoices";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -98,19 +98,13 @@ function GenerateInvoiceForm() {
                   <div className="mb-2 block">
                     <Label htmlFor="client_name" value="Client Name" />
                   </div>
-                  {/* <select id="large" className="block w-full px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-    <option selected>Choose a country</option>
-    {menuItems.map((val, i)=>(
-    <option value={val}>{val}</option>
-    ))}
-  </select> */}
                   <Field
-                    as="select"
+                    as={Select}
                     id="client_name"
                     name="client_name"
                     sizing="lg"
                     // size={6}
-                    className={`rounded-md form-control block w-full p-3.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white ${touched.client_name && errors.client_name ? "error" : ""}`}
+                    className={`select-md ${touched.client_name && errors.client_name ? "error" : ""}`}
                   >
                     <option value="">Choose a country</option>
                     {menuItems.map((val, i) => (

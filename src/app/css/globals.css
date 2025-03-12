@@ -6,6 +6,7 @@
 @import "./layouts/sidebar.css";
 @import "./layouts/horizontal.css";
 @import "./layouts/header.css";
+@import "./pages/expenses.css";
 @import "./theme/default-colors.css";
 @import "./theme/dark.css";
 @import "./override/reboot.css";
@@ -124,6 +125,9 @@
 
   .select-md select {
     @apply border-ld bg-transparent dark:bg-darkgray w-full text-sm rounded-md focus:border-primary dark:focus:border-primary focus:ring-0;
+  }
+  .select-md.error select {
+    @apply border-red-500 focus:border-red-500 focus:ring-red-500;
   }
 
   .checkbox {

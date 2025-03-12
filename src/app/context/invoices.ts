@@ -189,3 +189,150 @@ export const companyDetails = {
     },
   ],
 };
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const ChartData: any = {
+  series: [44, 55, 13, 43, 22],
+  chart: {
+    type: "pie",
+    height: 300,
+    fontFamily: `inherit`,
+    foreColor: "#adb0bb",
+    toolbar: {
+      show: false,
+    },
+  },
+  dataLabels: {
+    enabled: false,
+  },
+  plotOptions: {
+    pie: {
+      donut: {
+        size: "70px",
+      },
+    },
+  },
+  legend: {
+    show: true,
+    position: "bottom",
+    width: "50px",
+  },
+  colors: [
+    "var(--color-info)",
+    "var(--color-primary)",
+    "var(--color-error)",
+    "var(--color-success)",
+    "var(--color-warning )",
+  ],
+  tooltip: {
+    fillSeriesColor: false,
+  },
+  stroke: {
+    width: 2,
+    colors: "var(--color-surface-ld)",
+  },
+  labels: ["Team A", "Team B", "Team C", "Team D", "Team E"],
+  responsive: [
+    {
+      breakpoint: 480,
+      options: {
+        chart: {
+          width: 200,
+        },
+        legend: {
+          position: "bottom",
+        },
+      },
+    },
+  ],
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const ChartData2: any = {
+  series: [
+    {
+      name: "Desktop",
+      data: [44, 55, 57, 56, 61, 58, 63, 60, 66],
+    },
+    {
+      name: "Mobile",
+      data: [76, 85, 101, 98, 87, 105, 91, 114, 94],
+    },
+    {
+      name: "Other",
+      data: [35, 41, 36, 26, 45, 48, 52, 53, 41],
+    },
+  ],
+  chart: {
+    type: "bar",
+    height: 350,
+    fontFamily: `inherit`,
+    foreColor: "#a1aab2",
+    toolbar: {
+      show: false,
+    },
+  },
+  colors: [
+    "var(--color-error)",
+    "var(--color-primary)",
+    "var(--color-secondary)",
+  ],
+  plotOptions: {
+    bar: {
+      horizontal: false,
+      endingShape: "rounded",
+      columnWidth: "20%",
+    },
+  },
+  dataLabels: {
+    enabled: false,
+  },
+  stroke: {
+    show: true,
+    width: 2,
+    colors: ["transparent"],
+  },
+
+  xaxis: {
+    categories: ["Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"],
+    axisBorder: {
+      color: "rgba(173,181,189,0.3)",
+    },
+  },
+  yaxis: {
+    title: {
+      text: "$ (thousands)",
+    },
+  },
+  fill: {
+    opacity: 1,
+  },
+
+  tooltip: {
+    theme: "dark",
+    // y: {
+    //   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    //   formatter(val:any) {
+    //     return `$ ${val} thousands`;
+    //   },
+    // },
+  },
+  grid: {
+    show: false,
+  },
+  legend: {
+    show: true,
+    position: "bottom",
+    width: "50px",
+  },
+  responsive: [
+    {
+      breakpoint: 600,
+      options: {
+        yaxis: {
+          show: false,
+        },
+      },
+    },
+  ],
+};
