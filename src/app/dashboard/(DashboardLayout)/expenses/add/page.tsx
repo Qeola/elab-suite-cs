@@ -97,6 +97,7 @@ const page = () => {
               <FieldArray name="expenses">
                 {({ push, remove }) => (
                   <Table.Body className="divide-y divide-border dark:divide-darkborder">
+                    {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                     {values.expenses.map((emp: any, index: number) => (
                       <Table.Row key={index} className="">
                         <Table.Cell className="whitespace-nowrap sticky left-0 bg-lightgray dark:bg-dark z-10">
@@ -128,6 +129,7 @@ const page = () => {
                             as={TextInput}
                             sizing="lg"
                             placeholder="Name"
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
                             className={`form-control w-full ${touched.expenses?.[index]?.name && (errors.expenses as any)?.[index]?.name ? "error" : ""}`}
                           />
                           <ErrorMessage
@@ -142,6 +144,7 @@ const page = () => {
                             as={Select}
                             name={`expenses[${index}].category`}
                             sizing="lg"
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
                             className={`form-control select-md w-full ${touched.expenses?.[index]?.category && (errors.expenses as any)?.[index]?.category ? "error" : ""}`}
                           >
                             <option value="">Choose a category</option>
@@ -164,6 +167,7 @@ const page = () => {
                             as={TextInput}
                             sizing="lg"
                             placeholder="Description"
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
                             className={`form-control w-full ${touched.expenses?.[index]?.description && (errors.expenses as any)?.[index]?.description ? "error" : ""}`}
                           />
                           <ErrorMessage
@@ -179,6 +183,7 @@ const page = () => {
                             as={TextInput}
                             sizing="lg"
                             placeholder="0"
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
                             className={`form-control w-full ${touched.expenses?.[index]?.amount && (errors.expenses as any)?.[index]?.amount ? "error" : ""}`}
                           />
                           <ErrorMessage
@@ -194,6 +199,7 @@ const page = () => {
                             as={TextInput}
                             sizing="lg"
                             placeholder="NGN"
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
                             className={`form-control w-full ${touched.expenses?.[index]?.currency && (errors.expenses as any)?.[index]?.currency ? "error" : ""}`}
                           />
                           <ErrorMessage
@@ -210,6 +216,7 @@ const page = () => {
                             sizing="lg"
                             placeholder="date"
                             type="date"
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
                             className={`form-control w-full ${touched.expenses?.[index]?.date && (errors.expenses as any)?.[index]?.date ? "error" : ""}`}
                           />
                           <ErrorMessage
@@ -224,6 +231,7 @@ const page = () => {
                             as={Select}
                             name={`expenses[${index}].recurring`}
                             sizing="lg"
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
                             className={`form-control select-md ${touched.expenses?.[index]?.recurring && (errors.expenses as any)?.[index]?.recurring ? "error" : ""}`}
                           >
                             <option value=""></option>
@@ -243,6 +251,7 @@ const page = () => {
                             as={TextInput}
                             sizing="lg"
                             placeholder="Status"
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
                             className={`form-control w-full ${touched.expenses?.[index]?.status && (errors.expenses as any)?.[index]?.status ? "error" : ""}`}
                           />
                           <ErrorMessage

@@ -126,6 +126,7 @@ const page = () => {
                             as={TextInput}
                             sizing="lg"
                             placeholder="First Name"
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
                             className={`form-control w-full ${touched.employee?.[index]?.first_name && (errors.employee as any)?.[index]?.first_name ? "error" : ""}`}
                           />
                           <ErrorMessage
@@ -141,6 +142,7 @@ const page = () => {
                             as={TextInput}
                             sizing="lg"
                             placeholder="Last Name"
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
                             className={`form-control w-full ${touched.employee?.[index]?.last_name && (errors.employee as any)?.[index]?.last_name ? "error" : ""}`}
                           />
                           <ErrorMessage
@@ -156,6 +158,7 @@ const page = () => {
                             as={TextInput}
                             sizing="lg"
                             placeholder="Email Address"
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
                             className={`form-control w-full ${touched.employee?.[index]?.email && (errors.employee as any)?.[index]?.email ? "error" : ""}`}
                           />
                           <ErrorMessage
@@ -171,6 +174,7 @@ const page = () => {
                             as={TextInput}
                             sizing="lg"
                             placeholder="Phone Number"
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
                             className={`form-control w-full ${touched.employee?.[index]?.phone_number && (errors.employee as any)?.[index]?.phone_number ? "error" : ""}`}
                           />
                           <ErrorMessage
@@ -186,6 +190,7 @@ const page = () => {
                             as={TextInput}
                             sizing="lg"
                             placeholder="ID"
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
                             className={`form-control w-full ${touched.employee?.[index]?.employee_id && (errors.employee as any)?.[index]?.employee_id ? "error" : ""}`}
                           />
                           <ErrorMessage
@@ -200,6 +205,7 @@ const page = () => {
                             as={Select}
                             name={`employee[${index}].department`}
                             sizing="lg"
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
                             className={`form-control select-md w-full ${touched.employee?.[index]?.department && (errors.employee as any)?.[index]?.department ? "error" : ""}`}
                           >
                             <option value="">Choose a department</option>
@@ -222,6 +228,7 @@ const page = () => {
                             as={TextInput}
                             sizing="lg"
                             placeholder="Role"
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
                             className={`form-control w-full ${touched.employee?.[index]?.role && (errors.employee as any)?.[index]?.role ? "error" : ""}`}
                           />
                           <ErrorMessage
@@ -238,6 +245,7 @@ const page = () => {
                             sizing="lg"
                             placeholder="Date"
                             type="date"
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
                             className={`form-control w-full ${touched.employee?.[index]?.start_date && (errors.employee as any)?.[index]?.start_date ? "error" : ""}`}
                           />
                           <ErrorMessage

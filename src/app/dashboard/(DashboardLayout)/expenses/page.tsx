@@ -52,7 +52,7 @@ const ColorboxData = [
   },
 ];
 
-const page = () => {
+const Expense = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredEmployees, setFilteredEmployees] = useState(employees);
 
@@ -107,4 +107,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Expense;
