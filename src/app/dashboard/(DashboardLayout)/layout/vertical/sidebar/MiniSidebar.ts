@@ -13,7 +13,7 @@ const Miniicons: MiniiconsType[] = [
   },
   {
     id: 2,
-    icon: "solar:layers-line-duotone",
+    icon: "healthicons:low-income-level-outline",
     tooltip: "Accounting",
   },
 ];

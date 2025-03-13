@@ -72,9 +72,15 @@ const SidebarContent: MenuItem[] = [
         children: [
           {
             name: "Expenses",
-            icon: "solar:home-angle-outline",
+            icon: "healthicons:low-income-level-outline",
             id: uniqueId(),
             url: "/dashboard/expenses",
+          },
+          {
+            name: "Income",
+            icon: "solar:home-angle-outline",
+            id: uniqueId(),
+            url: "/dashboard/income",
           },
         ],
       },
