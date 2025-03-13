@@ -10,7 +10,7 @@ import SearchBar from "@/app/components/resuable/SearchBar";
 const Dashboard = () => {
   const BCrumb = [
     {
-      button: "/dashboard/invoice/add",
+      button: "/dashboard/account/invoice/add",
       title: "Generate Invoice",
     },
   ];

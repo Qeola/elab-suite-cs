@@ -100,12 +100,12 @@ const columns = (handleDeleteClick: (slug: string) => void) => [
             {
               icon: "solar:eye-outline",
               listtitle: "View",
-              link: `/dashboard/onboarding/employee/${slug}`,
+              link: `/dashboard/hr/onboarding/employee/${slug}`,
             },
             {
               icon: "solar:pen-new-square-broken",
               listtitle: "Edit",
-              link: `/dashboard/onboarding/employee/${slug}/edit`,
+              link: `/dashboard/hr/onboarding/employee/${slug}/edit`,
             },
             {
               icon: "solar:trash-bin-minimalistic-outline",

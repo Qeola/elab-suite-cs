@@ -115,13 +115,13 @@ const columns = (handleDeleteClick: (slug: string) => void) => [
             {
               icon: "solar:eye-outline",
               listtitle: "View",
-              link: `/dashboard/invoice/${slug}`,
+              link: `/dashboard/account/invoice/${slug}`,
             },
             { icon: "solar:diskette-outline", listtitle: "Generate Receipt" },
             {
               icon: "solar:pen-new-square-broken",
               listtitle: "Edit",
-              link: `/dashboard/invoice/${slug}/edit`,
+              link: `/dashboard/account/invoice/${slug}/edit`,
             },
             {
               icon: "solar:trash-bin-minimalistic-outline",

@@ -1,10 +1,10 @@
 "use client";
 import React, { useState } from "react";
-import CardBox from "../../../components/shared/CardBox";
-import InvoicePaginationTable from "../../../components/tables/InvoicePagination";
-import InvoiceHeaderCard from "../../../components/resuable/cards/InvoiceHeaderCard";
-import { invoices } from "../../../context/invoices";
-import BreadcrumbComp from "../layout/shared/breadcrumb/BreadcrumbComp";
+import CardBox from "../../../../components/shared/CardBox";
+import InvoicePaginationTable from "../../../../components/tables/InvoicePagination";
+import InvoiceHeaderCard from "../../../../components/resuable/cards/InvoiceHeaderCard";
+import { invoices } from "../../../../context/invoices";
+import BreadcrumbComp from "../../layout/shared/breadcrumb/BreadcrumbComp";
 import SearchBar from "@/app/components/resuable/SearchBar";
 import LinkButton from "@/app/components/resuable/button/LinkButton";
 
@@ -52,7 +52,7 @@ const Invoice = () => {
             <SearchBar onSearchChange={setSearchTerm} />
           </div>
           <div className="mt-2 sm:mt-0">
-            <LinkButton link="/dashboard/invoice/add">
+            <LinkButton link="/dashboard/account/invoice/add">
               Generate Invoice
             </LinkButton>
           </div>
