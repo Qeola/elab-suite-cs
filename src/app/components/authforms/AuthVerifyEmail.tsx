@@ -40,7 +40,7 @@ const AuthVerifyEmail = () => {
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({}) => (
+        {({ touched, errors }) => (
           <Form className="mt-6">
             {/* Email */}
             <div className="mb-4">
@@ -49,7 +49,7 @@ const AuthVerifyEmail = () => {
                 id="token"
                 name="token"
                 type="text"
-                className="form-control w-full"
+                className={`form-control w-full ${touched.token && errors.token ? "error" : ""}`}
                 sizing="lg"
                 as={TextInput}
               />

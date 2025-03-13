@@ -41,7 +41,7 @@ const AuthLogin = () => {
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({}) => (
+        {({ touched, errors }) => (
           <Form className="mt-6">
             {/* Email */}
             <div className="mb-4">
@@ -54,7 +54,7 @@ const AuthLogin = () => {
                 id="email"
                 name="email"
                 type="text"
-                className="form-control w-full"
+                className={`form-control w-full ${touched.email && errors.email ? "error" : ""}`}
                 sizing="lg"
                 as={TextInput}
               />
@@ -78,7 +78,7 @@ const AuthLogin = () => {
                   name="password"
                   sizing="lg"
                   type={showPassword ? "text" : "password"}
-                  className="form-control w-full"
+                  className={`form-control w-full ${touched.password && errors.password ? "error" : ""}`}
                   as={TextInput}
                 />
                 <button

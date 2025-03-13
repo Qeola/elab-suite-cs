@@ -138,7 +138,7 @@ const columns = (handleDeleteClick: (slug: string) => void) => [
   }),
 ];
 
-function EmployeePaginationTable({ tableData }: { tableData: any }) {
+function ExpensesTable({ tableData }: { tableData: any }) {
   // const [data] = React.useState(() => [...tableData]);
   const [data, setData] = React.useState(tableData);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -344,4 +344,4 @@ function EmployeePaginationTable({ tableData }: { tableData: any }) {
   );
 }
 
-export default EmployeePaginationTable;
+export default ExpensesTable;

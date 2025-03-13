@@ -55,7 +55,7 @@ const Notification: NotificationType[] = [
     bgcolor: "bg-lightsecondary dark:bg-lightsecondary",
     color: "text-secondary",
     title: "Settings",
-    subtitle: "You can customize this template as you want",
+    subtitle: "You can customize this template as you want it to be",
     time: "4:36 PM",
   },
   {
@@ -101,7 +101,7 @@ const profileDD: ProfileType[] = [
   },
   {
     title: "Sign Out",
-    url: "/auth/login",
+    url: "/auth/signin",
   },
 ];
 

@@ -25,25 +25,31 @@ import { uniqueId } from "lodash";
 const SidebarContent: MenuItem[] = [
   {
     id: 1,
-    name: "Payment",
+    name: "HR",
     items: [
       {
         heading: "Onboarding",
         children: [
           {
             name: "Department",
-            icon: "solar:home-angle-outline",
+            icon: "healthicons:outpatient-department-outline",
             id: uniqueId(),
-            url: "/dashboard/onboarding/department",
+            url: "/dashboard/onboarding/departments",
           },
           {
             name: "Employee",
-            icon: "solar:settings-minimalistic-line-duotone",
+            icon: "clarity:employee-group-line",
             id: uniqueId(),
-            url: "/dashboard/onboarding/employee",
+            url: "/dashboard/onboarding/employees",
           },
         ],
       },
+    ],
+  },
+  {
+    id: 2,
+    name: "Accounting",
+    items: [
       {
         heading: "Payment",
         children: [
@@ -57,101 +63,24 @@ const SidebarContent: MenuItem[] = [
             name: "Receipt",
             icon: "solar:settings-minimalistic-line-duotone",
             id: uniqueId(),
-            url: "/dashboard/sample-page",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    id: 2,
-    name: "Menu",
-    items: [
-      {
-        heading: "Multi level",
-        children: [
-          {
-            name: "Menu Level",
-            icon: "solar:widget-add-line-duotone",
-            id: uniqueId(),
-            children: [
-              {
-                id: uniqueId(),
-                name: "Level 1",
-                url: "",
-              },
-              {
-                id: uniqueId(),
-                name: "Level 1.1",
-                icon: "fad:armrecording",
-                url: "",
-                children: [
-                  {
-                    id: uniqueId(),
-                    name: "Level 2",
-                    url: "",
-                  },
-                  {
-                    id: uniqueId(),
-                    name: "Level 2.1",
-                    icon: "fad:armrecording",
-                    url: "",
-                    children: [
-                      {
-                        id: uniqueId(),
-                        name: "Level 3",
-                        url: "",
-                      },
-                      {
-                        id: uniqueId(),
-                        name: "Level 3.1",
-                        url: "",
-                      },
-                    ],
-                  },
-                ],
-              },
-            ],
+            url: "/dashboard/receipt",
           },
         ],
       },
       {
-        heading: "More Options",
+        heading: "Budget",
         children: [
           {
+            name: "Expenses",
+            icon: "healthicons:low-income-level-outline",
             id: uniqueId(),
-            url: "",
-            name: "Applications",
-            icon: "solar:check-circle-bold",
-            color: "text-primary",
+            url: "/dashboard/expenses",
           },
           {
+            name: "Income",
+            icon: "solar:home-angle-outline",
             id: uniqueId(),
-            url: "",
-            name: "Form Options",
-            icon: "solar:check-circle-bold",
-            color: "text-secondary",
-          },
-          {
-            id: uniqueId(),
-            url: "",
-            name: "Table Variations",
-            icon: "solar:check-circle-bold",
-            color: "text-info",
-          },
-          {
-            id: uniqueId(),
-            url: "",
-            name: "Charts Selection",
-            icon: "solar:check-circle-bold",
-            color: "text-warning",
-          },
-          {
-            id: uniqueId(),
-            url: "",
-            name: "Widgets",
-            icon: "solar:check-circle-bold",
-            color: "text-success",
+            url: "/dashboard/income",
           },
         ],
       },

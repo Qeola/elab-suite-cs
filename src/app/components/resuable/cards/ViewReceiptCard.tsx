@@ -3,35 +3,35 @@
 import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Button, Table } from "flowbite-react";
-import { format } from "date-fns";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import FullLogo from "@/app/dashboard/(DashboardLayout)/layout/shared/logo/FullLogo";
-import { companyDetails, invoices } from "@/app/context/invoices";
+import { companyDetails, receipt } from "@/app/context/invoices";
 import { RootState } from "@/utils/stores/store";
 import { useSelector } from "@/utils/stores/hooks";
 import { PDFFormat } from "./PDFFormat";
 import CurrencyFormatter from "@/utils/CurrencyFormatter";
+import FormatDate from "@/utils/FormatDate";
 
-const InvoiceCardDetails = () => {
+const ViewReceiptCard = () => {
   const [selectedInvoice, setSelectedInvoice]: any = useState(null);
   const company: any = useSelector((state: RootState) => state.company.company);
   const pathName = usePathname();
   const getTitle = pathName.split("/").pop();
 
   useEffect(() => {
-    if (invoices.length > 0) {
-      setSelectedInvoice(invoices[0]);
+    if (receipt.length > 0) {
+      setSelectedInvoice(receipt[1]);
     }
-  }, [invoices]);
+  }, [receipt]);
 
   useEffect(() => {
     if (getTitle) {
-      const invoice = invoices.find(
+      const invoice = receipt.find(
         (p: { slug: string }) => p.slug === getTitle,
       );
       if (invoice) setSelectedInvoice(invoice);
     }
-  }, [getTitle, invoices]);
+  }, [getTitle, receipt]);
 
   if (!selectedInvoice) {
     return <div>Loading...</div>;
@@ -69,12 +69,12 @@ const InvoiceCardDetails = () => {
         {/* Invoice detail */}
         <div className="md:col-span-6 col-span-12 flex md:justify-end">
           <div className="md:text-left">
-            <h1 className="text-xl">INVOICE</h1>
+            <h1 className="text-xl">RECEIPT</h1>
             <p className="items-center mt-1 text-xl">
-              Invoice No: {selectedInvoice.id}
+              Receipt No: {selectedInvoice.id}
             </p>
             <p className="items-center mt-1 text-lg">
-              Date: {format(new Date(), "MMMM dd, yyyy")}
+              Date: <FormatDate date={selectedInvoice.date} />
             </p>
           </div>
         </div>
@@ -83,10 +83,10 @@ const InvoiceCardDetails = () => {
       <div className="overflow-x-auto">
         <Table>
           <Table.Head>
-            <Table.HeadCell className="w-5/6 bg-primary dark:bg-darkprimary">
+            <Table.HeadCell className="w-5/6 bg-primary dark:bg-darkprimary text-white">
               Description
             </Table.HeadCell>
-            <Table.HeadCell className="w-1/6 text-end bg-yellow-300 dark:bg-yellow-600">
+            <Table.HeadCell className="w-1/6 text-end bg-gray-400 dark:bg-gray-900">
               Rate
             </Table.HeadCell>
           </Table.Head>
@@ -94,27 +94,27 @@ const InvoiceCardDetails = () => {
             {selectedInvoice.service.map((order: any, index: number) => (
               <Table.Row key={index} className="bg-gray-200 dark:bg-gray-500">
                 <Table.Cell>{order.name}</Table.Cell>
-                <Table.Cell className="text-end bg-gray-400 dark:bg-gray-700">
-                  {order.amount.toLocaleString()}
+                <Table.Cell className="text-end bg-gray-300 dark:bg-gray-700">
+                  <CurrencyFormatter amount={order.amount} />
                 </Table.Cell>
               </Table.Row>
             ))}
 
-            <Table.Row className="bg-gray-100 dark:bg-gray-500">
+            <Table.Row className="bg-gray-200 dark:bg-gray-500">
               <Table.Cell>
                 <div className="h-full min-h-[8rem]"></div>
               </Table.Cell>
-              <Table.Cell className="bg-gray-400 dark:bg-gray-700">
+              <Table.Cell className="bg-gray-300 dark:bg-gray-700">
                 <div className="h-full min-h-[8rem]"></div>
               </Table.Cell>
             </Table.Row>
 
             {/* Total Amount */}
-            <Table.Row className="bg-gray-100 dark:bg-gray-500">
+            <Table.Row className="bg-gray-200 dark:bg-gray-500">
               <Table.Cell className="font-semibold text-end col-span-10">
                 Total
               </Table.Cell>
-              <Table.Cell className="text-end font-semibold col-span-2 bg-gray-400 dark:bg-gray-700">
+              <Table.Cell className="text-end font-semibold col-span-2 bg-gray-300 dark:bg-gray-700">
                 <CurrencyFormatter
                   amount={selectedInvoice.service.reduce(
                     (sum: number, order: any) => sum + order.amount,
@@ -125,11 +125,11 @@ const InvoiceCardDetails = () => {
             </Table.Row>
 
             {/* VAT (7.5%) */}
-            <Table.Row className="bg-gray-100 dark:bg-gray-500">
+            <Table.Row className="bg-gray-200 dark:bg-gray-500">
               <Table.Cell className="font-semibold text-end">
                 VAT (7.5%)
               </Table.Cell>
-              <Table.Cell className="text-end font-semibold bg-gray-400 dark:bg-gray-700">
+              <Table.Cell className="text-end font-semibold bg-gray-300 dark:bg-gray-700">
                 <CurrencyFormatter
                   amount={
                     selectedInvoice.service.reduce(
@@ -159,9 +159,9 @@ const InvoiceCardDetails = () => {
         </Table>
       </div>
 
-      <div className="flex justify-start">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
         {companyDetails?.payment?.map((detail: any, index: any) => (
-          <div key={index} className="me-3">
+          <div key={index} className="space-y-1">
             <h6>{detail.account_name}</h6>
             <p>{detail.bank_name}</p>
             {detail.dollar_account && <p>{detail.dollar_account}</p>}
@@ -192,4 +192,4 @@ const InvoiceCardDetails = () => {
   );
 };
 
-export default InvoiceCardDetails;
+export default ViewReceiptCard;

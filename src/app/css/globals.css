@@ -6,6 +6,7 @@
 @import "./layouts/sidebar.css";
 @import "./layouts/horizontal.css";
 @import "./layouts/header.css";
+@import "./pages/expenses.css";
 @import "./theme/default-colors.css";
 @import "./theme/dark.css";
 @import "./override/reboot.css";
@@ -86,6 +87,10 @@
     @apply border-primary dark:border-primary outline-none shadow-none ring-offset-0 ring-transparent;
   }
 
+  .form-control.error input {
+    @apply border-red-500 focus:border-red-500 focus:ring-red-500;
+  }
+
   .form-control-input {
     @apply rounded-md border border-border dark:border-darkborder bg-transparent dark:bg-transparent w-full text-sm;
   }
@@ -120,6 +125,9 @@
 
   .select-md select {
     @apply border-ld bg-transparent dark:bg-darkgray w-full text-sm rounded-md focus:border-primary dark:focus:border-primary focus:ring-0;
+  }
+  .select-md.error select {
+    @apply border-red-500 focus:border-red-500 focus:ring-red-500;
   }
 
   .checkbox {

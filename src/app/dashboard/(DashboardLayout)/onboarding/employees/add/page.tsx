@@ -1,10 +1,32 @@
 "use client";
-import { Formik, Form, Field, FieldArray, ErrorMessage } from "formik";
+import {
+  Formik,
+  Form,
+  Field,
+  FieldArray,
+  ErrorMessage,
+  FormikHelpers,
+} from "formik";
 import * as Yup from "yup";
-import { Button, Tooltip, TextInput, Table } from "flowbite-react";
+import { Button, Tooltip, TextInput, Table, Select } from "flowbite-react";
 import { Icon } from "@iconify/react";
 import AuthButton from "@/app/components/resuable/button/AuthButton";
 import { department } from "@/app/context/invoices";
+
+interface Employee {
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone_number: string;
+  employee_id: string;
+  department: string;
+  role: string;
+  start_date: string;
+}
+
+interface FormValues {
+  employee: Employee[];
+}
 
 const page = () => {
   const initialValues = {
@@ -37,15 +59,23 @@ const page = () => {
     ),
   });
 
+  const handleSubmit = (
+    values: FormValues,
+    { resetForm }: FormikHelpers<FormValues>,
+  ) => {
+    setTimeout(() => {
+      resetForm();
+      console.log("Submitted Data:", values);
+    }, 1500);
+  };
+
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={(values) => {
-        console.log(values);
-      }}
+      onSubmit={handleSubmit}
     >
-      {({ values }) => (
+      {({ values, touched, errors }) => (
         <Form>
           <div className="mt-6 overflow-x-auto">
             <Table className="">
@@ -96,7 +126,8 @@ const page = () => {
                             as={TextInput}
                             sizing="lg"
                             placeholder="First Name"
-                            className="form-control"
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                            className={`form-control w-full ${touched.employee?.[index]?.first_name && (errors.employee as any)?.[index]?.first_name ? "error" : ""}`}
                           />
                           <ErrorMessage
                             name={`employee[${index}].first_name`}
@@ -111,7 +142,8 @@ const page = () => {
                             as={TextInput}
                             sizing="lg"
                             placeholder="Last Name"
-                            className="form-control"
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                            className={`form-control w-full ${touched.employee?.[index]?.last_name && (errors.employee as any)?.[index]?.last_name ? "error" : ""}`}
                           />
                           <ErrorMessage
                             name={`employee[${index}].last_name`}
@@ -126,7 +158,8 @@ const page = () => {
                             as={TextInput}
                             sizing="lg"
                             placeholder="Email Address"
-                            className="form-control"
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                            className={`form-control w-full ${touched.employee?.[index]?.email && (errors.employee as any)?.[index]?.email ? "error" : ""}`}
                           />
                           <ErrorMessage
                             name={`employee[${index}].email`}
@@ -141,7 +174,8 @@ const page = () => {
                             as={TextInput}
                             sizing="lg"
                             placeholder="Phone Number"
-                            className="form-control"
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                            className={`form-control w-full ${touched.employee?.[index]?.phone_number && (errors.employee as any)?.[index]?.phone_number ? "error" : ""}`}
                           />
                           <ErrorMessage
                             name={`employee[${index}].phone_number`}
@@ -156,7 +190,8 @@ const page = () => {
                             as={TextInput}
                             sizing="lg"
                             placeholder="ID"
-                            className="form-control"
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                            className={`form-control w-full ${touched.employee?.[index]?.employee_id && (errors.employee as any)?.[index]?.employee_id ? "error" : ""}`}
                           />
                           <ErrorMessage
                             name={`employee[${index}].employee_id`}
@@ -167,10 +202,11 @@ const page = () => {
 
                         <Table.Cell className="whitespace-nowrap min-w-44">
                           <Field
-                            as="select"
+                            as={Select}
                             name={`employee[${index}].department`}
                             sizing="lg"
-                            className="rounded-md form-control block w-full p-3.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                            className={`form-control select-md w-full ${touched.employee?.[index]?.department && (errors.employee as any)?.[index]?.department ? "error" : ""}`}
                           >
                             <option value="">Choose a department</option>
                             {department.map((val, i) => (
@@ -192,7 +228,8 @@ const page = () => {
                             as={TextInput}
                             sizing="lg"
                             placeholder="Role"
-                            className="form-control"
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                            className={`form-control w-full ${touched.employee?.[index]?.role && (errors.employee as any)?.[index]?.role ? "error" : ""}`}
                           />
                           <ErrorMessage
                             name={`employee[${index}].role`}
@@ -206,9 +243,10 @@ const page = () => {
                             name={`employee[${index}].start_date`}
                             as={TextInput}
                             sizing="lg"
-                            placeholder="Role"
+                            placeholder="Date"
                             type="date"
-                            className="form-control"
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                            className={`form-control w-full ${touched.employee?.[index]?.start_date && (errors.employee as any)?.[index]?.start_date ? "error" : ""}`}
                           />
                           <ErrorMessage
                             name={`employee[${index}].start_date`}

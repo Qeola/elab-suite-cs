@@ -2,7 +2,7 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup";
-import { Label, TextInput } from "flowbite-react";
+import { Label, Select, TextInput } from "flowbite-react";
 import AuthLoadingButton from "../resuable/button/AuthLoading";
 import AuthButton from "../resuable/button/AuthButton";
 import { employees } from "@/app/context/invoices";
@@ -42,7 +42,7 @@ const DepartmentOnboarding = ({
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({}) => (
+        {({ touched, errors }) => (
           <Form className="mt-6">
             {/* Name */}
             <div className="mb-4">
@@ -51,7 +51,7 @@ const DepartmentOnboarding = ({
                 id="name"
                 name="name"
                 type="text"
-                className="form-control w-full"
+                className={`form-control w-full ${touched.name && errors.name ? "error" : ""}`}
                 sizing="lg"
                 as={TextInput}
               />
@@ -65,12 +65,11 @@ const DepartmentOnboarding = ({
             <div className="mb-4">
               <Label htmlFor="lead" value="Lead" className="mb-2 block" />
               <Field
-                as="select"
+                as={Select}
                 id="lead"
                 name="lead"
                 sizing="lg"
-                // size={6}
-                className="rounded-md form-control block w-full p-3.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+                className={`select-md ${touched.lead && errors.lead ? "error" : ""}`}
               >
                 <option value="">Nil</option>
                 {employees.map((val, i) => (
@@ -86,7 +85,7 @@ const DepartmentOnboarding = ({
               />
             </div>
             {loading ? (
-              <AuthLoadingButton>Onboard Department</AuthLoadingButton>
+              <AuthLoadingButton></AuthLoadingButton>
             ) : (
               <AuthButton>Onboard Department</AuthButton>
             )}

@@ -67,7 +67,7 @@ const AuthRegister = () => {
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      {({}) => (
+      {({ touched, errors }) => (
         <Form className="mt-6">
           {/* Full Name */}
           <div className="mb-4">
@@ -76,7 +76,9 @@ const AuthRegister = () => {
               id="name"
               name="name"
               type="text"
-              className="form-control w-full"
+              className={`form-control w-full ${
+                touched.name && errors.name ? "error" : ""
+              }`}
               sizing="lg"
               as={TextInput}
             />
@@ -98,7 +100,7 @@ const AuthRegister = () => {
               id="company_name"
               name="company_name"
               type="text"
-              className="form-control w-full"
+              className={`form-control w-full ${touched.company_name && errors.company_name ? "error" : ""}`}
               sizing="lg"
               as={TextInput}
             />
@@ -120,7 +122,7 @@ const AuthRegister = () => {
               id="email"
               name="email"
               type="text"
-              className="form-control w-full"
+              className={`form-control w-full ${touched.email && errors.email ? "error" : ""}`}
               sizing="lg"
               as={TextInput}
             />
@@ -140,7 +142,7 @@ const AuthRegister = () => {
                 name="password"
                 sizing="lg"
                 type={showPassword ? "text" : "password"}
-                className="form-control w-full"
+                className={`form-control w-full ${touched.password && errors.password ? "error" : ""}`}
                 as={TextInput}
               />
               <button
