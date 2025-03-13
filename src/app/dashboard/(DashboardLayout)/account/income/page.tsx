@@ -52,20 +52,20 @@ const ColorboxData = [
   },
 ];
 
-const Expense = () => {
+const Income = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [filteredEmployees, setFilteredEmployees] = useState(employees);
+  const [filteredExpenses, setFilteredExpenses] = useState(employees);
 
   useEffect(() => {
-    const filtered = employees.filter((employee) =>
+    const filtered = employees.filter((expense) =>
       [
-        employee.first_name,
-        employee.last_name,
-        employee.department,
-        employee.email,
+        expense.first_name,
+        expense.last_name,
+        expense.department,
+        expense.email,
       ].some((field) => field.toLowerCase().includes(searchTerm.toLowerCase())),
     );
-    setFilteredEmployees(filtered);
+    setFilteredExpenses(filtered);
   }, [searchTerm, employees]);
   return (
     <div>
@@ -89,12 +89,12 @@ const Expense = () => {
               <SearchBar onSearchChange={setSearchTerm} />
             </div>
             <div className="mt-2 sm:mt-0">
-              <LinkButton link="/dashboard/expenses/add">
+              <LinkButton link="/dashboard/account/income/add">
                 Add Expense
               </LinkButton>
             </div>
           </div>
-          <ExpensesTable tableData={filteredEmployees} />
+          <ExpensesTable tableData={filteredExpenses} />
         </CardBox>
       </div>
       <div className="mt-9">
@@ -107,4 +107,4 @@ const Expense = () => {
   );
 };
 
-export default Expense;
+export default Income;

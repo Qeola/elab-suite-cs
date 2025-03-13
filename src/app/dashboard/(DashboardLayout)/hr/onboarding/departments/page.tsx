@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { department } from "@/app/context/invoices";
 import { Modal, Table } from "flowbite-react";
 import { Icon } from "@iconify/react";
-import BreadcrumbComp from "../../layout/shared/breadcrumb/BreadcrumbComp";
+import BreadcrumbComp from "../../../layout/shared/breadcrumb/BreadcrumbComp";
 import CardBox from "@/app/components/shared/CardBox";
 import DepartmentOnboarding from "@/app/components/Forms/DepartmentOnboarding";
 import UserAvatar from "@/app/components/resuable/UserAvatar";

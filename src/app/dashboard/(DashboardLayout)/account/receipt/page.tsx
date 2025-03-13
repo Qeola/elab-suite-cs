@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import CardBox from "../../../components/shared/CardBox";
-import { receipt } from "../../../context/invoices";
-import BreadcrumbComp from "../layout/shared/breadcrumb/BreadcrumbComp";
+import CardBox from "../../../../components/shared/CardBox";
+import { receipt } from "../../../../context/invoices";
+import BreadcrumbComp from "../../layout/shared/breadcrumb/BreadcrumbComp";
 import SearchBar from "@/app/components/resuable/SearchBar";
 import LinkButton from "@/app/components/resuable/button/LinkButton";
 import ReceiptPaginationTable from "@/app/components/tables/ReceiptTable";
@@ -34,7 +34,7 @@ const Receipt = () => {
             <SearchBar onSearchChange={setSearchTerm} />
           </div>
           <div className="mt-2 sm:mt-0">
-            <LinkButton link="/dashboard/invoice/add">
+            <LinkButton link="/dashboard/account/invoice/add">
               Generate Receipt
             </LinkButton>
           </div>

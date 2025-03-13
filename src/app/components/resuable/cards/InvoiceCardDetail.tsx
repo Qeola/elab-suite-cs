@@ -202,7 +202,7 @@ const InvoiceCardDetail = () => {
         <div className="flex justify-end gap-3 mt-4">
           <Button
             color={"warning"}
-            href={`/dashboard/invoice/${selectedInvoice.slug}/edit`}
+            href={`/dashboard/account/invoice/${selectedInvoice.slug}/edit`}
           >
             Edit Invoice
           </Button>
