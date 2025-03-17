@@ -3,7 +3,7 @@ import Image from "next/image";
 import React from "react";
 import Bgimg from "/public/images/logos/logo-icon.svg";
 
-const LeftSidebarPart = () => {
+const LeftSidebarPart = ({ image }: { image: string }) => {
   return (
     <>
       <div className="circle-top"></div>
@@ -25,7 +25,7 @@ const LeftSidebarPart = () => {
           {/* Image should fit in completely without being cut */}
           <div className="flex-grow relative w-full">
             <Image
-              src={"/images/backgrounds/auth-bg.svg"}
+              src={image}
               alt="illustration"
               fill
               className="object-cover"

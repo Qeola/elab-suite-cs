@@ -10,7 +10,11 @@ import ReceiptPaginationTable from "@/app/components/tables/ReceiptTable";
 const Receipt = () => {
   const BCrumb = [
     {
+      to: "/dashboard/account/receipt",
       title: "Receipt",
+    },
+    {
+      title: "See a list of all your receipt",
     },
   ];
   const [searchTerm, setSearchTerm] = useState("");
@@ -27,9 +31,9 @@ const Receipt = () => {
   return (
     <>
       <BreadcrumbComp
-        title="Invoice"
+        title="Receipt"
         items={BCrumb}
-        image="/public/images/crumbs/invoice.svg"
+        image="/images/crumbs/receipt.svg"
       />
       <CardBox>
         {/* <h5 className="card-title mb-3">Sample page 1</h5> */}

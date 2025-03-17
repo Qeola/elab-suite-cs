@@ -15,7 +15,7 @@ const Login = () => {
       <div className="relative overflow-hidden h-screen">
         <div className="grid grid-cols-12 gap-3 h-screen bg-white dark:bg-darkgray">
           <div className="xl:col-span-8 lg:col-span-6 col-span-12 bg-[#0A2540] dark:bg-dark lg:block hidden relative overflow-hidden">
-            <LeftSidebarPart />
+            <LeftSidebarPart image="/images/backgrounds/login.svg" />
           </div>
           <div className="xl:col-span-4 lg:col-span-6 col-span-12 sm:px-12 px-4">
             <div className="flex h-screen items-center px-3 lg:justify-start justify-center">
