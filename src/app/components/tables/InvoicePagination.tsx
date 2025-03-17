@@ -16,7 +16,7 @@ import {
   IconChevronRight,
   IconChevronsLeft,
   IconChevronsRight,
-  IconDots,
+  IconDotsVertical,
 } from "@tabler/icons-react";
 import { Icon } from "@iconify/react";
 import UserAvatar from "../resuable/UserAvatar";
@@ -107,7 +107,7 @@ const columns = (handleDeleteClick: (slug: string) => void) => [
           dismissOnClick={false}
           renderTrigger={() => (
             <span className="h-9 w-9 flex justify-center items-center rounded-full hover:bg-lightprimary hover:text-primary cursor-pointer">
-              <IconDots size={22} />
+              <IconDotsVertical size={22} />
             </span>
           )}
         >

@@ -16,7 +16,7 @@ import {
   IconChevronRight,
   IconChevronsLeft,
   IconChevronsRight,
-  IconDots,
+  IconDotsVertical,
 } from "@tabler/icons-react";
 import { Icon } from "@iconify/react";
 import UserAvatar from "../resuable/UserAvatar";
@@ -92,7 +92,7 @@ const columns = (handleDeleteClick: (slug: string) => void) => [
           dismissOnClick={false}
           renderTrigger={() => (
             <span className="h-9 w-9 flex justify-center items-center rounded-full hover:bg-lightprimary hover:text-primary cursor-pointer">
-              <IconDots size={22} />
+              <IconDotsVertical size={22} />
             </span>
           )}
         >
@@ -100,12 +100,12 @@ const columns = (handleDeleteClick: (slug: string) => void) => [
             {
               icon: "solar:eye-outline",
               listtitle: "View",
-              link: `/dashboard/hr/onboarding/employee/${slug}`,
+              link: `/dashboard/hr/onboarding/employees/${slug}`,
             },
             {
               icon: "solar:pen-new-square-broken",
               listtitle: "Edit",
-              link: `/dashboard/hr/onboarding/employee/${slug}/edit`,
+              link: `/dashboard/hr/onboarding/employees/${slug}/edit`,
             },
             {
               icon: "solar:trash-bin-minimalistic-outline",

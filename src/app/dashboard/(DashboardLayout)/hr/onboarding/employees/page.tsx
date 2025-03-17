@@ -32,7 +32,7 @@ const OnboardingEmployee = () => {
             <SearchBar onSearchChange={setSearchTerm} />
           </div>
           <div className="mt-2 sm:mt-0">
-            <LinkButton link="/dashboard/hr/onboarding/employee/add">
+            <LinkButton link="/dashboard/hr/onboarding/employees/add">
               Add Department
             </LinkButton>
           </div>
