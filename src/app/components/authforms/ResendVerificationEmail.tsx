@@ -48,7 +48,7 @@ const ResendVerificationEmail = () => {
             <div className="mb-4">
               <Label
                 htmlFor="email"
-                value="Email Address"
+                value="Email Address *"
                 className="mb-2 block"
               />
               <Field

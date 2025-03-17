@@ -47,7 +47,7 @@ const AuthLogin = () => {
             <div className="mb-4">
               <Label
                 htmlFor="email"
-                value="Email Address"
+                value="Email Address *"
                 className="mb-2 block"
               />
               <Field
@@ -69,7 +69,7 @@ const AuthLogin = () => {
             <div className="mb-4">
               <Label
                 htmlFor="password"
-                value="Password"
+                value="Password *"
                 className="mb-2 block"
               />
               <div className="relative w-full">

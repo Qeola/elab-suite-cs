@@ -71,7 +71,7 @@ const AuthRegister = () => {
         <Form className="mt-6">
           {/* Full Name */}
           <div className="mb-4">
-            <Label htmlFor="name" value="Full Name" className="mb-2 block" />
+            <Label htmlFor="name" value="Full Name *" className="mb-2 block" />
             <Field
               id="name"
               name="name"
@@ -93,7 +93,7 @@ const AuthRegister = () => {
           <div className="mb-4">
             <Label
               htmlFor="company_name"
-              value="Company Name"
+              value="Company Name *"
               className="mb-2 block"
             />
             <Field
@@ -115,7 +115,7 @@ const AuthRegister = () => {
           <div className="mb-4">
             <Label
               htmlFor="email"
-              value="Email Address"
+              value="Email Address *"
               className="mb-2 block"
             />
             <Field
@@ -135,7 +135,7 @@ const AuthRegister = () => {
 
           {/* Password */}
           <div className="mb-4">
-            <Label htmlFor="password" value="Password" className="mb-2 block" />
+            <Label htmlFor="password" value="Password *" className="mb-2 block" />
             <div className="relative w-full">
               <Field
                 id="password"
