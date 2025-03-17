@@ -33,9 +33,23 @@ const OnboardingDepartment = () => {
     setIsDeleteModalOpen(false);
   };
 
+  const BCrumb = [
+    {
+      to: "/dashboard/account/department",
+      title: "Department",
+    },
+    {
+      title: "See a list of all your department",
+    },
+  ];
+
   return (
     <div>
-      <BreadcrumbComp title="Department" items={[]} />
+      <BreadcrumbComp
+        title="Department"
+        items={BCrumb}
+        image="/images/crumbs/department.svg"
+      />
       <CardBox>
         <div className="sm:flex justify-between mb-4">
           <div className="">{/* <SearchBar /> */}</div>

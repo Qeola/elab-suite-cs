@@ -11,7 +11,11 @@ import LinkButton from "@/app/components/resuable/button/LinkButton";
 const Invoice = () => {
   const BCrumb = [
     {
-      title: "Generate Invoice",
+      to: "/dashboard/account/income",
+      title: "Income",
+    },
+    {
+      title: "See a list of all your income",
     },
   ];
   const [searchTerm, setSearchTerm] = useState("");
@@ -44,7 +48,11 @@ const Invoice = () => {
   ).length;
   return (
     <>
-      <BreadcrumbComp title="Invoice" items={BCrumb} />
+      <BreadcrumbComp
+        title="Invoice"
+        items={BCrumb}
+        image="/images/crumbs/invoice.svg"
+      />
       <CardBox>
         <h5 className="card-title mb-3">Sample page 1</h5>
         <div className="sm:flex items-center justify-between mb-4">

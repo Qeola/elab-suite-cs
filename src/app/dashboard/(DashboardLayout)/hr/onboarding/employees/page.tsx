@@ -23,9 +23,23 @@ const OnboardingEmployee = () => {
     setFilteredEmployees(filtered);
   }, [searchTerm, employees]);
 
+  const BCrumb = [
+    {
+      to: "/dashboard/hr/onboarding/employees",
+      title: "Employee",
+    },
+    {
+      title: `See a list of all your employee for onboarding`,
+    },
+  ];
+
   return (
     <div>
-      <BreadcrumbComp title="Employee" items={[]} />
+      <BreadcrumbComp
+        title="Employee"
+        items={BCrumb}
+        image={"crumbs/receipt.svg"}
+      />
       <CardBox>
         <div className="sm:flex items-center justify-between mb-4">
           <div className="w-full max-w-md">

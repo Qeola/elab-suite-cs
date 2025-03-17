@@ -8,6 +8,7 @@ import CardBox from "@/app/components/shared/CardBox";
 import ExpensesTable from "@/app/components/tables/ExpensesTable";
 import { ChartData, ChartData2, employees } from "@/app/context/invoices";
 import React, { useEffect, useState } from "react";
+import BreadcrumbComp from "../../layout/shared/breadcrumb/BreadcrumbComp";
 
 const ColorboxData = [
   {
@@ -67,8 +68,24 @@ const Expense = () => {
     );
     setFilteredEmployees(filtered);
   }, [searchTerm, employees]);
+
+  const BCrumb = [
+    {
+      to: "/dashboard/account/expenses",
+      title: "Expenses",
+    },
+    {
+      title: "See a list of all your expenses",
+    },
+  ];
+
   return (
     <div>
+      <BreadcrumbComp
+        title="Expenses"
+        items={BCrumb}
+        image="/images/crumbs/expenses.svg"
+      />
       <CardBox>
         <div className="grid grid-cols-12 gap-6">
           <div className="lg:col-span-3 md:col-span-5 col-span-12">

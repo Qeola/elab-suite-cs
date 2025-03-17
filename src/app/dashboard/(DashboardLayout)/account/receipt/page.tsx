@@ -26,7 +26,11 @@ const Receipt = () => {
   });
   return (
     <>
-      <BreadcrumbComp title="Receipt" items={BCrumb} />
+      <BreadcrumbComp
+        title="Invoice"
+        items={BCrumb}
+        image="/public/images/crumbs/invoice.svg"
+      />
       <CardBox>
         {/* <h5 className="card-title mb-3">Sample page 1</h5> */}
         <div className="sm:flex items-center justify-between mb-4">

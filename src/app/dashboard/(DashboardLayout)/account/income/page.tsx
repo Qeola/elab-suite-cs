@@ -8,6 +8,7 @@ import CardBox from "@/app/components/shared/CardBox";
 import ExpensesTable from "@/app/components/tables/ExpensesTable";
 import { ChartData, ChartData2, employees } from "@/app/context/invoices";
 import React, { useEffect, useState } from "react";
+import BreadcrumbComp from "../../layout/shared/breadcrumb/BreadcrumbComp";
 
 const ColorboxData = [
   {
@@ -52,6 +53,16 @@ const ColorboxData = [
   },
 ];
 
+const BCrumb = [
+  {
+    to: "/dashboard/account/income",
+    title: "Income",
+  },
+  {
+    title: "See a list of all your income",
+  },
+];
+
 const Income = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredExpenses, setFilteredExpenses] = useState(employees);
@@ -69,6 +80,11 @@ const Income = () => {
   }, [searchTerm, employees]);
   return (
     <div>
+      <BreadcrumbComp
+        title="Income"
+        items={BCrumb}
+        image="/images/crumbs/income.svg"
+      />
       <CardBox>
         <div className="grid grid-cols-12 gap-6">
           <div className="lg:col-span-3 md:col-span-5 col-span-12">
