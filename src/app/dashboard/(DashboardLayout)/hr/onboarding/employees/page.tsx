@@ -29,7 +29,7 @@ const OnboardingEmployee = () => {
       title: "Employee",
     },
     {
-      title: `See a list of all your employee for onboarding`,
+      title: `Employee Details`,
     },
   ];
 

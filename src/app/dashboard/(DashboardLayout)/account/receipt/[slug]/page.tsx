@@ -9,7 +9,7 @@ const ReceiptView = () => {
       title: "Receipt",
     },
     {
-      title: "See a list of all your receipt",
+      title: "Receipt Details",
     },
   ];
   return (

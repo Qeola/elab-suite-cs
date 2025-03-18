@@ -55,62 +55,25 @@ const ColorboxData = [
 
 const BCrumb = [
   {
-    to: "/dashboard/account/income",
-    title: "Income",
+    to: "/dashboard/account/reports",
+    title: "Report",
   },
   {
-    title: "Income Details",
+    title: "Financial Report",
   },
 ];
 
-const Income = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filteredExpenses, setFilteredExpenses] = useState(employees);
-
-  useEffect(() => {
-    const filtered = employees.filter((expense) =>
-      [
-        expense.first_name,
-        expense.last_name,
-        expense.department,
-        expense.email,
-      ].some((field) => field.toLowerCase().includes(searchTerm.toLowerCase())),
-    );
-    setFilteredExpenses(filtered);
-  }, [searchTerm, employees]);
+const Reports = () => {
   return (
     <div>
       <BreadcrumbComp
-        title="Income"
+        title="Reports"
         items={BCrumb}
-        image="/images/crumbs/income.svg"
+        image="/images/crumbs/report.svg"
       />
-      <CardBox>
-        <div className="grid grid-cols-12 gap-6">
-          <div className="lg:col-span-3 md:col-span-5 col-span-12">
-            <ColorBoxes item={ColorboxData[0]} />
-          </div>
-          <div className="lg:col-span-3 md:col-span-5 col-span-12">
-            <ColorBoxes item={ColorboxData[1]} />
-          </div>
-          <div className="lg:col-span-3 md:col-span-5 col-span-12">
-            <ColorBoxes item={ColorboxData[2]} />
-          </div>
-        </div>
-      </CardBox>
       <div className="mt-9">
         <CardBox>
-          <div className="sm:flex items-center justify-between mb-4">
-            <div className="w-full max-w-md">
-              <SearchBar onSearchChange={setSearchTerm} />
-            </div>
-            <div className="mt-2 sm:mt-0">
-              <LinkButton link="/dashboard/account/income/add">
-                Add Expense
-              </LinkButton>
-            </div>
-          </div>
-          <ExpensesTable tableData={filteredExpenses} />
+          <ExpensesTable tableData={employees} />
         </CardBox>
       </div>
       <div className="mt-9 grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -126,4 +89,4 @@ const Income = () => {
   );
 };
 
-export default Income;
+export default Reports;

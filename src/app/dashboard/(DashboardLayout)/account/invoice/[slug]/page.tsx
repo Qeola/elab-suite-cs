@@ -9,7 +9,7 @@ const InvoiceView = () => {
       title: "Invoice",
     },
     {
-      title: "See a list of all your invoice",
+      title: "Invoice Details",
     },
   ];
   return (

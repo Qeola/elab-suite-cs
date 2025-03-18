@@ -9,7 +9,7 @@ const InvoiceCreate = () => {
       title: "Income",
     },
     {
-      title: "See a list of all your income",
+      title: "Income Details",
     },
   ];
   return (

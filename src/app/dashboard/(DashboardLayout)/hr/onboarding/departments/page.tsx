@@ -39,7 +39,7 @@ const OnboardingDepartment = () => {
       title: "Department",
     },
     {
-      title: "See a list of all your department",
+      title: "Department Details",
     },
   ];
 

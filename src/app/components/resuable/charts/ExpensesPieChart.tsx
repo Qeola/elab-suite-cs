@@ -24,7 +24,7 @@ const ExpensesPieChart: React.FC<ChartProps> = ({ data }) => {
             />
           </TitleCard>
         </div> */}
-        <div className="md:col-span-6 col-span-12">
+        <div className="col-span-12">
           <Chart
             options={data}
             series={data.series}

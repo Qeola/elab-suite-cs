@@ -15,7 +15,7 @@ const Invoice = () => {
       title: "Income",
     },
     {
-      title: "See a list of all your income",
+      title: "Income Details",
     },
   ];
   const [searchTerm, setSearchTerm] = useState("");

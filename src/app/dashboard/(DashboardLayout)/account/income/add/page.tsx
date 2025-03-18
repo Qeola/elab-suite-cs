@@ -78,7 +78,7 @@ const page = () => {
       title: "Income",
     },
     {
-      title: "See a list of all your income",
+      title: "Income Details",
     },
   ];
 

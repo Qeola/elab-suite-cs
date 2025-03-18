@@ -135,7 +135,11 @@ const AuthRegister = () => {
 
           {/* Password */}
           <div className="mb-4">
-            <Label htmlFor="password" value="Password *" className="mb-2 block" />
+            <Label
+              htmlFor="password"
+              value="Password *"
+              className="mb-2 block"
+            />
             <div className="relative w-full">
               <Field
                 id="password"

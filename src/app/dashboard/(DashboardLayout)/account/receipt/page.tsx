@@ -14,7 +14,7 @@ const Receipt = () => {
       title: "Receipt",
     },
     {
-      title: "See a list of all your receipt",
+      title: "Receipt Details",
     },
   ];
   const [searchTerm, setSearchTerm] = useState("");

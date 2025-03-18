@@ -75,6 +75,13 @@ const SidebarContent: MenuItem[] = [
         heading: "Budget",
         children: [
           {
+            name: "Income",
+            icon: "healthicons:low-income-level-outline",
+            id: uniqueId(),
+            url: "/dashboard/account/income",
+            color: "text-success",
+          },
+          {
             name: "Expenses",
             icon: "hugeicons:payment-02",
             id: uniqueId(),
@@ -82,11 +89,11 @@ const SidebarContent: MenuItem[] = [
             color: "#585CCF",
           },
           {
-            name: "Income",
-            icon: "healthicons:low-income-level-outline",
+            name: "Reports",
+            icon: "material-symbols:bar-chart-4-bars-rounded",
             id: uniqueId(),
-            url: "/dashboard/account/income",
-            color: "text-success",
+            url: "/dashboard/account/reports",
+            color: "#DF833C",
           },
         ],
       },

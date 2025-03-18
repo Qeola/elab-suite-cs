@@ -75,7 +75,7 @@ const Expense = () => {
       title: "Expenses",
     },
     {
-      title: "See a list of all your expenses",
+      title: "Expenses Details",
     },
   ];
 
@@ -114,11 +114,14 @@ const Expense = () => {
           <ExpensesTable tableData={filteredEmployees} />
         </CardBox>
       </div>
-      <div className="mt-9">
-        <ExpensesCategoryChart data={ChartData2} />
-      </div>
-      <div className="mt-9">
-        <ExpensesPieChart data={ChartData} />
+      <div className="mt-9 grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div className="lg:col-span-8">
+          <ExpensesCategoryChart data={ChartData2} />
+        </div>
+
+        <div className="lg:col-span-4">
+          <ExpensesPieChart data={ChartData} />
+        </div>
       </div>
     </div>
   );
