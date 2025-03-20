@@ -12,7 +12,7 @@ interface FormValues {
   lead: string;
 }
 
-const DepartmentOnboarding = ({
+const EditDepartmentForm = ({
   loading,
   setLoading,
 }: {
@@ -87,7 +87,7 @@ const DepartmentOnboarding = ({
             {loading ? (
               <AuthLoadingButton></AuthLoadingButton>
             ) : (
-              <AuthButton>Onboard Department</AuthButton>
+              <AuthButton>Edit Department</AuthButton>
             )}
           </Form>
         )}
@@ -96,4 +96,4 @@ const DepartmentOnboarding = ({
   );
 };
 
-export default DepartmentOnboarding;
+export default EditDepartmentForm;

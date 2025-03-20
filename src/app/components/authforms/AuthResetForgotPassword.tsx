@@ -71,7 +71,7 @@ const AuthResetPassword = () => {
             <div className="mb-4">
               <Label
                 htmlFor="password"
-                value="Password"
+                value="Password *"
                 className="mb-2 block"
               />
               <div className="relative w-full">
@@ -102,7 +102,7 @@ const AuthResetPassword = () => {
             <div className="mb-4">
               <Label
                 htmlFor="confirm_password"
-                value="Confirm Password"
+                value="Confirm Password *"
                 className="mb-2 block"
               />
               <div className="relative w-full">

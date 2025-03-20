@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Label, Select, TextInput } from "flowbite-react";
 import { menuItems } from "@/app/context/invoices";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -13,9 +13,20 @@ const validationSchema = Yup.object({
     .email("Invalid email format")
     .required("Client's Email is required"),
   project_name: Yup.string().required("Project Name is required"),
+  focus: Yup.string().required("Project Focus is required"),
+  due_date: Yup.string().required("Due Date is required"),
   project_timeline: Yup.string().required("Project Timeline is required"),
   project_focus: Yup.string().required("Project Focus is required"),
   tranches: Yup.string().required("No. of Tranches is required"),
+  trancheValues: Yup.array()
+    .of(Yup.string().required("Tranche Value is required"))
+    .test("has-values", "Tranche Value is required", (value) => {
+      return (
+        Array.isArray(value) &&
+        value.length > 0 &&
+        value.every((v) => typeof v === "string" && v.trim() !== "")
+      );
+    }),
   amount: Yup.number()
     .positive("Amount must be positive")
     .required("Amount is required"),
@@ -24,8 +35,24 @@ const validationSchema = Yup.object({
   discount: Yup.string(),
 });
 
+interface FormValues {
+  client_name: string;
+  client_email: string;
+  project_name: string;
+  project_timeline: string;
+  project_focus: string;
+  tranches: string;
+  amount: string;
+  focus: string;
+  due_date: string;
+  currency: string;
+  payment_dueDate: string;
+  discount: string;
+  trancheValues: string[];
+}
+
 function GenerateInvoiceForm() {
-  // const [showAlert, setShowAlert] = useState(false);
+  const [trancheCount, setTrancheCount] = useState(1);
 
   const initialValues = {
     client_name: "",
@@ -35,9 +62,12 @@ function GenerateInvoiceForm() {
     project_focus: "",
     tranches: "",
     amount: "",
+    focus: "",
+    due_date: "",
     currency: "USD",
     payment_dueDate: "",
     discount: "",
+    trancheValues: Array(trancheCount).fill(""),
   };
 
   // const calculateTotals = (orders: any[]) => {
@@ -77,26 +107,29 @@ function GenerateInvoiceForm() {
   //   : new Date();
   // const formattedOrderDate = format(parsedDate, "EEEE, MMMM dd, yyyy");
 
+  const [trancheValues, setTrancheValues] = useState(Array(1).fill(""));
+
+  useEffect(() => {
+    setTrancheValues(Array(trancheCount).fill(""));
+  }, [trancheCount]);
+
   return (
     <div>
       <h2 className="text-xl mb-6">Add New Invoice Details</h2>
       {/* <p>Date: {formattedOrderDate}</p> */}
-      <Formik
+      <Formik<FormValues>
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({ touched, errors }) => (
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+        {({ touched, errors, setFieldValue }: any) => (
           <Form>
             <div className="bg-lightgray dark:bg-gray-800/70 p-6 my-6 rounded-md">
-              {/* Client */}
-              <div className="border-b border-ld  py-3 mb-9 text-lg">
-                Client Details
-              </div>
               <div className="grid grid-cols-12 gap-6">
-                <div className="lg:col-span-6 md:col-span-6 col-span-12">
+                <div className="lg:col-span-4 md:col-span-6 col-span-12">
                   <div className="mb-2 block">
-                    <Label htmlFor="client_name" value="Client Name" />
+                    <Label htmlFor="client_name" value="Client Name *" />
                   </div>
                   <Field
                     as={Select}
@@ -106,7 +139,7 @@ function GenerateInvoiceForm() {
                     // size={6}
                     className={`select-md ${touched.client_name && errors.client_name ? "error" : ""}`}
                   >
-                    <option value="">Choose a country</option>
+                    <option value="">Choose a client</option>
                     {menuItems.map((val, i) => (
                       <option key={i} value={val}>
                         {val}
@@ -119,9 +152,10 @@ function GenerateInvoiceForm() {
                     className="text-red-500 text-sm mt-1"
                   />
                 </div>
-                <div className="lg:col-span-6 md:col-span-6 col-span-12">
+
+                <div className="lg:col-span-4 md:col-span-6 col-span-12">
                   <div className="mb-2 block">
-                    <Label htmlFor="client_email" value="Client Email" />
+                    <Label htmlFor="client_email" value="Client Email *" />
                   </div>
                   <Field
                     id="client_email"
@@ -129,7 +163,7 @@ function GenerateInvoiceForm() {
                     as={TextInput}
                     sizing="lg"
                     type="email"
-                    className="form-control"
+                    className={`form-control w-full ${touched.client_email && errors.client_email ? "error" : ""}`}
                   />
                   <ErrorMessage
                     name="client_email"
@@ -137,16 +171,9 @@ function GenerateInvoiceForm() {
                     className="text-red-500 text-sm mt-1"
                   />
                 </div>
-              </div>
-
-              {/* Product */}
-              <div className="border-b border-ld  py-3 my-9 text-lg">
-                Product Details
-              </div>
-              <div className="grid grid-cols-12 gap-6">
-                <div className="lg:col-span-6 md:col-span-6 col-span-12 mb-5">
+                <div className="lg:col-span-4 md:col-span-6 col-span-12 mb-5">
                   <div className="mb-2 block">
-                    <Label htmlFor="project_name" value="Product Name" />
+                    <Label htmlFor="project_name" value="Product Name *" />
                   </div>
                   <Field
                     id="project_name"
@@ -154,7 +181,7 @@ function GenerateInvoiceForm() {
                     type="text"
                     as={TextInput}
                     sizing="lg"
-                    className="form-control"
+                    className={`form-control w-full ${touched.project_name && errors.project_name ? "error" : ""}`}
                   />
                   <ErrorMessage
                     name="project_name"
@@ -162,11 +189,14 @@ function GenerateInvoiceForm() {
                     className="text-red-500 text-sm mt-1"
                   />
                 </div>
-                <div className="lg:col-span-6 md:col-span-6 col-span-12 mb-5">
+              </div>
+
+              <div className="grid grid-cols-12 gap-6">
+                <div className="lg:col-span-4 md:col-span-6 col-span-12 mb-5">
                   <div className="mb-2 block">
                     <Label
                       htmlFor="project_timeline"
-                      value="Product Timeline"
+                      value="Product Timeline *"
                     />
                   </div>
                   <Field
@@ -175,7 +205,7 @@ function GenerateInvoiceForm() {
                     as={TextInput}
                     sizing="lg"
                     type="email"
-                    className="form-control"
+                    className={`form-control w-full ${touched.project_timeline && errors.project_timeline ? "error" : ""}`}
                   />
                   <ErrorMessage
                     name="project_timeline"
@@ -183,11 +213,9 @@ function GenerateInvoiceForm() {
                     className="text-red-500 text-sm mt-1"
                   />
                 </div>
-              </div>
-              <div className="grid grid-cols-12 gap-6">
-                <div className="lg:col-span-6 md:col-span-6 col-span-12 mb-5">
+                <div className="lg:col-span-4 md:col-span-6 col-span-12 mb-5">
                   <div className="mb-2 block">
-                    <Label htmlFor="amount" value="Amount" />
+                    <Label htmlFor="amount" value="Amount *" />
                   </div>
                   <Field
                     id="amount"
@@ -195,7 +223,7 @@ function GenerateInvoiceForm() {
                     as={TextInput}
                     sizing="lg"
                     type="number"
-                    className="form-control"
+                    className={`form-control w-full ${touched.amount && errors.amount ? "error" : ""}`}
                   />
                   <ErrorMessage
                     name="amount"
@@ -203,24 +231,155 @@ function GenerateInvoiceForm() {
                     className="text-red-500 text-sm mt-1"
                   />
                 </div>
-                <div className="lg:col-span-6 md:col-span-6 col-span-12 mb-5">
+                <div className="lg:col-span-4 md:col-span-6 col-span-12 mb-5">
                   <div className="mb-2 block">
-                    <Label htmlFor="currency" value="Currency" />
+                    <Label htmlFor="currency" value="Currency *" />
                   </div>
                   <Field
                     id="currency"
                     name="currency"
                     type="text"
-                    as={TextInput}
+                    as={Select}
                     sizing="lg"
-                    className="form-control"
-                  />
+                    className={`select-md ${touched.currency && errors.currency ? "error" : ""}`}
+                  >
+                    <option value="">Choose a currency</option>
+                    {menuItems.map((val, i) => (
+                      <option key={i} value={val}>
+                        {val}
+                      </option>
+                    ))}
+                  </Field>
                   <ErrorMessage
                     name="currency"
                     component="div"
                     className="text-red-500 text-sm mt-1"
                   />
                 </div>
+              </div>
+              <div className="grid grid-cols-12 gap-6">
+                <div className="lg:col-span-4 md:col-span-6 col-span-12 mb-5">
+                  <div className="mb-2 block">
+                    <Label htmlFor="focus" value="Project Focus *" />
+                  </div>
+                  <Field
+                    id="focus"
+                    name="focus"
+                    type="text"
+                    as={Select}
+                    sizing="lg"
+                    className={`select-md ${touched.focus && errors.focus ? "error" : ""}`}
+                  >
+                    <option value="">Choose a focus</option>
+                    {menuItems.map((val, i) => (
+                      <option key={i} value={val}>
+                        {val}
+                      </option>
+                    ))}
+                  </Field>
+                  <ErrorMessage
+                    name="focus"
+                    component="div"
+                    className="text-red-500 text-sm mt-1"
+                  />
+                </div>
+
+                <div className="lg:col-span-4 md:col-span-6 col-span-12">
+                  <div className="mb-2 block">
+                    <Label htmlFor="due_date" value="Due Date *" />
+                  </div>
+                  <Field
+                    id="due_date"
+                    name="due_date"
+                    as={TextInput}
+                    sizing="lg"
+                    type="date"
+                    className={`form-control w-full ${touched.due_date && errors.due_date ? "error" : ""}`}
+                  />
+                  <ErrorMessage
+                    name="due_date"
+                    component="div"
+                    className="text-red-500 text-sm mt-1"
+                  />
+                </div>
+
+                <div className="lg:col-span-4 md:col-span-6 col-span-12 mb-5">
+                  <div className="mb-2 block">
+                    <Label htmlFor="discount" value="Discount" />
+                  </div>
+                  <Field
+                    id="discount"
+                    name="discount"
+                    as={TextInput}
+                    sizing="lg"
+                    type="number"
+                    className={`form-control w-full ${touched.discount && errors.discount ? "error" : ""}`}
+                  />
+                  <ErrorMessage
+                    name="discount"
+                    component="div"
+                    className="text-red-500 text-sm mt-1"
+                  />
+                </div>
+
+                <div className="lg:col-span-4 md:col-span-6 col-span-12 mb-5">
+                  <div className="mb-2 block">
+                    <Label htmlFor="tranches" value="No. of Tranches *" />
+                  </div>
+                  <Field
+                    id="tranches"
+                    name="tranches"
+                    as={Select}
+                    className={`select-md ${touched.tranches && errors.tranches ? "error" : ""}`}
+                    sizing="lg"
+                    value={trancheCount}
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    onChange={(e: { target: { value: any } }) => {
+                      const num = Number(e.target.value);
+                      setTrancheCount(num);
+                      setFieldValue("tranches", num);
+                    }}
+                  >
+                    {[...Array(10)].map((_, i) => (
+                      <option key={i + 1} value={i + 1}>
+                        {i + 1}
+                      </option>
+                    ))}
+                  </Field>
+                </div>
+                {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                {trancheValues.map((_: any, index: number) => (
+                  <div
+                    key={index}
+                    className="mb-3 lg:col-span-4 md:col-span-6 col-span-12"
+                  >
+                    <div className="mb-2 block">
+                      <Label
+                        htmlFor={`trancheValues.${index}`}
+                        value={`Tranche ${index + 1} *`}
+                      />
+                    </div>
+                    <Field
+                      type="text"
+                      as={TextInput}
+                      name={`trancheValues.${index}`}
+                      id={`trancheValues.${index}`}
+                      sizing="lg"
+                      // placeholder={`Enter tranche ${index + 1} details`}
+                      className={`form-control w-full ${
+                        touched.trancheValues?.[index] &&
+                        errors.trancheValues?.[index]
+                          ? "error"
+                          : ""
+                      }`}
+                    />
+                    <ErrorMessage
+                      name={`trancheValues.${index}`}
+                      component="div"
+                      className="text-red-500 text-sm mt-1"
+                    />
+                  </div>
+                ))}
               </div>
             </div>
 
@@ -253,11 +412,6 @@ function GenerateInvoiceForm() {
           </Form>
         )}
       </Formik>
-      {/* {showAlert && (
-        <Alert color="warning" rounded className="fixed top-3">
-          Invoice added successfully.
-        </Alert>
-      )} */}
     </div>
   );
 }

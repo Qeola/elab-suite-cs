@@ -8,12 +8,12 @@ interface MiniiconsType {
 const Miniicons: MiniiconsType[] = [
   {
     id: 1,
-    icon: "solar:layers-line-duotone",
+    icon: "tabler:user",
     tooltip: "HR",
   },
   {
     id: 2,
-    icon: "healthicons:low-income-level-outline",
+    icon: "mdi:human-male-board-poll",
     tooltip: "Accounting",
   },
 ];

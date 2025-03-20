@@ -8,6 +8,7 @@ import CardBox from "@/app/components/shared/CardBox";
 import ExpensesTable from "@/app/components/tables/ExpensesTable";
 import { ChartData, ChartData2, employees } from "@/app/context/invoices";
 import React, { useEffect, useState } from "react";
+import BreadcrumbComp from "../../layout/shared/breadcrumb/BreadcrumbComp";
 
 const ColorboxData = [
   {
@@ -67,8 +68,24 @@ const Expense = () => {
     );
     setFilteredEmployees(filtered);
   }, [searchTerm, employees]);
+
+  const BCrumb = [
+    {
+      to: "/dashboard/account/expenses",
+      title: "Expenses",
+    },
+    {
+      title: "Expenses Details",
+    },
+  ];
+
   return (
     <div>
+      <BreadcrumbComp
+        title="Expenses"
+        items={BCrumb}
+        image="/images/crumbs/expenses.svg"
+      />
       <CardBox>
         <div className="grid grid-cols-12 gap-6">
           <div className="lg:col-span-3 md:col-span-5 col-span-12">
@@ -89,7 +106,7 @@ const Expense = () => {
               <SearchBar onSearchChange={setSearchTerm} />
             </div>
             <div className="mt-2 sm:mt-0">
-              <LinkButton link="/dashboard/expenses/add">
+              <LinkButton link="/dashboard/account/expenses/add">
                 Add Expense
               </LinkButton>
             </div>
@@ -97,11 +114,14 @@ const Expense = () => {
           <ExpensesTable tableData={filteredEmployees} />
         </CardBox>
       </div>
-      <div className="mt-9">
-        <ExpensesCategoryChart data={ChartData2} />
-      </div>
-      <div className="mt-9">
-        <ExpensesPieChart data={ChartData} />
+      <div className="mt-9 grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div className="lg:col-span-8">
+          <ExpensesCategoryChart data={ChartData2} />
+        </div>
+
+        <div className="lg:col-span-4">
+          <ExpensesPieChart data={ChartData} />
+        </div>
       </div>
     </div>
   );

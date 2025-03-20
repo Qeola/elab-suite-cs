@@ -10,8 +10,11 @@ import SearchBar from "@/app/components/resuable/SearchBar";
 const Dashboard = () => {
   const BCrumb = [
     {
-      button: "/dashboard/invoice/add",
-      title: "Generate Invoice",
+      to: "/dashboard/account/invoice",
+      title: "Invoice",
+    },
+    {
+      title: "See a list of all your invoice",
     },
   ];
   const [searchTerm, setSearchTerm] = useState("");
@@ -43,7 +46,11 @@ const Dashboard = () => {
   ).length;
   return (
     <>
-      <BreadcrumbComp title="Invoice" items={BCrumb} />
+      <BreadcrumbComp
+        title="Invoice"
+        items={BCrumb}
+        image="/images/crumbs/invoice.svg"
+      />
       <CardBox>
         <h5 className="card-title mb-3">Sample Dashboard 1</h5>
         <SearchBar onSearchChange={setSearchTerm} />

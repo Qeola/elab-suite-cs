@@ -44,7 +44,7 @@ const AuthVerifyEmail = () => {
           <Form className="mt-6">
             {/* Email */}
             <div className="mb-4">
-              <Label htmlFor="token" value="Token" className="mb-2 block" />
+              <Label htmlFor="token" value="Token *" className="mb-2 block" />
               <Field
                 id="token"
                 name="token"
