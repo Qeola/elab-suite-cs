@@ -232,6 +232,38 @@ export const generalLedger = [
     balance: 27000,
   },
 ];
+export const generalLedgerDetail = [
+  {
+    account_type: "Asset",
+    account_code: "AS-3u429",
+    debit: 9000,
+    date: "2025-01-28",
+    detail: "Payment for Brand Design",
+    transaction_type: "Debit",
+    transaction_number: "TR-001",
+    reference_number: "REF-001",
+  },
+  {
+    account_type: "Expense",
+    account_code: "AS-917b9",
+    credit: 1000,
+    date: "2025-01-28",
+    detail: "Payment for Brand Design",
+    transaction_type: "Credit",
+    transaction_number: "TR-001",
+    reference_number: "REF-001",
+  },
+  {
+    account_type: "Revenue",
+    account_code: "AS-568u8",
+    debit: 10000,
+    date: "2025-01-28",
+    detail: "Payment for Brand Design",
+    transaction_type: "Debit",
+    transaction_number: "TR-001",
+    reference_number: "REF-001",
+  },
+];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const ChartData: any = {

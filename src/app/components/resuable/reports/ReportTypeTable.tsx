@@ -1,6 +1,5 @@
 import { Dropdown, Table } from "flowbite-react";
 import React from "react";
-import UserAvatar from "../UserAvatar";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { IconDotsVertical } from "@tabler/icons-react";
 

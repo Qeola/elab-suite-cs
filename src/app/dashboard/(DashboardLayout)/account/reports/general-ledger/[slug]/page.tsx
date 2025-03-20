@@ -1,9 +1,9 @@
 "use client";
 import CardBox from "@/app/components/shared/CardBox";
-import { generalLedger } from "@/app/context/invoices";
+import { generalLedgerDetail } from "@/app/context/invoices";
 import React from "react";
-import BreadcrumbComp from "../../../layout/shared/breadcrumb/BreadcrumbComp";
-import GeneralLedger from "@/app/components/tables/GeneralLedger";
+import BreadcrumbComp from "@/app/dashboard/(DashboardLayout)/layout/shared/breadcrumb/BreadcrumbComp";
+import DetailGeneralLedger from "@/app/components/tables/DetailGeneralLedger";
 
 const BCrumb = [
   {
@@ -11,11 +11,15 @@ const BCrumb = [
     title: "Report",
   },
   {
+    to: "/dashboard/account/reports/general-ledger",
     title: "General Ledger",
+  },
+  {
+    title: "Detail",
   },
 ];
 
-const ReportLedger = () => {
+const ViewGeneralLedger = () => {
   return (
     <div>
       <BreadcrumbComp
@@ -25,11 +29,11 @@ const ReportLedger = () => {
       />
       <div className="mt-9">
         <CardBox>
-          <GeneralLedger tableData={generalLedger} />
+          <DetailGeneralLedger tableData={generalLedgerDetail} />
         </CardBox>
       </div>
     </div>
   );
 };
 
-export default ReportLedger;
+export default ViewGeneralLedger;

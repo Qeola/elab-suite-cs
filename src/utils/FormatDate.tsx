@@ -17,7 +17,16 @@ interface FormatDateProps {
 // };
 
 const FormatDate: React.FC<FormatDateProps> = ({ date }) => {
-  const possibleFormats = ["d-M-yyyy", "dd-MM-yyyy", "d-MM-yyyy", "dd-M-yyyy"];
+  const possibleFormats = [
+    "d-M-yyyy",
+    "dd-MM-yyyy",
+    "d-MM-yyyy",
+    "dd-M-yyyy",
+    "yyyy-MM-dd",
+    "yyyy-M-d",
+    "yyyy-MM-d",
+    "yyyy-M-dd",
+  ];
 
   let parsedDate;
   for (const fmt of possibleFormats) {

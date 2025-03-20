@@ -3,7 +3,7 @@ import CardBox from "@/app/components/shared/CardBox";
 import { generalLedger } from "@/app/context/invoices";
 import React from "react";
 import BreadcrumbComp from "../../../layout/shared/breadcrumb/BreadcrumbComp";
-import GeneralLedger from "@/app/components/tables/GeneralLedger";
+import TrialBalance from "@/app/components/tables/TrialBalance";
 
 const BCrumb = [
   {
@@ -11,11 +11,11 @@ const BCrumb = [
     title: "Report",
   },
   {
-    title: "General Ledger",
+    title: "Trial Balance",
   },
 ];
 
-const ReportLedger = () => {
+const TrialBalancePage = () => {
   return (
     <div>
       <BreadcrumbComp
@@ -25,11 +25,11 @@ const ReportLedger = () => {
       />
       <div className="mt-9">
         <CardBox>
-          <GeneralLedger tableData={generalLedger} />
+          <TrialBalance tableData={generalLedger} />
         </CardBox>
       </div>
     </div>
   );
 };
 
-export default ReportLedger;
+export default TrialBalancePage;

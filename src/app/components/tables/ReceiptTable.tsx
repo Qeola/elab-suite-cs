@@ -248,7 +248,7 @@ function ReceiptPaginationTable({ tableData }: { tableData: any }) {
                       {row.getVisibleCells().map((cell: any) => (
                         <td
                           key={cell.id}
-                          className="whitespace-nowrap py-3 px-4"
+                          className="whitespace-nowrap py-5 px-4"
                         >
                           {flexRender(
                             cell.column.columnDef.cell,

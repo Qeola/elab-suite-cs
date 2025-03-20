@@ -1,6 +1,6 @@
 "use client";
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from "react";
+import React from "react";
 import {
   flexRender,
   getCoreRowModel,
@@ -10,18 +10,15 @@ import {
   useReactTable,
   createColumnHelper,
 } from "@tanstack/react-table";
-import { Badge, Button, Dropdown } from "flowbite-react";
+import { Button } from "flowbite-react";
 import {
   IconChevronLeft,
   IconChevronRight,
   IconChevronsLeft,
   IconChevronsRight,
-  IconDotsVertical,
 } from "@tabler/icons-react";
 import { Icon } from "@iconify/react";
-import UserAvatar from "../resuable/UserAvatar";
 import EmptyState from "../resuable/EmptyState";
-import DeleteModal from "../modals/DeleteModal";
 import CurrencyFormatter from "@/utils/CurrencyFormatter";
 
 const columnHelper = createColumnHelper<any>();
@@ -74,7 +71,7 @@ const columns = () => [
 
       return (
         <a
-          href={`/dashboard/hr/onboarding/employees/${slug}`}
+          href={`/dashboard/account/reports/general-ledger/${slug}`}
           className="flex gap-3 items-center w-full"
         >
           <Icon icon={"solar:eye-outline"} height={18} />
@@ -175,7 +172,7 @@ function GeneralLedger({ tableData }: { tableData: any }) {
                       {row.getVisibleCells().map((cell: any) => (
                         <td
                           key={cell.id}
-                          className="whitespace-nowrap py-3 px-4"
+                          className="whitespace-nowrap py-5 px-4"
                         >
                           {flexRender(
                             cell.column.columnDef.cell,

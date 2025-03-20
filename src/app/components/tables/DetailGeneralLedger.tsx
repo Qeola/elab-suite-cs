@@ -1,6 +1,6 @@
 "use client";
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from "react";
+import React from "react";
 import {
   flexRender,
   getCoreRowModel,
@@ -10,36 +10,29 @@ import {
   useReactTable,
   createColumnHelper,
 } from "@tanstack/react-table";
-import { Badge, Button, Dropdown } from "flowbite-react";
+import { Button } from "flowbite-react";
 import {
   IconChevronLeft,
   IconChevronRight,
   IconChevronsLeft,
   IconChevronsRight,
-  IconDotsVertical,
 } from "@tabler/icons-react";
-import { Icon } from "@iconify/react";
-import UserAvatar from "../resuable/UserAvatar";
 import EmptyState from "../resuable/EmptyState";
-import DeleteModal from "../modals/DeleteModal";
+import FormatDate from "@/utils/FormatDate";
+import CurrencyFormatter from "@/utils/CurrencyFormatter";
 
 const columnHelper = createColumnHelper<any>();
 
-const columns = (handleDeleteClick: (slug: string) => void) => [
-  columnHelper.accessor("status", {
+const columns = () => [
+  columnHelper.accessor("date", {
     cell: (info: any) => (
-      <div className="flex gap-2">
-        <Badge
-          color={info.getValue() == "active" ? "lightsuccess" : `lighterror`}
-          className="capitalize"
-        >
-          {info.getValue()}
-        </Badge>
-      </div>
+      <p className="text-darklink dark:text-bodytext text-sm">
+        {<FormatDate date={info.getValue()} />}
+      </p>
     ),
     header: () => <span className="text-nowrap">Date</span>,
   }),
-  columnHelper.accessor("employee_id", {
+  columnHelper.accessor("detail", {
     cell: (info: any) => (
       <p className="text-darklink dark:text-bodytext text-sm">
         {info.getValue()}
@@ -47,7 +40,7 @@ const columns = (handleDeleteClick: (slug: string) => void) => [
     ),
     header: () => <span className="text-nowrap">Transaction Detail</span>,
   }),
-  columnHelper.accessor("phone_number", {
+  columnHelper.accessor("transaction_type", {
     cell: (info: any) => (
       <p className="text-darklink dark:text-bodytext text-sm">
         {info.getValue()}
@@ -55,7 +48,7 @@ const columns = (handleDeleteClick: (slug: string) => void) => [
     ),
     header: () => <span className="text-nowrap">Transaction Type</span>,
   }),
-  columnHelper.accessor("department", {
+  columnHelper.accessor("transaction_number", {
     cell: (info: any) => (
       <p className="text-darklink dark:text-bodytext text-sm">
         {info.getValue()}
@@ -63,7 +56,7 @@ const columns = (handleDeleteClick: (slug: string) => void) => [
     ),
     header: () => <span className="text-nowrap">Transaction No.</span>,
   }),
-  columnHelper.accessor("role", {
+  columnHelper.accessor("reference_number", {
     cell: (info: any) => (
       <p className="text-darklink dark:text-bodytext text-sm">
         {info.getValue()}
@@ -71,121 +64,27 @@ const columns = (handleDeleteClick: (slug: string) => void) => [
     ),
     header: () => <span className="text-nowrap">Reference No.</span>,
   }),
-  columnHelper.accessor("status", {
+  columnHelper.accessor("debit", {
     cell: (info: any) => (
-      <div className="flex gap-2">
-        <Badge
-          color={info.getValue() == "active" ? "lightsuccess" : `lighterror`}
-          className="capitalize"
-        >
-          {info.getValue()}
-        </Badge>
-      </div>
+      <p className="text-darklink dark:text-bodytext text-sm">
+        {info.getValue() ? <CurrencyFormatter amount={info.getValue()} /> : "-"}
+      </p>
     ),
     header: () => <span className="text-nowrap">Debit</span>,
   }),
-  columnHelper.accessor("status", {
+  columnHelper.accessor("credit", {
     cell: (info: any) => (
-      <div className="flex gap-2">
-        <Badge
-          color={info.getValue() == "active" ? "lightsuccess" : `lighterror`}
-          className="capitalize"
-        >
-          {info.getValue()}
-        </Badge>
-      </div>
+      <p className="text-darklink dark:text-bodytext text-sm">
+        {info.getValue() ? <CurrencyFormatter amount={info.getValue()} /> : "-"}
+      </p>
     ),
     header: () => <span className="text-nowrap">Credit</span>,
-  }),
-  columnHelper.accessor("status", {
-    cell: (info: any) => (
-      <div className="flex gap-2">
-        <Badge
-          color={info.getValue() == "active" ? "lightsuccess" : `lighterror`}
-          className="capitalize"
-        >
-          {info.getValue()}
-        </Badge>
-      </div>
-    ),
-    header: () => <span className="text-nowrap">Amount</span>,
-  }),
-  columnHelper.accessor("actions", {
-    cell: (info: any) => {
-      const rowData = info.row.original;
-      const slug = rowData.slug;
-
-      return (
-        <Dropdown
-          label=""
-          dismissOnClick={false}
-          renderTrigger={() => (
-            <span className="h-9 w-9 flex justify-center items-center rounded-full hover:bg-lightprimary hover:text-primary cursor-pointer">
-              <IconDotsVertical size={22} />
-            </span>
-          )}
-        >
-          {[
-            {
-              icon: "solar:eye-outline",
-              listtitle: "View",
-              link: `/dashboard/hr/onboarding/employees/${slug}`,
-            },
-            {
-              icon: "solar:pen-new-square-broken",
-              listtitle: "Edit",
-              link: `/dashboard/hr/onboarding/employees/${slug}/edit`,
-            },
-            {
-              icon: "solar:trash-bin-minimalistic-outline",
-              listtitle: "Delete",
-              action: () => handleDeleteClick(slug),
-            },
-          ].map((item, index) => (
-            <Dropdown.Item
-              key={index}
-              className="flex gap-3"
-              onClick={item.action}
-            >
-              {item.link ? (
-                <a href={item.link} className="flex gap-3 items-center w-full">
-                  <Icon icon={item.icon} height={18} />
-                  <span>{item.listtitle}</span>
-                </a>
-              ) : (
-                <>
-                  <Icon icon={item.icon} height={18} />
-                  <span>{item.listtitle}</span>
-                </>
-              )}
-            </Dropdown.Item>
-          ))}
-        </Dropdown>
-      );
-    },
-    header: () => <span></span>,
   }),
 ];
 
 function DetailGeneralLedger({ tableData }: { tableData: any }) {
   // const [data] = React.useState(() => [...tableData]);
   const [data, setData] = React.useState(tableData);
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
-
-  const handleDeleteClick = (slug: string) => {
-    console.log("working...", slug);
-    setSelectedSlug(slug);
-    setIsDeleteModalOpen(true);
-  };
-
-  const confirmDelete = () => {
-    if (selectedSlug) {
-      console.log("Deleting employee with slug:", selectedSlug);
-      // Call your delete API function here
-    }
-    setIsDeleteModalOpen(false);
-  };
 
   React.useEffect(() => {
     setData(tableData);
@@ -195,7 +94,7 @@ function DetailGeneralLedger({ tableData }: { tableData: any }) {
 
   const table = useReactTable({
     data,
-    columns: columns(handleDeleteClick),
+    columns: columns(),
     filterFns: {},
     state: {
       columnFilters,
@@ -272,7 +171,7 @@ function DetailGeneralLedger({ tableData }: { tableData: any }) {
                       {row.getVisibleCells().map((cell: any) => (
                         <td
                           key={cell.id}
-                          className="whitespace-nowrap py-3 px-4"
+                          className="whitespace-nowrap py-5 px-4"
                         >
                           {flexRender(
                             cell.column.columnDef.cell,
@@ -363,12 +262,6 @@ function DetailGeneralLedger({ tableData }: { tableData: any }) {
                 </div>
               </div>
             </div>
-            <DeleteModal
-              isOpen={isDeleteModalOpen}
-              title="Employee"
-              onClose={() => setIsDeleteModalOpen(false)}
-              onConfirm={confirmDelete}
-            />
           </div>
         </div>
       </div>
