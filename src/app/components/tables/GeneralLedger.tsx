@@ -1,6 +1,6 @@
 "use client";
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from "react";
+import React from "react";
 import {
   flexRender,
   getCoreRowModel,
@@ -10,91 +10,59 @@ import {
   useReactTable,
   createColumnHelper,
 } from "@tanstack/react-table";
-import { Badge, Button, Dropdown } from "flowbite-react";
+import { Button } from "flowbite-react";
 import {
   IconChevronLeft,
   IconChevronRight,
   IconChevronsLeft,
   IconChevronsRight,
-  IconDotsVertical,
 } from "@tabler/icons-react";
 import { Icon } from "@iconify/react";
-import UserAvatar from "../resuable/UserAvatar";
 import EmptyState from "../resuable/EmptyState";
-import DeleteModal from "../modals/DeleteModal";
+import CurrencyFormatter from "@/utils/CurrencyFormatter";
 
 const columnHelper = createColumnHelper<any>();
 
-const columns = (handleDeleteClick: (slug: string) => void) => [
-  columnHelper.accessor("avatar", {
-    cell: (info: any) => (
-      <UserAvatar
-        name={info.row.original.customer_name}
-        avatar={info.getValue()}
-        email={info.row.original.handle}
-      />
-    ),
-    header: () => <span>Customer</span>,
-  }),
-  columnHelper.accessor("product_name", {
+const columns = () => [
+  columnHelper.accessor("account_type", {
     cell: (info: any) => (
       <p className="text-darklink dark:text-bodytext text-sm">
         {info.getValue()}
       </p>
     ),
-    header: () => <span>Product Name</span>,
+    header: () => <span>Account Type</span>,
   }),
-  columnHelper.accessor("service", {
+  columnHelper.accessor("account_code", {
     cell: (info: any) => (
-      <div className="flex gap-2">
-        {info.getValue().map((service: any, index: any) => (
-          <p key={index}>{service.name}</p>
-        ))}
-      </div>
+      <p className="text-darklink dark:text-bodytext text-sm">
+        {info.getValue()}
+      </p>
     ),
-    header: () => <span>Service</span>,
+    header: () => <span className="text-nowrap">Account Code</span>,
   }),
-  columnHelper.accessor("amount", {
+  columnHelper.accessor("debit", {
     cell: (info: any) => (
-      <div className="flex gap-3 items-center">
-        <p className="text-darklink dark:text-bodytext text-sm">
-          {info.getValue()}
-        </p>
-      </div>
+      <p className="text-darklink dark:text-bodytext text-sm">
+        {info.getValue() ? <CurrencyFormatter amount={info.getValue()} /> : "-"}
+      </p>
     ),
-    header: () => <span>Amount</span>,
+    header: () => <span className="text-nowrap">Debit</span>,
   }),
-  columnHelper.accessor("tranche", {
+  columnHelper.accessor("credit", {
     cell: (info: any) => (
-      <div className="flex gap-3 items-center">
-        <p className="text-darklink dark:text-bodytext text-sm">
-          {info.getValue()}
-        </p>
-      </div>
+      <p className="text-darklink dark:text-bodytext text-sm">
+        {info.getValue() ? <CurrencyFormatter amount={info.getValue()} /> : "-"}
+      </p>
     ),
-    header: () => <span>Tranche</span>,
+    header: () => <span className="text-nowrap">Credit</span>,
   }),
-  columnHelper.accessor("status", {
+  columnHelper.accessor("balance", {
     cell: (info: any) => (
-      <div className="flex gap-2">
-        {/* {info.getValue().map((status:any, index:any) => (
-        ))} */}
-        <Badge
-          // key={index}
-          color={
-            info.getValue() == "paid"
-              ? "lightsuccess"
-              : info.getValue() == "pending"
-                ? "lightwarning"
-                : `lighterror`
-          }
-          className="capitalize"
-        >
-          {info.getValue()}
-        </Badge>
-      </div>
+      <p className="text-darklink dark:text-bodytext text-sm">
+        {info.getValue() ? <CurrencyFormatter amount={info.getValue()} /> : "-"}
+      </p>
     ),
-    header: () => <span>Status</span>,
+    header: () => <span className="text-nowrap">Balance</span>,
   }),
   columnHelper.accessor("actions", {
     cell: (info: any) => {
@@ -102,76 +70,22 @@ const columns = (handleDeleteClick: (slug: string) => void) => [
       const slug = rowData.slug;
 
       return (
-        <Dropdown
-          label=""
-          dismissOnClick={false}
-          renderTrigger={() => (
-            <span className="h-9 w-9 flex justify-center items-center rounded-full hover:bg-lightprimary hover:text-primary cursor-pointer">
-              <IconDotsVertical size={22} />
-            </span>
-          )}
+        <a
+          href={`/dashboard/account/reports/general-ledger/${slug}`}
+          className="flex gap-3 items-center w-full"
         >
-          {[
-            {
-              icon: "solar:eye-outline",
-              listtitle: "View",
-              link: `/dashboard/account/invoice/${slug}`,
-            },
-            { icon: "solar:diskette-outline", listtitle: "Generate Receipt" },
-            {
-              icon: "solar:pen-new-square-broken",
-              listtitle: "Edit",
-              link: `/dashboard/account/invoice/${slug}/edit`,
-            },
-            {
-              icon: "solar:trash-bin-minimalistic-outline",
-              listtitle: "Delete",
-              action: () => handleDeleteClick(slug),
-            },
-          ].map((item, index) => (
-            <Dropdown.Item
-              key={index}
-              className="flex gap-3"
-              onClick={item.action}
-            >
-              {item.link ? (
-                <a href={item.link} className="flex gap-3 items-center w-full">
-                  <Icon icon={item.icon} height={18} />
-                  <span>{item.listtitle}</span>
-                </a>
-              ) : (
-                <>
-                  <Icon icon={item.icon} height={18} />
-                  <span>{item.listtitle}</span>
-                </>
-              )}
-            </Dropdown.Item>
-          ))}
-        </Dropdown>
+          <Icon icon={"solar:eye-outline"} height={18} />
+          <span>View</span>
+        </a>
       );
     },
     header: () => <span></span>,
   }),
 ];
 
-function InvoicePaginationTable({ tableData }: { tableData: any }) {
-  //   const [data] = React.useState(() => [...tableData]);
+function GeneralLedger({ tableData }: { tableData: any }) {
+  // const [data] = React.useState(() => [...tableData]);
   const [data, setData] = React.useState(tableData);
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
-
-  const handleDeleteClick = (slug: string) => {
-    setSelectedSlug(slug);
-    setIsDeleteModalOpen(true);
-  };
-
-  const confirmDelete = () => {
-    if (selectedSlug) {
-      console.log("Deleting invoice with slug:", selectedSlug);
-      // Call your delete API function here
-    }
-    setIsDeleteModalOpen(false);
-  };
 
   React.useEffect(() => {
     setData(tableData);
@@ -181,7 +95,7 @@ function InvoicePaginationTable({ tableData }: { tableData: any }) {
 
   const table = useReactTable({
     data,
-    columns: columns(handleDeleteClick),
+    columns: columns(),
     filterFns: {},
     state: {
       columnFilters,
@@ -196,35 +110,35 @@ function InvoicePaginationTable({ tableData }: { tableData: any }) {
     debugColumns: false,
   });
 
-  // const handleDownload = () => {
-  //   const headers = ["Name", "Handle", "Users", "Courses"];
-  //   const rows = data.map((item: any) => [
-  //     item.name,
-  //     item.handle,
-  //     item.users,
-  //     item.courses.map((course: any) => course.status).join(", "),
-  //   ]);
+  //   const handleDownload = () => {
+  //     const headers = ["Name", "Handle", "Users", "Courses"];
+  //     const rows = data.map((item: any) => [
+  //       item.name,
+  //       item.handle,
+  //       item.users,
+  //       item.courses.map((course: any) => course.status).join(", "),
+  //     ]);
 
-  //   const csvContent = [
-  //     headers.join(","),
-  //     ...rows.map((e: any) => e.join(",")),
-  //   ].join("\n");
+  //     const csvContent = [
+  //       headers.join(","),
+  //       ...rows.map((e: any) => e.join(",")),
+  //     ].join("\n");
 
-  //   const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-  //   const url = URL.createObjectURL(blob);
+  //     const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+  //     const url = URL.createObjectURL(blob);
 
-  //   const link = document.createElement("a");
-  //   link.href = url;
-  //   link.setAttribute("download", "table-data.csv");
-  //   document.body.appendChild(link);
-  //   link.click();
-  //   document.body.removeChild(link);
-  // };
+  //     const link = document.createElement("a");
+  //     link.href = url;
+  //     link.setAttribute("download", "table-data.csv");
+  //     document.body.appendChild(link);
+  //     link.click();
+  //     document.body.removeChild(link);
+  //   };
 
   return (
     <>
       <div>
-        <div className="border rounded-md border-ld overflow-hidden">
+        <div className="rounded-md overflow-hidden">
           <div className="overflow-x-auto">
             {table.getRowModel().rows.length === 0 ? (
               <EmptyState text={"No Employee Yet."} />
@@ -349,12 +263,6 @@ function InvoicePaginationTable({ tableData }: { tableData: any }) {
                 </div>
               </div>
             </div>
-            <DeleteModal
-              isOpen={isDeleteModalOpen}
-              title="Employee"
-              onClose={() => setIsDeleteModalOpen(false)}
-              onConfirm={confirmDelete}
-            />
           </div>
         </div>
       </div>
@@ -362,4 +270,4 @@ function InvoicePaginationTable({ tableData }: { tableData: any }) {
   );
 }
 
-export default InvoicePaginationTable;
+export default GeneralLedger;

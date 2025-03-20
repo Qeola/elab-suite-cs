@@ -241,11 +241,14 @@ function ReceiptPaginationTable({ tableData }: { tableData: any }) {
                 </thead>
                 <tbody className="divide-y divide-border dark:divide-darkborder">
                   {table.getRowModel().rows.map((row: any) => (
-                    <tr key={row.id}>
+                    <tr
+                      key={row.id}
+                      className="hover:bg-gray-100 dark:hover:bg-gray-700"
+                    >
                       {row.getVisibleCells().map((cell: any) => (
                         <td
                           key={cell.id}
-                          className="whitespace-nowrap py-3 px-4"
+                          className="whitespace-nowrap py-5 px-4"
                         >
                           {flexRender(
                             cell.column.columnDef.cell,

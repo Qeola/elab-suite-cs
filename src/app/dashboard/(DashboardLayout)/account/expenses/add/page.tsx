@@ -22,6 +22,7 @@ interface Expense {
   amount: number;
   recurring: string;
   date: string;
+  bank: string;
   status: string;
 }
 
@@ -40,6 +41,7 @@ const page = () => {
         amount: 0,
         recurring: "",
         date: "",
+        bank: "",
         status: "",
       },
     ],
@@ -57,6 +59,7 @@ const page = () => {
         currency: Yup.string().required("Required"),
         date: Yup.string().required("Required"),
         status: Yup.string().required("Required"),
+        bank: Yup.string().required("Required"),
         recurring: Yup.string().required("Required"),
       }),
     ),
@@ -102,13 +105,14 @@ const page = () => {
                   <Table.HeadCell>Name *</Table.HeadCell>
                   <Table.HeadCell>Category *</Table.HeadCell>
                   <Table.HeadCell>Description *</Table.HeadCell>
+                  <Table.HeadCell>Paid Through *</Table.HeadCell>
                   <Table.HeadCell>Amount *</Table.HeadCell>
                   <Table.HeadCell>Currency *</Table.HeadCell>
                   <Table.HeadCell>Date *</Table.HeadCell>
                   <Table.HeadCell>Recurring</Table.HeadCell>
                   <Table.HeadCell>Status</Table.HeadCell>
                   <Table.HeadCell></Table.HeadCell>
-                  <Table.HeadCell>Actions</Table.HeadCell>
+                  <Table.HeadCell>Action</Table.HeadCell>
                 </Table.Head>
                 <FieldArray name="expenses">
                   {({ push, remove }) => (
@@ -190,6 +194,25 @@ const page = () => {
                               name={`expenses[${index}].description`}
                               component="div"
                               className="text-red-500 text-sm"
+                            />
+                          </Table.Cell>
+
+                          <Table.Cell className="whitespace-nowrap min-w-44">
+                            <Field
+                              as={Select}
+                              name={`income[${index}].bank`}
+                              sizing="lg"
+                              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                              className={`form-control select-md ${touched.expenses?.[index]?.bank && (errors.expenses as any)?.[index]?.bank ? "error" : ""}`}
+                            >
+                              <option value=""></option>
+                              <option value={"yes"}>Yes</option>
+                              <option value={"no"}>No</option>
+                            </Field>
+                            <ErrorMessage
+                              name={`income[${index}].bank`}
+                              component="div"
+                              className="text-red-500 text-sm mt-1"
                             />
                           </Table.Cell>
 

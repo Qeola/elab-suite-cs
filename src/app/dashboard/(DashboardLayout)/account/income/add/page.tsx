@@ -20,9 +20,10 @@ interface Income {
   category: string;
   currency: string;
   amount: number;
-  recurring: string;
   date: string;
   status: string;
+  bank: string;
+  type: string;
 }
 
 interface FormValues {
@@ -38,9 +39,10 @@ const page = () => {
         category: "",
         currency: "",
         amount: 0,
-        recurring: "",
         date: "",
         status: "",
+        bank: "",
+        type: "",
       },
     ],
   };
@@ -57,7 +59,8 @@ const page = () => {
         currency: Yup.string().required("Required"),
         date: Yup.string().required("Required"),
         status: Yup.string().required("Required"),
-        recurring: Yup.string().required("Required"),
+        bank: Yup.string().required("Required"),
+        type: Yup.string().required("Required"),
       }),
     ),
   });
@@ -100,16 +103,16 @@ const page = () => {
               <Table className="">
                 <Table.Head>
                   <Table.HeadCell className="sticky left-0 bg-lightgray dark:bg-dark z-10"></Table.HeadCell>
+                  <Table.HeadCell>Income Type *</Table.HeadCell>
                   <Table.HeadCell>Name *</Table.HeadCell>
                   <Table.HeadCell>Category *</Table.HeadCell>
                   <Table.HeadCell>Description *</Table.HeadCell>
+                  <Table.HeadCell>Bank *</Table.HeadCell>
                   <Table.HeadCell>Amount *</Table.HeadCell>
                   <Table.HeadCell>Currency *</Table.HeadCell>
                   <Table.HeadCell>Date *</Table.HeadCell>
-                  <Table.HeadCell>Recurring</Table.HeadCell>
                   <Table.HeadCell>Status</Table.HeadCell>
-                  <Table.HeadCell></Table.HeadCell>
-                  <Table.HeadCell>Actions</Table.HeadCell>
+                  <Table.HeadCell>Action</Table.HeadCell>
                 </Table.Head>
                 <FieldArray name="income">
                   {({ push, remove }) => (
@@ -131,6 +134,8 @@ const page = () => {
                                     date: "",
                                     status: "",
                                     recurring: "",
+                                    bank: "",
+                                    type: "",
                                   })
                                 }
                                 type="button"
@@ -138,6 +143,25 @@ const page = () => {
                                 <Icon icon="mdi:plus-circle" height={18} />
                               </Button>
                             </Tooltip>
+                          </Table.Cell>
+
+                          <Table.Cell className="whitespace-nowrap min-w-44">
+                            <Field
+                              as={Select}
+                              name={`income[${index}].type`}
+                              sizing="lg"
+                              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                              className={`form-control select-md ${touched.income?.[index]?.type && (errors.income as any)?.[index]?.type ? "error" : ""}`}
+                            >
+                              <option value=""></option>
+                              <option value={"yes"}>Yes</option>
+                              <option value={"no"}>No</option>
+                            </Field>
+                            <ErrorMessage
+                              name={`income[${index}].type`}
+                              component="div"
+                              className="text-red-500 text-sm mt-1"
+                            />
                           </Table.Cell>
 
                           <Table.Cell className="whitespace-nowrap min-w-44">
@@ -196,6 +220,25 @@ const page = () => {
 
                           <Table.Cell className="whitespace-nowrap min-w-44">
                             <Field
+                              as={Select}
+                              name={`income[${index}].bank`}
+                              sizing="lg"
+                              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                              className={`form-control select-md ${touched.income?.[index]?.bank && (errors.income as any)?.[index]?.bank ? "error" : ""}`}
+                            >
+                              <option value=""></option>
+                              <option value={"yes"}>Yes</option>
+                              <option value={"no"}>No</option>
+                            </Field>
+                            <ErrorMessage
+                              name={`income[${index}].bank`}
+                              component="div"
+                              className="text-red-500 text-sm mt-1"
+                            />
+                          </Table.Cell>
+
+                          <Table.Cell className="whitespace-nowrap min-w-44">
+                            <Field
                               name={`income[${index}].amount`}
                               as={TextInput}
                               sizing="lg"
@@ -245,25 +288,6 @@ const page = () => {
 
                           <Table.Cell className="whitespace-nowrap min-w-44">
                             <Field
-                              as={Select}
-                              name={`income[${index}].recurring`}
-                              sizing="lg"
-                              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                              className={`form-control select-md ${touched.income?.[index]?.recurring && (errors.income as any)?.[index]?.recurring ? "error" : ""}`}
-                            >
-                              <option value=""></option>
-                              <option value={"yes"}>Yes</option>
-                              <option value={"no"}>No</option>
-                            </Field>
-                            <ErrorMessage
-                              name={`income[${index}].recurring`}
-                              component="div"
-                              className="text-red-500 text-sm mt-1"
-                            />
-                          </Table.Cell>
-
-                          <Table.Cell className="whitespace-nowrap min-w-44">
-                            <Field
                               name={`income[${index}].status`}
                               as={TextInput}
                               sizing="lg"
@@ -278,7 +302,6 @@ const page = () => {
                             />
                           </Table.Cell>
 
-                          <Table.Cell className="whitespace-nowrap"></Table.Cell>
                           <Table.Cell className="whitespace-nowrap">
                             <Tooltip content="Delete income" placement="bottom">
                               <Button

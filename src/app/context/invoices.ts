@@ -189,10 +189,85 @@ export const companyDetails = {
     },
   ],
 };
+export const report = [
+  {
+    name: "General Ledger",
+    description: "View all completed company transactions.",
+    slug: "general-ledger",
+  },
+  {
+    name: "Journal Entries",
+    description: "Chronological transaction log for review.",
+    slug: "journal-entries",
+  },
+  {
+    name: "Trial Balance",
+    description: "Displays all debit & credit balances.",
+    slug: "trial-balance",
+  },
+  {
+    name: "Statement of Cash Flow",
+    description: "Movement of cash over a time period.",
+    slug: "statement-of-cash-flow",
+  },
+];
+
+export const generalLedger = [
+  {
+    account_type: "Asset",
+    account_code: "AS-3u429",
+    debit: 9000,
+    balance: 18000,
+  },
+  {
+    account_type: "Expense",
+    account_code: "AS-917b9",
+    credit: 1000,
+    balance: 17000,
+  },
+  {
+    account_type: "Revenue",
+    account_code: "AS-568u8",
+    debit: 10000,
+    balance: 27000,
+  },
+];
+export const generalLedgerDetail = [
+  {
+    account_type: "Asset",
+    account_code: "AS-3u429",
+    debit: 9000,
+    date: "2025-01-28",
+    detail: "Payment for Brand Design",
+    transaction_type: "Debit",
+    transaction_number: "TR-001",
+    reference_number: "REF-001",
+  },
+  {
+    account_type: "Expense",
+    account_code: "AS-917b9",
+    credit: 1000,
+    date: "2025-01-28",
+    detail: "Payment for Brand Design",
+    transaction_type: "Credit",
+    transaction_number: "TR-001",
+    reference_number: "REF-001",
+  },
+  {
+    account_type: "Revenue",
+    account_code: "AS-568u8",
+    debit: 10000,
+    date: "2025-01-28",
+    detail: "Payment for Brand Design",
+    transaction_type: "Debit",
+    transaction_number: "TR-001",
+    reference_number: "REF-001",
+  },
+];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const ChartData: any = {
-  series: [44, 55, 13, 43, 22],
+  series: [44, 55, 13, 43, 22, 18, 12, 5],
   chart: {
     type: "pie",
     height: 300,
@@ -222,7 +297,14 @@ export const ChartData: any = {
     "var(--color-primary)",
     "var(--color-error)",
     "var(--color-success)",
-    "var(--color-warning )",
+    "var(--color-warning)",
+    "var(--color-secondary)",
+    "var(--color-lightprimary)",
+    "var(--color-lightsecondary)",
+    "var(--color-lightinfo)",
+    "var(--color-lighterror)",
+    "var(--color-lightsuccess)",
+    "var(--color-lightwarning)",
   ],
   tooltip: {
     fillSeriesColor: false,
@@ -231,7 +313,16 @@ export const ChartData: any = {
     width: 2,
     colors: "var(--color-surface-ld)",
   },
-  labels: ["Team A", "Team B", "Team C", "Team D", "Team E"],
+  labels: [
+    "Team A",
+    "Team B",
+    "Team C",
+    "Team D",
+    "Team E",
+    "Team F",
+    "Team G",
+    "Team H",
+  ],
   responsive: [
     {
       breakpoint: 480,
@@ -259,6 +350,10 @@ export const ChartData2: any = {
       data: [76, 85, 101, 98, 87, 105, 91, 114, 94],
     },
     {
+      name: "Tablet",
+      data: [67, 25, 141, 98, 17, 115, 91, 104, 55, 32],
+    },
+    {
       name: "Other",
       data: [35, 41, 36, 26, 45, 48, 52, 53, 41],
     },
@@ -275,6 +370,7 @@ export const ChartData2: any = {
   colors: [
     "var(--color-error)",
     "var(--color-primary)",
+    "var(--color-warning)",
     "var(--color-secondary)",
   ],
   plotOptions: {
@@ -294,7 +390,18 @@ export const ChartData2: any = {
   },
 
   xaxis: {
-    categories: ["Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"],
+    categories: [
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+    ],
     axisBorder: {
       color: "rgba(173,181,189,0.3)",
     },
@@ -335,4 +442,176 @@ export const ChartData2: any = {
       },
     },
   ],
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const ChartData3: any = {
+  series: [
+    {
+      name: "Income",
+      data: [1.2, 2.7, 1, 3.6, 2.1, 2.7, 2.2, 1.3, 2.5],
+    },
+    {
+      name: "Expense",
+      data: [2.8, 1.1, 2.5, 1.5, 2.3, 1.9, 1, 2.1, 1.3],
+    },
+    {
+      name: "Invoice",
+      data: [2.8, 1.1, 2.5, 1.5, 2.3, 1.9, 1, 2.1, 1.3],
+    },
+  ],
+  chart: {
+    toolbar: {
+      show: false,
+    },
+    type: "bar",
+    fontFamily: "inherit",
+    foreColor: "#adb0bb",
+    height: 295,
+    stacked: true,
+    offsetX: -15,
+  },
+  colors: ["var(--color-primary)", "var(--color-error)", "var(--color-info)"],
+  plotOptions: {
+    bar: {
+      horizontal: false,
+      barHeight: "60%",
+      columnWidth: "15%",
+      borderRadius: [6],
+      borderRadiusApplication: "end",
+      borderRadiusWhenStacked: "all",
+    },
+  },
+  dataLabels: {
+    enabled: false,
+  },
+  legend: {
+    show: false,
+  },
+  grid: {
+    show: true,
+    padding: {
+      top: 0,
+      bottom: 0,
+      right: 0,
+    },
+    borderColor: "rgba(0,0,0,0.05)",
+    xaxis: {
+      lines: {
+        show: true,
+      },
+    },
+    yaxis: {
+      lines: {
+        show: true,
+      },
+    },
+  },
+  yaxis: {
+    min: -1,
+    // max: 5,
+    tickAmount: 4,
+  },
+  xaxis: {
+    axisBorder: {
+      show: false,
+    },
+    axisTicks: {
+      show: false,
+    },
+    categories: [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "July",
+      "Aug",
+      "Sep",
+    ],
+    labels: {
+      style: { fontSize: "13px", colors: "#adb0bb", fontWeight: "400" },
+    },
+  },
+
+  tooltip: {
+    theme: "dark",
+  },
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const ChartData4: any = {
+  series: [
+    {
+      name: "Sales Summery 1",
+      data: [31, 40, 28, 51, 42, 109, 100],
+    },
+    {
+      name: "Sales Summery 2",
+      data: [11, 32, 45, 32, 34, 52, 41],
+    },
+  ],
+  chart: {
+    id: "area-chart",
+    fontFamily: `inherit`,
+    foreColor: "#adb0bb",
+    zoom: {
+      enabled: true,
+    },
+    toolbar: {
+      show: false,
+    },
+  },
+  dataLabels: {
+    enabled: false,
+  },
+  fill: {
+    type: "gradient",
+    gradient: {
+      shadeIntensity: 0,
+      inverseColors: false,
+      opacityFrom: 0.2,
+      opacity: 0.1,
+      stops: [100],
+    },
+  },
+  stroke: {
+    width: "3",
+    curve: "smooth",
+  },
+  colors: ["var(--color-primary)", "var(--color-secondary)"],
+  xaxis: {
+    type: "datetime",
+    categories: [
+      "2018-09-19T00:00:00",
+      "2018-09-19T01:30:00",
+      "2018-09-19T02:30:00",
+      "2018-09-19T03:30:00",
+      "2018-09-19T04:30:00",
+      "2018-09-19T05:30:00",
+      "2018-09-19T06:30:00",
+    ],
+    axisBorder: {
+      color: "rgba(173,181,189,0.3)",
+    },
+  },
+  yaxis: {
+    opposite: false,
+    labels: {
+      show: true,
+    },
+  },
+  legend: {
+    show: true,
+    position: "bottom",
+    width: "50px",
+  },
+  grid: {
+    show: false,
+  },
+  tooltip: {
+    theme: "dark",
+    fillSeriesColor: false,
+  },
 };
