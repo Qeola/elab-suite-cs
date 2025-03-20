@@ -26,75 +26,89 @@ import DeleteModal from "../modals/DeleteModal";
 const columnHelper = createColumnHelper<any>();
 
 const columns = (handleDeleteClick: (slug: string) => void) => [
-  columnHelper.accessor("avatar", {
-    cell: (info: any) => (
-      <UserAvatar
-        name={info.row.original.customer_name}
-        avatar={info.getValue()}
-        email={info.row.original.handle}
-      />
-    ),
-    header: () => <span>Customer</span>,
-  }),
-  columnHelper.accessor("product_name", {
-    cell: (info: any) => (
-      <p className="text-darklink dark:text-bodytext text-sm">
-        {info.getValue()}
-      </p>
-    ),
-    header: () => <span>Product Name</span>,
-  }),
-  columnHelper.accessor("service", {
-    cell: (info: any) => (
-      <div className="flex gap-2">
-        {info.getValue().map((service: any, index: any) => (
-          <p key={index}>{service.name}</p>
-        ))}
-      </div>
-    ),
-    header: () => <span>Service</span>,
-  }),
-  columnHelper.accessor("amount", {
-    cell: (info: any) => (
-      <div className="flex gap-3 items-center">
-        <p className="text-darklink dark:text-bodytext text-sm">
-          {info.getValue()}
-        </p>
-      </div>
-    ),
-    header: () => <span>Amount</span>,
-  }),
-  columnHelper.accessor("tranche", {
-    cell: (info: any) => (
-      <div className="flex gap-3 items-center">
-        <p className="text-darklink dark:text-bodytext text-sm">
-          {info.getValue()}
-        </p>
-      </div>
-    ),
-    header: () => <span>Tranche</span>,
-  }),
   columnHelper.accessor("status", {
     cell: (info: any) => (
       <div className="flex gap-2">
-        {/* {info.getValue().map((status:any, index:any) => (
-        ))} */}
         <Badge
-          // key={index}
-          color={
-            info.getValue() == "paid"
-              ? "lightsuccess"
-              : info.getValue() == "pending"
-                ? "lightwarning"
-                : `lighterror`
-          }
+          color={info.getValue() == "active" ? "lightsuccess" : `lighterror`}
           className="capitalize"
         >
           {info.getValue()}
         </Badge>
       </div>
     ),
-    header: () => <span>Status</span>,
+    header: () => <span className="text-nowrap">Date</span>,
+  }),
+  columnHelper.accessor("employee_id", {
+    cell: (info: any) => (
+      <p className="text-darklink dark:text-bodytext text-sm">
+        {info.getValue()}
+      </p>
+    ),
+    header: () => <span className="text-nowrap">Transaction Detail</span>,
+  }),
+  columnHelper.accessor("phone_number", {
+    cell: (info: any) => (
+      <p className="text-darklink dark:text-bodytext text-sm">
+        {info.getValue()}
+      </p>
+    ),
+    header: () => <span className="text-nowrap">Transaction Type</span>,
+  }),
+  columnHelper.accessor("department", {
+    cell: (info: any) => (
+      <p className="text-darklink dark:text-bodytext text-sm">
+        {info.getValue()}
+      </p>
+    ),
+    header: () => <span className="text-nowrap">Transaction No.</span>,
+  }),
+  columnHelper.accessor("role", {
+    cell: (info: any) => (
+      <p className="text-darklink dark:text-bodytext text-sm">
+        {info.getValue()}
+      </p>
+    ),
+    header: () => <span className="text-nowrap">Reference No.</span>,
+  }),
+  columnHelper.accessor("status", {
+    cell: (info: any) => (
+      <div className="flex gap-2">
+        <Badge
+          color={info.getValue() == "active" ? "lightsuccess" : `lighterror`}
+          className="capitalize"
+        >
+          {info.getValue()}
+        </Badge>
+      </div>
+    ),
+    header: () => <span className="text-nowrap">Debit</span>,
+  }),
+  columnHelper.accessor("status", {
+    cell: (info: any) => (
+      <div className="flex gap-2">
+        <Badge
+          color={info.getValue() == "active" ? "lightsuccess" : `lighterror`}
+          className="capitalize"
+        >
+          {info.getValue()}
+        </Badge>
+      </div>
+    ),
+    header: () => <span className="text-nowrap">Credit</span>,
+  }),
+  columnHelper.accessor("status", {
+    cell: (info: any) => (
+      <div className="flex gap-2">
+        <Badge
+          color={info.getValue() == "active" ? "lightsuccess" : `lighterror`}
+          className="capitalize"
+        >
+          {info.getValue()}
+        </Badge>
+      </div>
+    ),
+    header: () => <span className="text-nowrap">Amount</span>,
   }),
   columnHelper.accessor("actions", {
     cell: (info: any) => {
@@ -115,13 +129,12 @@ const columns = (handleDeleteClick: (slug: string) => void) => [
             {
               icon: "solar:eye-outline",
               listtitle: "View",
-              link: `/dashboard/account/invoice/${slug}`,
+              link: `/dashboard/hr/onboarding/employees/${slug}`,
             },
-            { icon: "solar:diskette-outline", listtitle: "Generate Receipt" },
             {
               icon: "solar:pen-new-square-broken",
               listtitle: "Edit",
-              link: `/dashboard/account/invoice/${slug}/edit`,
+              link: `/dashboard/hr/onboarding/employees/${slug}/edit`,
             },
             {
               icon: "solar:trash-bin-minimalistic-outline",
@@ -154,20 +167,21 @@ const columns = (handleDeleteClick: (slug: string) => void) => [
   }),
 ];
 
-function InvoicePaginationTable({ tableData }: { tableData: any }) {
-  //   const [data] = React.useState(() => [...tableData]);
+function DetailGeneralLedger({ tableData }: { tableData: any }) {
+  // const [data] = React.useState(() => [...tableData]);
   const [data, setData] = React.useState(tableData);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
 
   const handleDeleteClick = (slug: string) => {
+    console.log("working...", slug);
     setSelectedSlug(slug);
     setIsDeleteModalOpen(true);
   };
 
   const confirmDelete = () => {
     if (selectedSlug) {
-      console.log("Deleting invoice with slug:", selectedSlug);
+      console.log("Deleting employee with slug:", selectedSlug);
       // Call your delete API function here
     }
     setIsDeleteModalOpen(false);
@@ -196,35 +210,35 @@ function InvoicePaginationTable({ tableData }: { tableData: any }) {
     debugColumns: false,
   });
 
-  // const handleDownload = () => {
-  //   const headers = ["Name", "Handle", "Users", "Courses"];
-  //   const rows = data.map((item: any) => [
-  //     item.name,
-  //     item.handle,
-  //     item.users,
-  //     item.courses.map((course: any) => course.status).join(", "),
-  //   ]);
+  //   const handleDownload = () => {
+  //     const headers = ["Name", "Handle", "Users", "Courses"];
+  //     const rows = data.map((item: any) => [
+  //       item.name,
+  //       item.handle,
+  //       item.users,
+  //       item.courses.map((course: any) => course.status).join(", "),
+  //     ]);
 
-  //   const csvContent = [
-  //     headers.join(","),
-  //     ...rows.map((e: any) => e.join(",")),
-  //   ].join("\n");
+  //     const csvContent = [
+  //       headers.join(","),
+  //       ...rows.map((e: any) => e.join(",")),
+  //     ].join("\n");
 
-  //   const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-  //   const url = URL.createObjectURL(blob);
+  //     const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+  //     const url = URL.createObjectURL(blob);
 
-  //   const link = document.createElement("a");
-  //   link.href = url;
-  //   link.setAttribute("download", "table-data.csv");
-  //   document.body.appendChild(link);
-  //   link.click();
-  //   document.body.removeChild(link);
-  // };
+  //     const link = document.createElement("a");
+  //     link.href = url;
+  //     link.setAttribute("download", "table-data.csv");
+  //     document.body.appendChild(link);
+  //     link.click();
+  //     document.body.removeChild(link);
+  //   };
 
   return (
     <>
       <div>
-        <div className="border rounded-md border-ld overflow-hidden">
+        <div className="rounded-md overflow-hidden">
           <div className="overflow-x-auto">
             {table.getRowModel().rows.length === 0 ? (
               <EmptyState text={"No Employee Yet."} />
@@ -362,4 +376,4 @@ function InvoicePaginationTable({ tableData }: { tableData: any }) {
   );
 }
 
-export default InvoicePaginationTable;
+export default DetailGeneralLedger;
