@@ -7,6 +7,7 @@ import {
   Button,
   Checkbox,
   Label,
+  Select,
   Table,
   TextInput,
   Tooltip,
@@ -20,6 +21,8 @@ interface Order {
   transaction_type: string;
   contact: string;
   tax: string;
+  debit: string;
+  credit: string;
 }
 
 interface FormValues {
@@ -63,6 +66,8 @@ const initialValues = {
       account_type: "",
       contact: "",
       tax: "",
+      debit: "",
+      credit: "",
       description: "",
       transaction_type: "",
     },
@@ -181,7 +186,7 @@ const JournalEntriesForm: React.FC = () => {
               </div>
             </div>
 
-            <div className="mt-6 overflow-x-none">
+            <div className="mt-6 overflow-x-auto overflow-y-hidden">
               <FieldArray name="orders">
                 {({ push, remove }) => (
                   <Table className="mt-4">
@@ -192,6 +197,8 @@ const JournalEntriesForm: React.FC = () => {
                       <Table.HeadCell>Contact *</Table.HeadCell>
                       <Table.HeadCell>Transaction Type *</Table.HeadCell>
                       <Table.HeadCell>Tax *</Table.HeadCell>
+                      <Table.HeadCell>Debit *</Table.HeadCell>
+                      <Table.HeadCell>Credit *</Table.HeadCell>
                     </Table.Head>
                     <Table.Body className="divide-y divide-border dark:divide-darkborder">
                       {values.orders.map((order, index) => (
@@ -215,11 +222,11 @@ const JournalEntriesForm: React.FC = () => {
                           </Table.Cell>
                           <Table.Cell className="whitespace-nowrap min-w-44">
                             <Field
-                              as={TextInput}
+                              as={Select}
                               type="text"
                               name={`orders.${index}.account_type`}
                               //   placeholder="Item Name"
-                              className={`form-control ${touched.orders?.[index]?.account_type && typeof errors.orders?.[index] === "object" && errors.orders?.[index]?.account_type ? "error" : ""}`}
+                              className={`select-md form-control ${touched.orders?.[index]?.account_type && typeof errors.orders?.[index] === "object" && errors.orders?.[index]?.account_type ? "error" : ""}`}
                             />
                           </Table.Cell>
                           <Table.Cell className="whitespace-nowrap min-w-44">
@@ -251,11 +258,29 @@ const JournalEntriesForm: React.FC = () => {
                           </Table.Cell>
                           <Table.Cell className="whitespace-nowrap min-w-44">
                             <Field
-                              as={TextInput}
+                              as={Select}
                               type="number"
                               name={`orders.${index}.tax`}
                               //   placeholder="tax"
-                              className={`form-control ${touched.orders?.[index]?.tax && typeof errors.orders?.[index] === "object" && errors.orders?.[index]?.tax ? "error" : ""}`}
+                              className={`select-md form-control ${touched.orders?.[index]?.tax && typeof errors.orders?.[index] === "object" && errors.orders?.[index]?.tax ? "error" : ""}`}
+                            />
+                          </Table.Cell>
+                          <Table.Cell className="whitespace-nowrap min-w-44">
+                            <Field
+                              as={TextInput}
+                              type="number"
+                              name={`orders.${index}.credit`}
+                              //   placeholder="tax"
+                              className={`form-control ${touched.orders?.[index]?.credit && typeof errors.orders?.[index] === "object" && errors.orders?.[index]?.credit ? "error" : ""}`}
+                            />
+                          </Table.Cell>
+                          <Table.Cell className="whitespace-nowrap min-w-44">
+                            <Field
+                              as={TextInput}
+                              type="number"
+                              name={`orders.${index}.debit`}
+                              //   placeholder="tax"
+                              className={`form-control ${touched.orders?.[index]?.debit && typeof errors.orders?.[index] === "object" && errors.orders?.[index]?.debit ? "error" : ""}`}
                             />
                           </Table.Cell>
                           <Table.Cell className="whitespace-nowrap">
