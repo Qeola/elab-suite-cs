@@ -178,7 +178,7 @@ function EditEmployeeForm() {
                     id="gender"
                     name="gender"
                     sizing="lg"
-                    className={`rounded-md form-control block w-full p-3.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white ${touched.gender && errors.gender ? "error" : ""}`}
+                    className={`select-md form-control ${touched.gender && errors.gender ? "error" : ""}`}
                   >
                     <option value=""></option>
                     <option value={"male"}>Male</option>
@@ -225,7 +225,7 @@ function EditEmployeeForm() {
                     as="select"
                     name="department"
                     sizing="lg"
-                    className="rounded-md form-control block w-full p-3.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
+                    className="select-md form-control"
                   >
                     <option value="">Choose a department</option>
                     {department.map((val, i) => (

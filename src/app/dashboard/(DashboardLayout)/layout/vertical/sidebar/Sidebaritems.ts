@@ -97,6 +97,25 @@ const SidebarContent: MenuItem[] = [
           },
         ],
       },
+      {
+        heading: "Settings",
+        children: [
+          {
+            name: "Chart of Accounts",
+            icon: "mdi:account-lock-open-outline",
+            id: uniqueId(),
+            url: "/dashboard/settings/account/chart-of-accounts",
+            color: "#0792D2",
+          },
+          {
+            name: "Tax Rate",
+            icon: "tabler:tax",
+            id: uniqueId(),
+            url: "/dashboard/account/receipt",
+            color: "#F9389F",
+          },
+        ],
+      },
     ],
   },
 ];

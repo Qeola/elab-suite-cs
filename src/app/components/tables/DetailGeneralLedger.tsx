@@ -18,8 +18,8 @@ import {
   IconChevronsRight,
 } from "@tabler/icons-react";
 import EmptyState from "../resuable/EmptyState";
-import FormatDate from "@/utils/FormatDate";
-import CurrencyFormatter from "@/utils/CurrencyFormatter";
+import FormatDate from "@/utils/helpers/FormatDate";
+import CurrencyFormatter from "@/utils/helpers/CurrencyFormatter";
 
 const columnHelper = createColumnHelper<any>();
 

@@ -14,6 +14,8 @@ import {
 } from "flowbite-react";
 import { Icon } from "@iconify/react";
 import AuthButton from "../resuable/button/AuthButton";
+import { accountType } from "@/utils/helpers/accountType";
+import { currencies } from "@/utils/helpers/currency";
 
 interface Order {
   account_type: string;
@@ -157,7 +159,14 @@ const JournalEntriesForm: React.FC = () => {
                   name="currency"
                   sizing="lg"
                   className={`form-control ${touched.currency && errors.currency ? "error" : ""}`}
-                />
+                >
+                    <option value="">Choose a currency</option>
+                                        {currencies.map((val, i) => (
+                                          <option key={i} value={val}>
+                                            {val}
+                                          </option>
+                                        ))}
+                </Field>
                 <ErrorMessage
                   name="currency"
                   component="div"
@@ -212,7 +221,10 @@ const JournalEntriesForm: React.FC = () => {
                                     account_type: "",
                                     contact: "",
                                     tax: "",
-                                    unitTotalPrice: 0,
+                                    debit: "",
+                                    credit: "",
+                                    description: "",
+                                    transaction_type: "",
                                   })
                                 }
                               >
@@ -222,18 +234,30 @@ const JournalEntriesForm: React.FC = () => {
                           </Table.Cell>
                           <Table.Cell className="whitespace-nowrap min-w-44">
                             <Field
-                              as={Select}
-                              type="text"
-                              name={`orders.${index}.account_type`}
-                              //   placeholder="Item Name"
-                              className={`select-md form-control ${touched.orders?.[index]?.account_type && typeof errors.orders?.[index] === "object" && errors.orders?.[index]?.account_type ? "error" : ""}`}
-                            />
+                                              as={Select}
+                                              id={`orders.${index}.account_type`}
+                                              name={`orders.${index}.account_type`}
+                                              sizing="lg"
+                                              className={`select-md form-control ${touched.orders?.[index]?.account_type && typeof errors.orders?.[index] === "object" && errors.orders?.[index]?.account_type ? "error" : ""}`}
+                                              >
+                                              <option value=""></option>
+                                              {accountType.map((type, index) => (
+                                                <optgroup key={index} label={type.name}>{type.name}
+                                                  {type?.sub?.map((subType, subIndex) => (
+                                                    <option key={subIndex} value={subType.toLowerCase()}>
+                                                      {subType}
+                                                    </option>
+                                                  ))}
+                                                </optgroup>
+                                              ))}
+                                            </Field>
                           </Table.Cell>
                           <Table.Cell className="whitespace-nowrap min-w-44">
                             <Field
                               as={TextInput}
                               type="text"
                               name={`orders.${index}.description`}
+                              sizing="lg"
                               //   placeholder="Item Name"
                               className={`form-control ${touched.orders?.[index]?.description && typeof errors.orders?.[index] === "object" && errors.orders?.[index]?.description ? "error" : ""}`}
                             />
@@ -243,6 +267,7 @@ const JournalEntriesForm: React.FC = () => {
                               as={TextInput}
                               type="number"
                               name={`orders.${index}.contact`}
+                              sizing="lg"
                               //   placeholder="Unit Price"
                               className={`form-control ${touched.orders?.[index]?.contact && typeof errors.orders?.[index] === "object" && errors.orders?.[index]?.contact ? "error" : ""}`}
                             />
@@ -252,6 +277,7 @@ const JournalEntriesForm: React.FC = () => {
                               as={TextInput}
                               type="text"
                               name={`orders.${index}.transaction_type`}
+                              sizing="lg"
                               //   placeholder="Item Name"
                               className={`form-control ${touched.orders?.[index]?.transaction_type && typeof errors.orders?.[index] === "object" && errors.orders?.[index]?.transaction_type ? "error" : ""}`}
                             />
@@ -261,6 +287,7 @@ const JournalEntriesForm: React.FC = () => {
                               as={Select}
                               type="number"
                               name={`orders.${index}.tax`}
+                              sizing="lg"
                               //   placeholder="tax"
                               className={`select-md form-control ${touched.orders?.[index]?.tax && typeof errors.orders?.[index] === "object" && errors.orders?.[index]?.tax ? "error" : ""}`}
                             />
@@ -270,6 +297,7 @@ const JournalEntriesForm: React.FC = () => {
                               as={TextInput}
                               type="number"
                               name={`orders.${index}.credit`}
+                              sizing="lg"
                               //   placeholder="tax"
                               className={`form-control ${touched.orders?.[index]?.credit && typeof errors.orders?.[index] === "object" && errors.orders?.[index]?.credit ? "error" : ""}`}
                             />
@@ -278,6 +306,7 @@ const JournalEntriesForm: React.FC = () => {
                             <Field
                               as={TextInput}
                               type="number"
+                              sizing="lg"
                               name={`orders.${index}.debit`}
                               //   placeholder="tax"
                               className={`form-control ${touched.orders?.[index]?.debit && typeof errors.orders?.[index] === "object" && errors.orders?.[index]?.debit ? "error" : ""}`}

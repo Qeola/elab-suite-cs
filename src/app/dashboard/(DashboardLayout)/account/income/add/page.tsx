@@ -13,6 +13,7 @@ import { Icon } from "@iconify/react";
 import AuthButton from "@/app/components/resuable/button/AuthButton";
 import { department } from "@/app/context/invoices";
 import BreadcrumbComp from "../../../layout/shared/breadcrumb/BreadcrumbComp";
+import { currencies } from "@/utils/helpers/currency";
 
 interface Income {
   name: string;
@@ -261,7 +262,14 @@ const page = () => {
                               placeholder="NGN"
                               // eslint-disable-next-line @typescript-eslint/no-explicit-any
                               className={`form-control w-full ${touched.income?.[index]?.currency && (errors.income as any)?.[index]?.currency ? "error" : ""}`}
-                            />
+                            >
+                              <option value="">Choose a currency</option>
+                                                  {currencies.map((val, i) => (
+                                                    <option key={i} value={val}>
+                                                      {val}
+                                                    </option>
+                                                  ))}
+                            </Field>
                             <ErrorMessage
                               name={`income[${index}].currency`}
                               component="div"

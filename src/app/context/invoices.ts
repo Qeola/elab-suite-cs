@@ -1,3 +1,5 @@
+import { date } from "yup";
+
 export const invoices = [
   {
     id: 1,
@@ -262,6 +264,44 @@ export const generalLedgerDetail = [
     transaction_type: "Debit",
     transaction_number: "TR-001",
     reference_number: "REF-001",
+  },
+];
+
+export const journalEntries = [
+  {
+    date: "2025-01-28",
+    journal_id: "JE-001",
+    status: "unpublished",
+    description: "Office Supply",
+    amount: 9000,
+  },
+  {
+    date: "2025-01-28",
+    journal_id: "JE-001",
+    status: "published",
+    description: "Vendor Payment",
+    amount: 1000,
+  },
+  {
+    date: "2025-01-28",
+    journal_id: "JE-001",
+    status: "published",
+    description: "Office Supply",
+    amount: 10000,
+  },
+  {
+    date: "2025-01-28",
+    journal_id: "JE-001",
+    status: "unpublished",
+    description: "Office Rent",
+    amount: 20000,
+  },
+  {
+    date: "2025-01-28",
+    journal_id: "JE-001",
+    status: "published",
+    description: "Salary Payment",
+    amount: 120000,
   },
 ];
 
