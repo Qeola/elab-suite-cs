@@ -7123,6 +7123,10 @@ input[type="range"]::-ms-fill-lower {
 }
 
 @media (min-width: 1024px) {
+  .lg\:col-span-12 {
+    grid-column: span 12 / span 12;
+  }
+
   .lg\:col-span-3 {
     grid-column: span 3 / span 3;
   }

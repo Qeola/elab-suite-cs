@@ -1,6 +1,6 @@
 "use client";
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from "react";
+import React from "react";
 import {
   flexRender,
   getCoreRowModel,
@@ -10,158 +10,79 @@ import {
   useReactTable,
   createColumnHelper,
 } from "@tanstack/react-table";
-import { Button, Dropdown } from "flowbite-react";
+import { Badge, Button } from "flowbite-react";
 import {
   IconChevronLeft,
   IconChevronRight,
   IconChevronsLeft,
   IconChevronsRight,
-  IconDotsVertical,
 } from "@tabler/icons-react";
-import { Icon } from "@iconify/react";
-import UserAvatar from "../resuable/UserAvatar";
 import EmptyState from "../resuable/EmptyState";
-import DeleteModal from "../modals/DeleteModal";
+import CurrencyFormatter from "@/utils/helpers/CurrencyFormatter";
 import FormatDate from "@/utils/helpers/FormatDate";
 
 const columnHelper = createColumnHelper<any>();
 
-const columns = (handleDeleteClick: (slug: string) => void) => [
-  columnHelper.accessor("id", {
+const columns = () => [
+  columnHelper.accessor("date", {
     cell: (info: any) => (
-      <div className="flex gap-3 items-center">
-        <p className="text-darklink dark:text-bodytext text-sm">
-          {info.getValue()}
-        </p>
-      </div>
+      <p className="text-darklink dark:text-bodytext text-sm">
+        {<FormatDate date={info.getValue()} />}
+      </p>
     ),
-    header: () => <span>Invoice No.</span>,
+    header: () => <span className="text-nowrap">Date</span>,
   }),
-  columnHelper.accessor("avatar", {
-    cell: (info: any) => (
-      <UserAvatar
-        name={info.row.original.customer_name}
-        avatar={info.getValue()}
-        email={info.row.original.handle}
-      />
-    ),
-    header: () => <span>Customer</span>,
-  }),
-  columnHelper.accessor("product_name", {
+  columnHelper.accessor("journal_id", {
     cell: (info: any) => (
       <p className="text-darklink dark:text-bodytext text-sm">
         {info.getValue()}
       </p>
     ),
-    header: () => <span>Product Name</span>,
+    header: () => <span>Journal ID</span>,
   }),
-
-  columnHelper.accessor("date", {
+  columnHelper.accessor("description", {
     cell: (info: any) => (
       <p className="text-darklink dark:text-bodytext text-sm">
-        <FormatDate date={info.getValue()} />
+        {info.getValue()}
       </p>
     ),
-    header: () => <span>Payment Date</span>,
+    header: () => <span className="text-nowrap">Description</span>,
   }),
-
   columnHelper.accessor("amount", {
     cell: (info: any) => (
-      <div className="flex gap-3 items-center">
-        <p className="text-darklink dark:text-bodytext text-sm">
-          {info.getValue()}
-        </p>
-      </div>
+      <p className="text-darklink dark:text-bodytext text-sm">
+        {info.getValue() ? <CurrencyFormatter amount={info.getValue()} /> : "-"}
+      </p>
     ),
-    header: () => <span>Amount</span>,
+    header: () => <span className="text-nowrap">Amount</span>,
   }),
-  columnHelper.accessor("tranche", {
+  columnHelper.accessor("status", {
     cell: (info: any) => (
-      <div className="flex gap-3 items-center">
-        <p className="text-darklink dark:text-bodytext text-sm">
+      <div className="flex gap-2">
+        {/* {info.getValue().map((status:any, index:any) => (
+          ))} */}
+        <Badge
+          // key={index}
+          color={
+            info.getValue() == "published"
+              ? "lightsuccess"
+              : info.getValue() == "unpublished"
+                ? "lightinfo"
+                : `lighterror`
+          }
+          className="capitalize"
+        >
           {info.getValue()}
-        </p>
+        </Badge>
       </div>
     ),
-    header: () => <span>Tranche</span>,
-  }),
-  columnHelper.accessor("actions", {
-    cell: (info: any) => {
-      const rowData = info.row.original;
-      const slug = rowData.slug;
-
-      return (
-        <Dropdown
-          label=""
-          dismissOnClick={false}
-          renderTrigger={() => (
-            <span className="h-9 w-9 flex justify-center items-center rounded-full hover:bg-lightprimary hover:text-primary cursor-pointer">
-              <IconDotsVertical size={22} />
-            </span>
-          )}
-        >
-          {[
-            {
-              icon: "solar:eye-outline",
-              listtitle: "View",
-              link: `/dashboard/receipt/${slug}`,
-            },
-            { icon: "solar:diskette-outline", listtitle: "Generate Receipt" },
-            {
-              icon: "solar:pen-new-square-broken",
-              listtitle: "Edit",
-              link: `/dashboard/receipt/${slug}/edit`,
-            },
-            {
-              icon: "solar:trash-bin-minimalistic-outline",
-              listtitle: "Delete",
-              action: () => handleDeleteClick(slug),
-            },
-          ].map((item, index) => (
-            <Dropdown.Item
-              key={index}
-              className="flex gap-3"
-              onClick={item.action}
-            >
-              {item.link ? (
-                <a href={item.link} className="flex gap-3 items-center w-full">
-                  <Icon icon={item.icon} height={18} />
-                  <span>{item.listtitle}</span>
-                </a>
-              ) : (
-                <>
-                  <Icon icon={item.icon} height={18} />
-                  <span>{item.listtitle}</span>
-                </>
-              )}
-            </Dropdown.Item>
-          ))}
-        </Dropdown>
-      );
-    },
-    header: () => <span></span>,
+    header: () => <span>Status</span>,
   }),
 ];
 
-function ReceiptPaginationTable({ tableData }: { tableData: any }) {
-  //   const [data] = React.useState(() => [...tableData]);
+function JournalEntriesTable({ tableData }: { tableData: any }) {
+  // const [data] = React.useState(() => [...tableData]);
   const [data, setData] = React.useState(tableData);
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
-
-  const handleDeleteClick = (slug: string) => {
-    console.log("working...", slug);
-    setSelectedSlug(slug);
-    setIsDeleteModalOpen(true);
-  };
-
-  const confirmDelete = () => {
-    if (selectedSlug) {
-      console.log("Deleting receipt with slug:", selectedSlug);
-      // Call your delete API function here
-    }
-    setIsDeleteModalOpen(false);
-  };
 
   React.useEffect(() => {
     setData(tableData);
@@ -171,7 +92,7 @@ function ReceiptPaginationTable({ tableData }: { tableData: any }) {
 
   const table = useReactTable({
     data,
-    columns: columns(handleDeleteClick),
+    columns: columns(),
     filterFns: {},
     state: {
       columnFilters,
@@ -214,10 +135,10 @@ function ReceiptPaginationTable({ tableData }: { tableData: any }) {
   return (
     <>
       <div>
-        <div className="overflow-hidden">
+        <div className="rounded-md overflow-hidden">
           <div className="overflow-x-auto">
             {table.getRowModel().rows.length === 0 ? (
-              <EmptyState text={"No Receipt Yet."} />
+              <EmptyState text={"No Employee Yet."} />
             ) : (
               <table className="min-w-full">
                 <thead>
@@ -339,12 +260,6 @@ function ReceiptPaginationTable({ tableData }: { tableData: any }) {
                 </div>
               </div>
             </div>
-            <DeleteModal
-              isOpen={isDeleteModalOpen}
-              title="Employee"
-              onClose={() => setIsDeleteModalOpen(false)}
-              onConfirm={confirmDelete}
-            />
           </div>
         </div>
       </div>
@@ -352,4 +267,4 @@ function ReceiptPaginationTable({ tableData }: { tableData: any }) {
   );
 }
 
-export default ReceiptPaginationTable;
+export default JournalEntriesTable;

@@ -6,6 +6,7 @@ import { menuItems } from "@/app/context/invoices";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import AuthButton from "../resuable/button/AuthButton";
+import { currencies } from "@/utils/helpers/currency";
 
 const validationSchema = Yup.object({
   client_name: Yup.string().required("Client's Name is required"),
@@ -244,7 +245,7 @@ function GenerateInvoiceForm() {
                     className={`select-md ${touched.currency && errors.currency ? "error" : ""}`}
                   >
                     <option value="">Choose a currency</option>
-                    {menuItems.map((val, i) => (
+                    {currencies.map((val, i) => (
                       <option key={i} value={val}>
                         {val}
                       </option>

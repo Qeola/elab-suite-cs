@@ -265,6 +265,88 @@ export const generalLedgerDetail = [
   },
 ];
 
+export const journalEntries = [
+  {
+    date: "2025-01-28",
+    journal_id: "JE-001",
+    status: "unpublished",
+    description: "Office Supply",
+    amount: 9000,
+  },
+  {
+    date: "2025-01-28",
+    journal_id: "JE-001",
+    status: "published",
+    description: "Vendor Payment",
+    amount: 1000,
+  },
+  {
+    date: "2025-01-28",
+    journal_id: "JE-001",
+    status: "published",
+    description: "Office Supply",
+    amount: 10000,
+  },
+  {
+    date: "2025-01-28",
+    journal_id: "JE-001",
+    status: "unpublished",
+    description: "Office Rent",
+    amount: 20000,
+  },
+  {
+    date: "2025-01-28",
+    journal_id: "JE-001",
+    status: "published",
+    description: "Salary Payment",
+    amount: 120000,
+  },
+];
+
+export const chartOfAccountDetail = [
+  {
+    account_name: "Employee Advance",
+    account_type: "Other Expense",
+    account_code: "",
+    parent_name: "",
+  },
+  {
+    account_name: "Revenue",
+    account_type: "Other Expenses",
+    account_code: "",
+    parent_name: "",
+  },
+  {
+    account_name: "GTB",
+    account_type: "Other Income",
+    account_code: "AS-3u429",
+    parent_name: "",
+  },
+];
+
+export const taxRateDetail = [
+  {
+    name: "VAT",
+    rate: "7.5",
+  },
+  {
+    name: "PIT",
+    rate: "7",
+  },
+  {
+    name: "CIT",
+    rate: "20",
+  },
+  {
+    name: "CGT",
+    rate: "10",
+  },
+  {
+    name: "WHT",
+    rate: "8",
+  },
+];
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const ChartData: any = {
   series: [44, 55, 13, 43, 22, 18, 12, 5],

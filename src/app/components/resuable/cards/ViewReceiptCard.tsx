@@ -9,8 +9,8 @@ import { companyDetails, receipt } from "@/app/context/invoices";
 import { RootState } from "@/utils/stores/store";
 import { useSelector } from "@/utils/stores/hooks";
 import { PDFFormat } from "./PDFFormat";
-import CurrencyFormatter from "@/utils/CurrencyFormatter";
-import FormatDate from "@/utils/FormatDate";
+import CurrencyFormatter from "@/utils/helpers/CurrencyFormatter";
+import FormatDate from "@/utils/helpers/FormatDate";
 
 const ViewReceiptCard = () => {
   const [selectedInvoice, setSelectedInvoice]: any = useState(null);
