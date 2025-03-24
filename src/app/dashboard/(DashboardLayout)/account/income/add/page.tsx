@@ -264,11 +264,11 @@ const page = () => {
                               className={`form-control w-full ${touched.income?.[index]?.currency && (errors.income as any)?.[index]?.currency ? "error" : ""}`}
                             >
                               <option value="">Choose a currency</option>
-                                                  {currencies.map((val, i) => (
-                                                    <option key={i} value={val}>
-                                                      {val}
-                                                    </option>
-                                                  ))}
+                              {currencies.map((val, i) => (
+                                <option key={i} value={val}>
+                                  {val}
+                                </option>
+                              ))}
                             </Field>
                             <ErrorMessage
                               name={`income[${index}].currency`}

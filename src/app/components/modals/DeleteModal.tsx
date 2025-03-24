@@ -61,10 +61,8 @@
 
 // export default DeleteModal;
 
-
 import React from "react";
 import { Modal } from "flowbite-react";
-import { IconX } from "@tabler/icons-react";
 
 interface DeleteModalProps {
   isOpen: boolean;
@@ -73,11 +71,16 @@ interface DeleteModalProps {
   onConfirm: () => void;
 }
 
-const DeleteModal: React.FC<DeleteModalProps> = ({ isOpen, onClose, onConfirm, title }) => {
+const DeleteModal: React.FC<DeleteModalProps> = ({
+  isOpen,
+  onClose,
+  onConfirm,
+  title,
+}) => {
   return (
     <Modal show={isOpen} onClose={onClose} size="md" popup>
       <Modal.Header className="rounded-t-md pb-0">
-      Confirm Deletion
+        Confirm Deletion
         {/* <div className="flex justify-between items-center w-full">
           <h2 className="text-lg font-bold text-gray-800 dark:text-gray-200">Confirm Deletion</h2>
           <button
@@ -91,7 +94,8 @@ const DeleteModal: React.FC<DeleteModalProps> = ({ isOpen, onClose, onConfirm, t
       </Modal.Header>
       <Modal.Body>
         <p className="text-gray-600 dark:text-gray-400">
-          Are you sure you want to delete this {title}? This action cannot be undone.
+          Are you sure you want to delete this {title}? This action cannot be
+          undone.
         </p>
         <div className="flex justify-end mt-4 space-x-2">
           <button

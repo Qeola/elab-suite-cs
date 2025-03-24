@@ -1,11 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import { Checkbox, Label, Select, TextInput } from "flowbite-react";
 import AuthLoadingButton from "../resuable/button/AuthLoading";
 import AuthButton from "../resuable/button/AuthButton";
-import { employees } from "@/app/context/invoices";
 import { accountType } from "@/utils/helpers/accountType";
 import { currencies } from "@/utils/helpers/currency";
 
@@ -49,8 +48,6 @@ const ChartOfAccount = ({
     }),
   });
 
-  const [subAccount, setSubAccount] = useState(false);
-
   const handleSubmit = (
     values: FormValues,
     { resetForm }: FormikHelpers<FormValues>,
@@ -78,7 +75,7 @@ const ChartOfAccount = ({
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({ touched, errors, handleChange, values }) => (
+        {({ touched, errors, values }) => (
           <Form className="mt-6">
             <div className="grid grid-cols-12 gap-6 mb-4">
               {/* Account Type */}
@@ -95,7 +92,8 @@ const ChartOfAccount = ({
                 >
                   <option value=""></option>
                   {accountType.map((type, index) => (
-                    <optgroup key={index} label={type.name}>{type.name}
+                    <optgroup key={index} label={type.name}>
+                      {type.name}
                       {type?.sub?.map((subType, subIndex) => (
                         <option key={subIndex} value={subType.toLowerCase()}>
                           {subType}
@@ -257,11 +255,11 @@ const ChartOfAccount = ({
                     className={`form-control select-md ${touched.currency && errors.currency ? "error" : ""}`}
                   >
                     <option value="">Choose a currency</option>
-                                        {currencies.map((val, i) => (
-                                          <option key={i} value={val}>
-                                            {val}
-                                          </option>
-                                        ))}
+                    {currencies.map((val, i) => (
+                      <option key={i} value={val}>
+                        {val}
+                      </option>
+                    ))}
                   </Field>
                   <ErrorMessage
                     name={`currency`}

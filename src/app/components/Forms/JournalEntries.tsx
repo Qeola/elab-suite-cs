@@ -160,12 +160,12 @@ const JournalEntriesForm: React.FC = () => {
                   sizing="lg"
                   className={`form-control ${touched.currency && errors.currency ? "error" : ""}`}
                 >
-                    <option value="">Choose a currency</option>
-                                        {currencies.map((val, i) => (
-                                          <option key={i} value={val}>
-                                            {val}
-                                          </option>
-                                        ))}
+                  <option value="">Choose a currency</option>
+                  {currencies.map((val, i) => (
+                    <option key={i} value={val}>
+                      {val}
+                    </option>
+                  ))}
                 </Field>
                 <ErrorMessage
                   name="currency"
@@ -234,23 +234,27 @@ const JournalEntriesForm: React.FC = () => {
                           </Table.Cell>
                           <Table.Cell className="whitespace-nowrap min-w-44">
                             <Field
-                                              as={Select}
-                                              id={`orders.${index}.account_type`}
-                                              name={`orders.${index}.account_type`}
-                                              sizing="lg"
-                                              className={`select-md form-control ${touched.orders?.[index]?.account_type && typeof errors.orders?.[index] === "object" && errors.orders?.[index]?.account_type ? "error" : ""}`}
-                                              >
-                                              <option value=""></option>
-                                              {accountType.map((type, index) => (
-                                                <optgroup key={index} label={type.name}>{type.name}
-                                                  {type?.sub?.map((subType, subIndex) => (
-                                                    <option key={subIndex} value={subType.toLowerCase()}>
-                                                      {subType}
-                                                    </option>
-                                                  ))}
-                                                </optgroup>
-                                              ))}
-                                            </Field>
+                              as={Select}
+                              id={`orders.${index}.account_type`}
+                              name={`orders.${index}.account_type`}
+                              sizing="lg"
+                              className={`select-md form-control ${touched.orders?.[index]?.account_type && typeof errors.orders?.[index] === "object" && errors.orders?.[index]?.account_type ? "error" : ""}`}
+                            >
+                              <option value=""></option>
+                              {accountType.map((type, index) => (
+                                <optgroup key={index} label={type.name}>
+                                  {type.name}
+                                  {type?.sub?.map((subType, subIndex) => (
+                                    <option
+                                      key={subIndex}
+                                      value={subType.toLowerCase()}
+                                    >
+                                      {subType}
+                                    </option>
+                                  ))}
+                                </optgroup>
+                              ))}
+                            </Field>
                           </Table.Cell>
                           <Table.Cell className="whitespace-nowrap min-w-44">
                             <Field

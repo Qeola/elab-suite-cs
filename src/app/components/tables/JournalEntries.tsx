@@ -17,7 +17,6 @@ import {
   IconChevronsLeft,
   IconChevronsRight,
 } from "@tabler/icons-react";
-import { Icon } from "@iconify/react";
 import EmptyState from "../resuable/EmptyState";
 import CurrencyFormatter from "@/utils/helpers/CurrencyFormatter";
 import FormatDate from "@/utils/helpers/FormatDate";

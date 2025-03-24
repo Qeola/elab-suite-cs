@@ -1,7 +1,14 @@
 export const accountType = [
   {
     name: "Asset",
-    sub: ["Bank", "Cash", "Accounts Receivable", "Other Receivable", "Other current Asset", "Non-current  asset"],
+    sub: [
+      "Bank",
+      "Cash",
+      "Accounts Receivable",
+      "Other Receivable",
+      "Other current Asset",
+      "Non-current  asset",
+    ],
   },
   {
     name: "Equity",
@@ -17,6 +24,16 @@ export const accountType = [
   },
   {
     name: "Liability",
-    sub: ["Current Liability", "Non current Liability", "Loan", "Unearned Revenue", "Tax Payable", "Other current  Liability", "Other non current liability", "Accounts Payable", "Other Payable"],
+    sub: [
+      "Current Liability",
+      "Non current Liability",
+      "Loan",
+      "Unearned Revenue",
+      "Tax Payable",
+      "Other current  Liability",
+      "Other non current liability",
+      "Accounts Payable",
+      "Other Payable",
+    ],
   },
 ];

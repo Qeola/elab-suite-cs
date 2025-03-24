@@ -1,14 +1,14 @@
 "use client";
 import React, { useState } from "react";
-import { chartOfAccountDetail } from "@/app/context/invoices";
+import { taxRateDetail } from "@/app/context/invoices";
 import { Modal, Table } from "flowbite-react";
 import BreadcrumbComp from "../../../layout/shared/breadcrumb/BreadcrumbComp";
 import CardBox from "@/app/components/shared/CardBox";
 import FunctionButton from "@/app/components/resuable/button/FunctionButton";
 import EditDepartmentForm from "@/app/components/Forms/EditDepartment";
-import ChartOfAccount from "@/app/components/Forms/ChartOfAccount";
+import TaxRate from "@/app/components/Forms/TaxRate";
 
-const ChartOfAccountPage = () => {
+const TaxRatePage = () => {
   const [openModal, setOpenModal] = useState(false);
   const [openEditModal, setOpenEditModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -20,14 +20,14 @@ const ChartOfAccountPage = () => {
       title: "Settings",
     },
     {
-      title: "Chart of Account",
+      title: "Tax Rate",
     },
   ];
 
   return (
     <div>
       <BreadcrumbComp
-        title="Chart of Account"
+        title="Tax Rate"
         items={BCrumb}
         image="/images/crumbs/department.svg"
       />
@@ -45,41 +45,21 @@ const ChartOfAccountPage = () => {
             <Table hoverable>
               <Table.Head>
                 <Table.HeadCell className="text-base font-semibold py-3">
-                  Account Name
+                  Tax Name
                 </Table.HeadCell>
                 <Table.HeadCell className="text-base font-semibold py-3">
-                  Account Type
-                </Table.HeadCell>
-                <Table.HeadCell className="text-base font-semibold py-3">
-                  Account Code
-                </Table.HeadCell>
-                <Table.HeadCell className="text-base font-semibold py-3">
-                  Parent Account Name
+                  Tax Rate
                 </Table.HeadCell>
                 <Table.HeadCell className="text-base font-semibold py-3"></Table.HeadCell>
               </Table.Head>
               <Table.Body className="divide-y divide-border dark:divide-darkborder ">
-                {chartOfAccountDetail.map((item, index) => (
+                {taxRateDetail.map((item, index) => (
                   <Table.Row key={index}>
                     <Table.Cell className="whitespace-nowrap">
-                      <p className="text-bodytext text-sm">
-                        {item.account_name}
-                      </p>
+                      <p className="text-bodytext text-sm">{item.name}</p>
                     </Table.Cell>
                     <Table.Cell className="whitespace-nowrap">
-                      <p className="text-bodytext text-sm">
-                        {item.account_type}
-                      </p>
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap">
-                      <p className="text-bodytext text-sm">
-                        {item.account_code || "-"}
-                      </p>
-                    </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap">
-                      <p className="text-bodytext text-sm">
-                        {item.parent_name || "-"}
-                      </p>
+                      <p className="text-bodytext text-sm">{item.rate}</p>
                     </Table.Cell>
                   </Table.Row>
                 ))}
@@ -88,9 +68,11 @@ const ChartOfAccountPage = () => {
           </div>
         </div>
         <Modal show={openModal} onClose={() => setOpenModal(false)}>
-          <Modal.Header className="rounded-t-md pb-0">Add Account</Modal.Header>
+          <Modal.Header className="rounded-t-md pb-0">
+            Add Tax Rate
+          </Modal.Header>
           <Modal.Body>
-            <ChartOfAccount loading={isLoading} setLoading={setIsLoading} />
+            <TaxRate loading={isLoading} setLoading={setIsLoading} />
           </Modal.Body>
         </Modal>
         <Modal
@@ -113,4 +95,4 @@ const ChartOfAccountPage = () => {
   );
 };
 
-export default ChartOfAccountPage;
+export default TaxRatePage;

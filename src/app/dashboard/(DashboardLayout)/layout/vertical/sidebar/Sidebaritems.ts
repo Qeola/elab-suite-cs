@@ -111,7 +111,7 @@ const SidebarContent: MenuItem[] = [
             name: "Tax Rate",
             icon: "tabler:tax",
             id: uniqueId(),
-            url: "/dashboard/account/receipt",
+            url: "/dashboard/settings/account/tax-rates",
             color: "#F9389F",
           },
         ],

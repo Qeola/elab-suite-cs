@@ -1,7 +1,8 @@
-const handleCSVDownload = ({
+export const handleCSVDownload = ({
   rows,
   headers,
 }: {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   rows: any[];
   headers: string[];
 }) => {
@@ -15,6 +16,7 @@ const handleCSVDownload = ({
 
   const csvContent = [
     headers.join(","),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ...rows.map((e: any) => e.join(",")),
   ].join("\n");
 
