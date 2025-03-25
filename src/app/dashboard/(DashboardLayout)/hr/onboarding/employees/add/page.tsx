@@ -11,7 +11,7 @@ import * as Yup from "yup";
 import { Button, Tooltip, TextInput, Table, Select } from "flowbite-react";
 import { Icon } from "@iconify/react";
 import AuthButton from "@/app/components/resuable/button/AuthButton";
-import { department } from "@/app/context/invoices";
+import { department, roles } from "@/app/context/invoices";
 
 interface Employee {
   first_name: string;
@@ -22,6 +22,7 @@ interface Employee {
   department: string;
   role: string;
   start_date: string;
+  job_title: string;
 }
 
 interface FormValues {
@@ -40,6 +41,7 @@ const page = () => {
         department: "",
         role: "",
         start_date: "",
+        job_title: "",
       },
     ],
   };
@@ -81,14 +83,15 @@ const page = () => {
             <Table className="">
               <Table.Head>
                 <Table.HeadCell className="sticky left-0 bg-lightgray dark:bg-dark z-10"></Table.HeadCell>
-                <Table.HeadCell>First Name</Table.HeadCell>
-                <Table.HeadCell>Last Name</Table.HeadCell>
-                <Table.HeadCell>Email</Table.HeadCell>
-                <Table.HeadCell>Phone Number</Table.HeadCell>
-                <Table.HeadCell>Employee ID</Table.HeadCell>
-                <Table.HeadCell>Department</Table.HeadCell>
-                <Table.HeadCell>Role</Table.HeadCell>
-                <Table.HeadCell>Start Date</Table.HeadCell>
+                <Table.HeadCell>First Name *</Table.HeadCell>
+                <Table.HeadCell>Last Name *</Table.HeadCell>
+                <Table.HeadCell>Email *</Table.HeadCell>
+                <Table.HeadCell>Phone Number *</Table.HeadCell>
+                <Table.HeadCell>Employee ID *</Table.HeadCell>
+                <Table.HeadCell>Department *</Table.HeadCell>
+                <Table.HeadCell>Job Title *</Table.HeadCell>
+                <Table.HeadCell>Role *</Table.HeadCell>
+                <Table.HeadCell>Start Date *</Table.HeadCell>
                 <Table.HeadCell></Table.HeadCell>
                 <Table.HeadCell>Actions</Table.HeadCell>
               </Table.Head>
@@ -111,6 +114,7 @@ const page = () => {
                                   department: "",
                                   role: "",
                                   start_date: "",
+                                  job_title: "",
                                 })
                               }
                               type="button"
@@ -224,13 +228,36 @@ const page = () => {
 
                         <Table.Cell className="whitespace-nowrap min-w-44">
                           <Field
-                            name={`employee[${index}].role`}
+                            name={`employee[${index}].job_title`}
                             as={TextInput}
+                            sizing="lg"
+                            placeholder="Job Title"
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                            className={`form-control w-full ${touched.employee?.[index]?.job_title && (errors.employee as any)?.[index]?.job_title ? "error" : ""}`}
+                          />
+                          <ErrorMessage
+                            name={`employee[${index}].job_title`}
+                            component="div"
+                            className="text-red-500 text-sm"
+                          />
+                        </Table.Cell>
+
+                        <Table.Cell className="whitespace-nowrap min-w-44">
+                          <Field
+                            name={`employee[${index}].role`}
+                            as={Select}
                             sizing="lg"
                             placeholder="Role"
                             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                            className={`form-control w-full ${touched.employee?.[index]?.role && (errors.employee as any)?.[index]?.role ? "error" : ""}`}
-                          />
+                            className={`select-md form-control w-full ${touched.employee?.[index]?.role && (errors.employee as any)?.[index]?.role ? "error" : ""}`}
+                          >
+                            <option value="">Choose a role</option>
+                            {roles.map((val, i) => (
+                              <option key={i} value={val}>
+                                {val}
+                              </option>
+                            ))}
+                          </Field>
                           <ErrorMessage
                             name={`employee[${index}].role`}
                             component="div"

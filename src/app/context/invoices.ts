@@ -146,6 +146,17 @@ export const department = [
   },
 ];
 
+export const roles = [
+  "Admin",
+  "HR",
+  "Accountant",
+  "Client Manager",
+  "Project Manager",
+  "Operations Manager",
+  "Team Lead",
+  "Employee",
+];
+
 export const employees = [
   {
     department: "Design",
@@ -309,18 +320,21 @@ export const chartOfAccountDetail = [
     account_type: "Other Expense",
     account_code: "",
     parent_name: "",
+    slug: "employee-advance",
   },
   {
     account_name: "Revenue",
     account_type: "Other Expenses",
     account_code: "",
     parent_name: "",
+    slug: "revenue",
   },
   {
     account_name: "GTB",
     account_type: "Other Income",
     account_code: "AS-3u429",
     parent_name: "",
+    slug: "gtb",
   },
 ];
 
@@ -328,22 +342,32 @@ export const taxRateDetail = [
   {
     name: "VAT",
     rate: "7.5",
+    compound_tax: true,
+    slug: "vat",
   },
   {
-    name: "PIT",
+    name: "Personal Income Tax (PIT)",
     rate: "7",
+    compound_tax: false,
+    slug: "pit",
   },
   {
-    name: "CIT",
+    name: "Company Income Tax (CIT)",
     rate: "20",
+    compound_tax: false,
+    slug: "cit",
   },
   {
-    name: "CGT",
+    name: "Capital Gains Tax (CGT)",
     rate: "10",
+    compound_tax: true,
+    slug: "cgt",
   },
   {
-    name: "WHT",
+    name: "Withholding Tax (WHT)",
     rate: "8",
+    compound_tax: false,
+    slug: "wht",
   },
 ];
 
