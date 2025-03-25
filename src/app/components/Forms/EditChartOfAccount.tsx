@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import { Checkbox, Label, Select, TextInput } from "flowbite-react";
@@ -7,6 +7,7 @@ import AuthLoadingButton from "../resuable/button/AuthLoading";
 import AuthButton from "../resuable/button/AuthButton";
 import { accountType } from "@/utils/helpers/accountType";
 import { currencies } from "@/utils/helpers/currency";
+import { getRequest } from "@/utils/api/apiRequestsMethod";
 
 interface FormValues {
   account_type: string;
@@ -59,6 +60,30 @@ const EditChartOfAccount = ({
       otherwise: (schema) => schema.notRequired(),
     }),
   });
+
+  const fetchData = async () => {
+      const projectsData = await getRequest(`/${slug}`);
+      if (projectsData.data.status == "success") {
+        setLoading(false);
+        setData(projectsData.data.data);
+      } else {
+        setLoading(false);
+        setData({
+            account_code: "1001",
+            account_name: "Cash",
+            account_type: "cash",
+            description: "This is a cash account",
+            sub_account: false,
+            parent_account: "",
+            account_number: "",
+            currency: "",
+          });
+      }
+    };
+  
+    useEffect(() => {
+      fetchData();
+    }, []);
 
   const handleSubmit = (
     values: FormValues,

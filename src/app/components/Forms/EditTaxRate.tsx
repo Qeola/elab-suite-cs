@@ -1,10 +1,11 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import { Checkbox, Label, TextInput } from "flowbite-react";
 import AuthLoadingButton from "../resuable/button/AuthLoading";
 import AuthButton from "../resuable/button/AuthButton";
+import { getRequest } from "@/utils/api/apiRequestsMethod";
 
 interface FormValues {
   name: string;
@@ -31,6 +32,25 @@ const EditTaxRate = ({
     rate: "5%",
     compound_tax: false,
   });
+
+  const fetchData = async () => {
+    const projectsData = await getRequest(`/${slug}`);
+    if (projectsData.data.status == "success") {
+      setLoading(false);
+      setData(projectsData.data.data);
+    } else {
+      setLoading(false);
+      setData({
+        name: "VAT",
+        rate: "5%",
+        compound_tax: false,
+      });
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const handleSubmit = (
     values: FormValues,
