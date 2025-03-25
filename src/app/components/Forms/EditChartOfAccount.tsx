@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import { Checkbox, Label, Select, TextInput } from "flowbite-react";
@@ -7,6 +7,7 @@ import AuthLoadingButton from "../resuable/button/AuthLoading";
 import AuthButton from "../resuable/button/AuthButton";
 import { accountType } from "@/utils/helpers/accountType";
 import { currencies } from "@/utils/helpers/currency";
+import { getRequest } from "@/utils/api/apiRequestsMethod";
 
 interface FormValues {
   account_type: string;
@@ -19,13 +20,25 @@ interface FormValues {
   account_number: string;
 }
 
-const ChartOfAccount = ({
+const EditChartOfAccount = ({
   loading,
   setLoading,
+  slug,
 }: {
   loading: boolean;
+  slug: string;
   setLoading: (e: boolean) => void;
 }) => {
+  const [data, setData] = useState({
+    account_code: "1001",
+    account_name: "Cash",
+    account_type: "cash",
+    description: "This is a cash account",
+    sub_account: false,
+    parent_account: "",
+    account_number: "",
+    currency: "",
+  });
   const validationSchema = Yup.object().shape({
     account_type: Yup.string().required("Account Type is required"),
     account_name: Yup.string().required("Account Name is required"),
@@ -48,6 +61,30 @@ const ChartOfAccount = ({
     }),
   });
 
+  const fetchData = async () => {
+      const projectsData = await getRequest(`/${slug}`);
+      if (projectsData.data.status == "success") {
+        setLoading(false);
+        setData(projectsData.data.data);
+      } else {
+        setLoading(false);
+        setData({
+            account_code: "1001",
+            account_name: "Cash",
+            account_type: "cash",
+            description: "This is a cash account",
+            sub_account: false,
+            parent_account: "",
+            account_number: "",
+            currency: "",
+          });
+      }
+    };
+  
+    useEffect(() => {
+      fetchData();
+    }, []);
+
   const handleSubmit = (
     values: FormValues,
     { resetForm }: FormikHelpers<FormValues>,
@@ -63,14 +100,14 @@ const ChartOfAccount = ({
     <div>
       <Formik
         initialValues={{
-          account_code: "",
-          account_name: "",
-          account_type: "",
-          description: "",
-          sub_account: false,
-          parent_account: "",
-          account_number: "",
-          currency: "",
+          account_code: data.account_code || "",
+          account_name: data.account_name || "",
+          account_type: data.account_type || "",
+          description: data.description || "",
+          sub_account: data.sub_account || false,
+          parent_account: data.parent_account || "",
+          account_number: data.account_number || "",
+          currency: data.currency || "",
         }}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
@@ -281,4 +318,4 @@ const ChartOfAccount = ({
   );
 };
 
-export default ChartOfAccount;
+export default EditChartOfAccount;

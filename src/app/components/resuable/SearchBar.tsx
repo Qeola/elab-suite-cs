@@ -17,12 +17,13 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearchChange }) => {
   };
 
   return (
-    <div className="max-w-lg mx-auto">
+    <div className="max-w-md mx-auto">
       <TextInput
         type="text"
         placeholder="Search..."
         value={searchField}
         onChange={handleInputChange}
+        sizing="md"
         className="form-control !rounded-md py-2"
         // icon={Search}
       />

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup";
-import { Label, TextInput } from "flowbite-react";
+import { Label, Progress, TextInput } from "flowbite-react";
 import { HiEye, HiEyeOff } from "react-icons/hi";
 import AuthLoadingButton from "@/app/components/resuable/button/AuthLoading";
 import AuthButton from "@/app/components/resuable/button/AuthButton";
@@ -18,6 +18,8 @@ interface FormValues {
 const AuthRegister = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [progressColor, setProgressColor] = useState("#DC2626");
+  const [progressStrength, setProgressStrength] = useState("Weak");
 
   // Validation schema
   const validationSchema = Yup.object({
@@ -67,8 +69,54 @@ const AuthRegister = () => {
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
-      {({ touched, errors }) => (
-        <Form className="mt-6">
+      {({ touched, errors, values }) => {
+          const validationConditions = [
+            { condition: "Password is valid", isValid: !errors.password },
+            {
+              condition: "Password is at least 8 characters long",
+              isValid: values.password.length >= 8,
+            },
+            {
+              condition: "Password contains at least one uppercase letter",
+              isValid: /[A-Z]/.test(values.password),
+            },
+            {
+              condition: "Password contains at least one lowercase letter",
+              isValid: /[a-z]/.test(values.password),
+            },
+            {
+              condition: "Password contains at least one number",
+              isValid: /\d/.test(values.password),
+            },
+            {
+              condition: "Password contains at least one special character",
+              isValid: /[!@#$%^&*(),.?":{}|<>]/.test(values.password),
+            },
+          ];
+        
+          const fulfilledConditions = validationConditions.filter(
+            (condition) => condition.isValid
+          );
+        
+          // let progress = 0;
+          const progress = Math.floor(
+            (fulfilledConditions.length / validationConditions.length) * 100
+          );
+        
+          if (progress <= 25) {
+            setProgressColor("error");
+            setProgressStrength("Weak");
+          } else if (progress > 25 && progress <= 50) {
+            setProgressColor("warning");
+            setProgressStrength("Fair");
+          } else if (progress > 50 && progress <= 70) {
+            setProgressColor("primary");
+            setProgressStrength("Good");
+          } else if (progress > 70) {
+            setProgressColor("success");
+            setProgressStrength("Strong");
+          }
+        return (<Form className="mt-6">
           {/* Full Name */}
           <div className="mb-4">
             <Label htmlFor="name" value="Full Name *" className="mb-2 block" />
@@ -157,6 +205,9 @@ const AuthRegister = () => {
                 {showPassword ? <HiEyeOff size={22} /> : <HiEye size={22} />}
               </button>
             </div>
+            <div className="mt-3">
+            {values.password !== "" && (<Progress progress={progress} textLabel={progressStrength} size="lg" color={progressColor} labelText />)}
+              </div>
             <ErrorMessage
               name="password"
               component="div"
@@ -168,8 +219,8 @@ const AuthRegister = () => {
           <div className="mt-6">
             {loading ? <AuthLoadingButton /> : <AuthButton>Sign Up</AuthButton>}
           </div>
-        </Form>
-      )}
+        </Form>)
+      }}
     </Formik>
   );
 };

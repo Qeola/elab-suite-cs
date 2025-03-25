@@ -79,7 +79,7 @@ const DeleteModal: React.FC<DeleteModalProps> = ({
 }) => {
   return (
     <Modal show={isOpen} onClose={onClose} size="md" popup>
-      <Modal.Header className="rounded-t-md pb-0">
+      <Modal.Header className="rounded-t-md pb-4 p-6">
         Confirm Deletion
         {/* <div className="flex justify-between items-center w-full">
           <h2 className="text-lg font-bold text-gray-800 dark:text-gray-200">Confirm Deletion</h2>
