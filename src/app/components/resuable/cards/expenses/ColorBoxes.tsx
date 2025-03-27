@@ -2,8 +2,6 @@
 
 import React, { FC } from "react";
 import { Icon } from "@iconify/react";
-import { Button } from "flowbite-react";
-import Link from "next/link";
 
 interface ItemProps {
   bg: string;
@@ -29,14 +27,14 @@ const ColorBoxes: FC<ColorBoxesProps> = ({ item }) => {
         </span>
         <p className="text-ld font-normal mt-4 mb-2">{item.title}</p>
         <h4 className="text-22">{item.price}</h4>
-        <Button
+        {/* <Button
           as={Link}
           href={item.link}
           className="w-fit mx-auto mt-5 bg-white hover:bg-dark text-ld font-semibold hover:text-white shadow-sm py-1 px-1 dark:bg-darkgray dark:hover:bg-dark"
           size="xs"
         >
           View Details
-        </Button>
+        </Button> */}
       </div>
     </div>
   );
