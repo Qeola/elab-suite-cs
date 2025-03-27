@@ -75,7 +75,7 @@ const Reports = () => {
         </div>
 
         <div className="lg:col-span-4">
-          <ExpensesPieChart data={ChartData} />
+          <ExpensesPieChart data={ChartData} title="" />
         </div>
         <div className="lg:col-span-12">
           <CardBox>

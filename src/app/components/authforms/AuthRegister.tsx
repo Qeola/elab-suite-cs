@@ -70,156 +70,174 @@ const AuthRegister = () => {
       onSubmit={handleSubmit}
     >
       {({ touched, errors, values }) => {
-          const validationConditions = [
-            { condition: "Password is valid", isValid: !errors.password },
-            {
-              condition: "Password is at least 8 characters long",
-              isValid: values.password.length >= 8,
-            },
-            {
-              condition: "Password contains at least one uppercase letter",
-              isValid: /[A-Z]/.test(values.password),
-            },
-            {
-              condition: "Password contains at least one lowercase letter",
-              isValid: /[a-z]/.test(values.password),
-            },
-            {
-              condition: "Password contains at least one number",
-              isValid: /\d/.test(values.password),
-            },
-            {
-              condition: "Password contains at least one special character",
-              isValid: /[!@#$%^&*(),.?":{}|<>]/.test(values.password),
-            },
-          ];
-        
-          const fulfilledConditions = validationConditions.filter(
-            (condition) => condition.isValid
-          );
-        
-          // let progress = 0;
-          const progress = Math.floor(
-            (fulfilledConditions.length / validationConditions.length) * 100
-          );
-        
-          if (progress <= 25) {
-            setProgressColor("error");
-            setProgressStrength("Weak");
-          } else if (progress > 25 && progress <= 50) {
-            setProgressColor("warning");
-            setProgressStrength("Fair");
-          } else if (progress > 50 && progress <= 70) {
-            setProgressColor("primary");
-            setProgressStrength("Good");
-          } else if (progress > 70) {
-            setProgressColor("success");
-            setProgressStrength("Strong");
-          }
-        return (<Form className="mt-6">
-          {/* Full Name */}
-          <div className="mb-4">
-            <Label htmlFor="name" value="Full Name *" className="mb-2 block" />
-            <Field
-              id="name"
-              name="name"
-              type="text"
-              className={`form-control w-full ${
-                touched.name && errors.name ? "error" : ""
-              }`}
-              sizing="lg"
-              as={TextInput}
-            />
-            <ErrorMessage
-              name="name"
-              component="div"
-              className="text-red-500 text-sm mt-1"
-            />
-          </div>
+        const validationConditions = [
+          { condition: "Password is valid", isValid: !errors.password },
+          {
+            condition: "Password is at least 8 characters long",
+            isValid: values.password.length >= 8,
+          },
+          {
+            condition: "Password contains at least one uppercase letter",
+            isValid: /[A-Z]/.test(values.password),
+          },
+          {
+            condition: "Password contains at least one lowercase letter",
+            isValid: /[a-z]/.test(values.password),
+          },
+          {
+            condition: "Password contains at least one number",
+            isValid: /\d/.test(values.password),
+          },
+          {
+            condition: "Password contains at least one special character",
+            isValid: /[!@#$%^&*(),.?":{}|<>]/.test(values.password),
+          },
+        ];
 
-          {/* Company Name */}
-          <div className="mb-4">
-            <Label
-              htmlFor="company_name"
-              value="Company Name *"
-              className="mb-2 block"
-            />
-            <Field
-              id="company_name"
-              name="company_name"
-              type="text"
-              className={`form-control w-full ${touched.company_name && errors.company_name ? "error" : ""}`}
-              sizing="lg"
-              as={TextInput}
-            />
-            <ErrorMessage
-              name="company_name"
-              component="div"
-              className="text-red-500 text-sm mt-1"
-            />
-          </div>
+        const fulfilledConditions = validationConditions.filter(
+          (condition) => condition.isValid,
+        );
 
-          {/* Email */}
-          <div className="mb-4">
-            <Label
-              htmlFor="email"
-              value="Email Address *"
-              className="mb-2 block"
-            />
-            <Field
-              id="email"
-              name="email"
-              type="text"
-              className={`form-control w-full ${touched.email && errors.email ? "error" : ""}`}
-              sizing="lg"
-              as={TextInput}
-            />
-            <ErrorMessage
-              name="email"
-              component="div"
-              className="text-red-500 text-sm mt-1"
-            />
-          </div>
+        // let progress = 0;
+        const progress = Math.floor(
+          (fulfilledConditions.length / validationConditions.length) * 100,
+        );
 
-          {/* Password */}
-          <div className="mb-4">
-            <Label
-              htmlFor="password"
-              value="Password *"
-              className="mb-2 block"
-            />
-            <div className="relative w-full">
+        if (progress <= 25) {
+          setProgressColor("error");
+          setProgressStrength("Weak");
+        } else if (progress > 25 && progress <= 50) {
+          setProgressColor("warning");
+          setProgressStrength("Fair");
+        } else if (progress > 50 && progress <= 70) {
+          setProgressColor("primary");
+          setProgressStrength("Good");
+        } else if (progress > 70) {
+          setProgressColor("success");
+          setProgressStrength("Strong");
+        }
+        return (
+          <Form className="mt-6">
+            {/* Full Name */}
+            <div className="mb-4">
+              <Label
+                htmlFor="name"
+                value="Full Name *"
+                className="mb-2 block"
+              />
               <Field
-                id="password"
-                name="password"
+                id="name"
+                name="name"
+                type="text"
+                className={`form-control w-full ${
+                  touched.name && errors.name ? "error" : ""
+                }`}
                 sizing="lg"
-                type={showPassword ? "text" : "password"}
-                className={`form-control w-full ${touched.password && errors.password ? "error" : ""}`}
                 as={TextInput}
               />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute inset-y-0 right-3 flex items-center text-gray-500"
-              >
-                {showPassword ? <HiEyeOff size={22} /> : <HiEye size={22} />}
-              </button>
+              <ErrorMessage
+                name="name"
+                component="div"
+                className="text-red-500 text-sm mt-1"
+              />
             </div>
-            <div className="mt-3">
-            {values.password !== "" && (<Progress progress={progress} textLabel={progressStrength} size="lg" color={progressColor} labelText />)}
-              </div>
-            <ErrorMessage
-              name="password"
-              component="div"
-              className="text-red-500 text-sm mt-1"
-            />
-          </div>
 
-          {/* Submit Button */}
-          <div className="mt-6">
-            {loading ? <AuthLoadingButton /> : <AuthButton>Sign Up</AuthButton>}
-          </div>
-        </Form>)
+            {/* Company Name */}
+            <div className="mb-4">
+              <Label
+                htmlFor="company_name"
+                value="Company Name *"
+                className="mb-2 block"
+              />
+              <Field
+                id="company_name"
+                name="company_name"
+                type="text"
+                className={`form-control w-full ${touched.company_name && errors.company_name ? "error" : ""}`}
+                sizing="lg"
+                as={TextInput}
+              />
+              <ErrorMessage
+                name="company_name"
+                component="div"
+                className="text-red-500 text-sm mt-1"
+              />
+            </div>
+
+            {/* Email */}
+            <div className="mb-4">
+              <Label
+                htmlFor="email"
+                value="Email Address *"
+                className="mb-2 block"
+              />
+              <Field
+                id="email"
+                name="email"
+                type="text"
+                className={`form-control w-full ${touched.email && errors.email ? "error" : ""}`}
+                sizing="lg"
+                as={TextInput}
+              />
+              <ErrorMessage
+                name="email"
+                component="div"
+                className="text-red-500 text-sm mt-1"
+              />
+            </div>
+
+            {/* Password */}
+            <div className="mb-4">
+              <Label
+                htmlFor="password"
+                value="Password *"
+                className="mb-2 block"
+              />
+              <div className="relative w-full">
+                <Field
+                  id="password"
+                  name="password"
+                  sizing="lg"
+                  type={showPassword ? "text" : "password"}
+                  className={`form-control w-full ${touched.password && errors.password ? "error" : ""}`}
+                  as={TextInput}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute inset-y-0 right-3 flex items-center text-gray-500"
+                >
+                  {showPassword ? <HiEyeOff size={22} /> : <HiEye size={22} />}
+                </button>
+              </div>
+              <div className="mt-3">
+                {values.password !== "" && (
+                  <Progress
+                    progress={progress}
+                    textLabel={progressStrength}
+                    size="lg"
+                    color={progressColor}
+                    labelText
+                  />
+                )}
+              </div>
+              <ErrorMessage
+                name="password"
+                component="div"
+                className="text-red-500 text-sm mt-1"
+              />
+            </div>
+
+            {/* Submit Button */}
+            <div className="mt-6">
+              {loading ? (
+                <AuthLoadingButton />
+              ) : (
+                <AuthButton>Sign Up</AuthButton>
+              )}
+            </div>
+          </Form>
+        );
       }}
     </Formik>
   );

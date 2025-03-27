@@ -62,28 +62,28 @@ const EditChartOfAccount = ({
   });
 
   const fetchData = async () => {
-      const projectsData = await getRequest(`/${slug}`);
-      if (projectsData.data.status == "success") {
-        setLoading(false);
-        setData(projectsData.data.data);
-      } else {
-        setLoading(false);
-        setData({
-            account_code: "1001",
-            account_name: "Cash",
-            account_type: "cash",
-            description: "This is a cash account",
-            sub_account: false,
-            parent_account: "",
-            account_number: "",
-            currency: "",
-          });
-      }
-    };
-  
-    useEffect(() => {
-      fetchData();
-    }, []);
+    const projectsData = await getRequest(`/${slug}`);
+    if (projectsData.data.status == "success") {
+      setLoading(false);
+      setData(projectsData.data.data);
+    } else {
+      setLoading(false);
+      setData({
+        account_code: "1001",
+        account_name: "Cash",
+        account_type: "cash",
+        description: "This is a cash account",
+        sub_account: false,
+        parent_account: "",
+        account_number: "",
+        currency: "",
+      });
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const handleSubmit = (
     values: FormValues,

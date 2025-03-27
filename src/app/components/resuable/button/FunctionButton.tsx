@@ -5,17 +5,34 @@ const FunctionButton = ({
   children,
   className = "",
   click = () => {},
+  variant = "contained", // Default to 'contained'
 }: {
   children: ReactNode;
   className?: string;
   click?: () => void;
+  variant?: "contained" | "outlined" | "text";
 }) => {
+  const baseClasses =
+    "rounded-md w-full font-bold transition-colors duration-300";
+  const containedClasses =
+    "bg-[var(--color-primary)] hover:bg-[var(--color-primary-emphasis)] text-white";
+  const outlinedClasses =
+    "border border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white";
+  const textClasses =
+    "text-[var(--color-primary)] hover:underline hover:text-[var(--color-primary-emphasis)] bg-transparent";
+
   return (
     <Button
-      color="primary"
+      // color="primary"
       size="md"
       onClick={click}
-      className={`rounded-md w-full py-2 font-bold bg-[var(--color-primary)] hover:bg-[var(--color-primary-emphasis)] transition-colors duration-300 ${className}`}
+      className={`${baseClasses} ${
+        variant === "outlined"
+          ? outlinedClasses
+          : variant === "text"
+            ? textClasses
+            : containedClasses
+      } ${className}`}
     >
       {children}
     </Button>

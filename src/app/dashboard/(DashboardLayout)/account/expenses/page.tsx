@@ -9,21 +9,23 @@ import ExpensesTable from "@/app/components/tables/ExpensesTable";
 import { ChartData, ChartData2, employees } from "@/app/context/invoices";
 import React, { useEffect, useState } from "react";
 import BreadcrumbComp from "../../layout/shared/breadcrumb/BreadcrumbComp";
+import FileUploadModal from "@/app/components/modals/FileUploadModal";
+import FunctionButton from "@/app/components/resuable/button/FunctionButton";
 
 const ColorboxData = [
   {
     bg: "primary-gradient",
-    icon: "solar:dollar-minimalistic-linear",
+    icon: "hugeicons:payment-02",
     color: "bg-primary",
-    title: "Total Orders",
+    title: "Total Expenses",
     price: "16,689",
     link: "#",
   },
   {
     bg: "warning-gradient",
-    icon: "solar:recive-twice-square-linear",
+    icon: "solar:dollar-minimalistic-linear",
     color: "bg-warning",
-    title: "Return Item",
+    title: "Monthly Revenue",
     price: "148",
     link: "#",
   },
@@ -31,7 +33,7 @@ const ColorboxData = [
     bg: "secondary-gradient",
     icon: "ic:outline-backpack",
     color: "bg-secondary",
-    title: "Annual Budget",
+    title: "Outstanding Payment",
     price: "$156K",
     link: "#",
   },
@@ -56,6 +58,7 @@ const ColorboxData = [
 const Expense = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredEmployees, setFilteredEmployees] = useState(employees);
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     const filtered = employees.filter((employee) =>
@@ -79,6 +82,14 @@ const Expense = () => {
     },
   ];
 
+  // const handleDeleteClick = (slug: string) => {
+  //   console.log("working...", slug);
+  //   setOpenModal(true);
+  // };
+  const confirmDelete = () => {
+    setOpenModal(false);
+  };
+
   return (
     <div>
       <BreadcrumbComp
@@ -86,19 +97,17 @@ const Expense = () => {
         items={BCrumb}
         image="/images/crumbs/expenses.svg"
       />
-      <CardBox>
-        <div className="grid grid-cols-12 gap-6">
-          <div className="lg:col-span-3 md:col-span-5 col-span-12">
-            <ColorBoxes item={ColorboxData[0]} />
-          </div>
-          <div className="lg:col-span-3 md:col-span-5 col-span-12">
-            <ColorBoxes item={ColorboxData[1]} />
-          </div>
-          <div className="lg:col-span-3 md:col-span-5 col-span-12">
-            <ColorBoxes item={ColorboxData[2]} />
-          </div>
+      <div className="grid grid-cols-12 gap-6">
+        <div className="lg:col-span-3 md:col-span-5 col-span-12">
+          <ColorBoxes item={ColorboxData[0]} />
         </div>
-      </CardBox>
+        <div className="lg:col-span-3 md:col-span-5 col-span-12">
+          <ColorBoxes item={ColorboxData[1]} />
+        </div>
+        <div className="lg:col-span-3 md:col-span-5 col-span-12">
+          <ColorBoxes item={ColorboxData[2]} />
+        </div>
+      </div>
       <div className="mt-9">
         <CardBox>
           <div className="sm:flex items-center justify-between mb-4">
@@ -106,9 +115,21 @@ const Expense = () => {
               <SearchBar onSearchChange={setSearchTerm} />
             </div>
             <div className="mt-2 sm:mt-0">
-              <LinkButton link="/dashboard/account/expenses/add">
-                Add Expense
-              </LinkButton>
+              <div className="flex gap-4 flex-nowrap">
+                <div className="">
+                  <FunctionButton
+                    click={() => setOpenModal(true)}
+                    variant="outlined"
+                  >
+                    Import Expense
+                  </FunctionButton>
+                </div>
+                <div className="">
+                  <LinkButton link="/dashboard/account/expenses/add">
+                    Add Expense
+                  </LinkButton>
+                </div>
+              </div>
             </div>
           </div>
           <ExpensesTable tableData={filteredEmployees} />
@@ -116,13 +137,25 @@ const Expense = () => {
       </div>
       <div className="mt-9 grid grid-cols-1 lg:grid-cols-12 gap-6">
         <div className="lg:col-span-8">
-          <ExpensesCategoryChart data={ChartData2} />
+          <ExpensesCategoryChart
+            data={ChartData2}
+            title="Expenses breakdown by account type"
+          />
         </div>
 
         <div className="lg:col-span-4">
-          <ExpensesPieChart data={ChartData} />
+          <ExpensesPieChart
+            data={ChartData}
+            title="Expenses breakdown by month"
+          />
         </div>
       </div>
+      <FileUploadModal
+        isOpen={openModal}
+        onClose={() => setOpenModal(false)}
+        onConfirm={confirmDelete}
+        title="Expenses"
+      />
     </div>
   );
 };

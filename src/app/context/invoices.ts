@@ -373,7 +373,7 @@ export const taxRateDetail = [
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const ChartData: any = {
-  series: [44, 55, 13, 43, 22, 18, 12, 5],
+  series: [44, 55, 13, 43],
   chart: {
     type: "pie",
     height: 300,
@@ -419,16 +419,7 @@ export const ChartData: any = {
     width: 2,
     colors: "var(--color-surface-ld)",
   },
-  labels: [
-    "Team A",
-    "Team B",
-    "Team C",
-    "Team D",
-    "Team E",
-    "Team F",
-    "Team G",
-    "Team H",
-  ],
+  labels: ["Jan", "Feb", "March", "April"],
   responsive: [
     {
       breakpoint: 480,
@@ -448,20 +439,24 @@ export const ChartData: any = {
 export const ChartData2: any = {
   series: [
     {
-      name: "Desktop",
+      name: "Asset",
       data: [44, 55, 57, 56, 61, 58, 63, 60, 66],
     },
     {
-      name: "Mobile",
+      name: "Equity",
       data: [76, 85, 101, 98, 87, 105, 91, 114, 94],
     },
     {
-      name: "Tablet",
+      name: "Liability",
       data: [67, 25, 141, 98, 17, 115, 91, 104, 55, 32],
     },
     {
-      name: "Other",
+      name: "Income",
       data: [35, 41, 36, 26, 45, 48, 52, 53, 41],
+    },
+    {
+      name: "Expenses",
+      data: [25, 21, 16, 18, 40, 42, 32, 33, 40, 16],
     },
   ],
   chart: {
@@ -477,7 +472,8 @@ export const ChartData2: any = {
     "var(--color-error)",
     "var(--color-primary)",
     "var(--color-warning)",
-    "var(--color-secondary)",
+    "var(--color-success)",
+    "var(--color-info)",
   ],
   plotOptions: {
     bar: {
@@ -491,7 +487,7 @@ export const ChartData2: any = {
   },
   stroke: {
     show: true,
-    width: 2,
+    width: 5,
     colors: ["transparent"],
   },
 
