@@ -13,7 +13,7 @@ const FunctionButton = ({
   variant?: "contained" | "outlined" | "text";
 }) => {
   const baseClasses =
-    "rounded-md w-full py-1.5 font-bold transition-colors duration-300";
+    "rounded-md w-full font-bold transition-colors duration-300";
   const containedClasses =
     "bg-[var(--color-primary)] hover:bg-[var(--color-primary-emphasis)] text-white";
   const outlinedClasses =

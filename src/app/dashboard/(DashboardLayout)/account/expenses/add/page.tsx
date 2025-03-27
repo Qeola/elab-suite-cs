@@ -112,7 +112,6 @@ const page = () => {
                   <Table.HeadCell>Date *</Table.HeadCell>
                   <Table.HeadCell>Recurring</Table.HeadCell>
                   <Table.HeadCell>Status</Table.HeadCell>
-                  <Table.HeadCell></Table.HeadCell>
                   <Table.HeadCell>Action</Table.HeadCell>
                 </Table.Head>
                 <FieldArray name="expenses">
@@ -236,11 +235,11 @@ const page = () => {
                           <Table.Cell className="whitespace-nowrap min-w-44">
                             <Field
                               name={`expenses[${index}].currency`}
-                              as={TextInput}
+                              as={Select}
                               sizing="lg"
                               placeholder="NGN"
                               // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                              className={`form-control w-full ${touched.expenses?.[index]?.currency && (errors.expenses as any)?.[index]?.currency ? "error" : ""}`}
+                              className={`form-control select-md w-full ${touched.expenses?.[index]?.currency && (errors.expenses as any)?.[index]?.currency ? "error" : ""}`}
                             >
                               <option value="">Choose a currency</option>
                               {currencies.map((val, i) => (
@@ -308,7 +307,6 @@ const page = () => {
                             />
                           </Table.Cell>
 
-                          <Table.Cell className="whitespace-nowrap"></Table.Cell>
                           <Table.Cell className="whitespace-nowrap">
                             <Tooltip
                               content="Delete expense"

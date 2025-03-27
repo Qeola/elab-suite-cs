@@ -257,11 +257,11 @@ const page = () => {
                           <Table.Cell className="whitespace-nowrap min-w-44">
                             <Field
                               name={`income[${index}].currency`}
-                              as={TextInput}
+                              as={Select}
                               sizing="lg"
                               placeholder="NGN"
                               // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                              className={`form-control w-full ${touched.income?.[index]?.currency && (errors.income as any)?.[index]?.currency ? "error" : ""}`}
+                              className={`select-md form-control w-full ${touched.income?.[index]?.currency && (errors.income as any)?.[index]?.currency ? "error" : ""}`}
                             >
                               <option value="">Choose a currency</option>
                               {currencies.map((val, i) => (
