@@ -5,7 +5,7 @@ import { Modal } from "flowbite-react";
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import { HiCloudUpload } from "react-icons/hi";
-import AuthButton from "../resuable/button/AuthButton";
+import SubmitButton from "../resuable/button/SubmitButton";
 import FunctionButton from "../resuable/button/FunctionButton";
 
 interface FileModalProps {
@@ -129,7 +129,7 @@ const FileUploadModal: React.FC<FileModalProps> = ({
                   <FunctionButton click={onClose} variant="outlined">
                     Cancel
                   </FunctionButton>
-                  <AuthButton>Upload</AuthButton>
+                  <SubmitButton>Upload</SubmitButton>
                 </div>
               </div>
             </Form>
