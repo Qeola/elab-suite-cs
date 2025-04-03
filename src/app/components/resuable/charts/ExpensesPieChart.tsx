@@ -7,12 +7,14 @@ const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 interface ChartProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: any;
+  title: string;
 }
 
-const ExpensesPieChart: React.FC<ChartProps> = ({ data }) => {
+const ExpensesPieChart: React.FC<ChartProps> = ({ data, title }) => {
   return (
     <CardBox>
-      <div className="grid grid-cols-12 gap-[30px]">
+      <div className="">
+        <h2 className="font-bold mb-3 text-xl">{title}</h2>
         {/* <div className="md:col-span-6 col-span-12">
           <TitleCard title="Donut Chart">
             <Chart
