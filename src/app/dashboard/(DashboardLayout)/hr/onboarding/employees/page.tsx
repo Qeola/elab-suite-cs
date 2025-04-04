@@ -38,7 +38,7 @@ const OnboardingEmployee = () => {
       <BreadcrumbComp
         title="Employee"
         items={BCrumb}
-        image={"crumbs/receipt.svg"}
+        image={"/images/crumbs/employee.svg"}
       />
       <CardBox>
         <div className="sm:flex items-center justify-between mb-4">
@@ -47,7 +47,7 @@ const OnboardingEmployee = () => {
           </div>
           <div className="mt-2 sm:mt-0">
             <LinkButton link="/dashboard/hr/onboarding/employees/add">
-              Add Department
+              Add Employee
             </LinkButton>
           </div>
         </div>

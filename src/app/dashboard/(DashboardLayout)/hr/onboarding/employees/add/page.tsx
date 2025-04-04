@@ -83,17 +83,37 @@ const page = () => {
             <Table className="">
               <Table.Head>
                 <Table.HeadCell className="sticky left-0 bg-lightgray dark:bg-dark z-10"></Table.HeadCell>
-                <Table.HeadCell>First Name *</Table.HeadCell>
-                <Table.HeadCell>Last Name *</Table.HeadCell>
-                <Table.HeadCell>Email *</Table.HeadCell>
-                <Table.HeadCell>Phone Number *</Table.HeadCell>
-                <Table.HeadCell>Employee ID *</Table.HeadCell>
-                <Table.HeadCell>Department *</Table.HeadCell>
-                <Table.HeadCell>Job Title *</Table.HeadCell>
-                <Table.HeadCell>Role *</Table.HeadCell>
-                <Table.HeadCell>Start Date *</Table.HeadCell>
-                <Table.HeadCell></Table.HeadCell>
-                <Table.HeadCell>Actions</Table.HeadCell>
+                <Table.HeadCell className="text-darklink dark:text-bodytext font-semibold py-3">
+                  First Name *
+                </Table.HeadCell>
+                <Table.HeadCell className="text-darklink dark:text-bodytext font-semibold py-3">
+                  Last Name *
+                </Table.HeadCell>
+                <Table.HeadCell className="text-darklink dark:text-bodytext font-semibold py-3">
+                  Email *
+                </Table.HeadCell>
+                <Table.HeadCell className="text-darklink dark:text-bodytext font-semibold py-3">
+                  Phone Number *
+                </Table.HeadCell>
+                <Table.HeadCell className="text-darklink dark:text-bodytext font-semibold py-3">
+                  Employee ID *
+                </Table.HeadCell>
+                <Table.HeadCell className="text-darklink dark:text-bodytext font-semibold py-3">
+                  Department *
+                </Table.HeadCell>
+                <Table.HeadCell className="text-darklink dark:text-bodytext font-semibold py-3">
+                  Job Title *
+                </Table.HeadCell>
+                <Table.HeadCell className="text-darklink dark:text-bodytext font-semibold py-3">
+                  Role *
+                </Table.HeadCell>
+                <Table.HeadCell className="text-darklink dark:text-bodytext font-semibold py-3">
+                  Start Date *
+                </Table.HeadCell>
+                <Table.HeadCell className="text-darklink dark:text-bodytext font-semibold py-3"></Table.HeadCell>
+                <Table.HeadCell className="text-darklink dark:text-bodytext font-semibold py-3">
+                  Actions
+                </Table.HeadCell>
               </Table.Head>
               <FieldArray name="employee">
                 {({ push, remove }) => (

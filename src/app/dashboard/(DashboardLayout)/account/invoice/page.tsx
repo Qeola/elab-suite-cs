@@ -70,6 +70,7 @@ const Invoice = () => {
             handleTabClick={handleTabClick}
             icon="solar:tag-horizontal-broken"
             color="primary"
+            className="border-primary"
             invoice={invoices.length}
             type="All"
             amount={2634}
@@ -79,6 +80,7 @@ const Invoice = () => {
             handleTabClick={handleTabClick}
             icon="solar:map-point-wave-linear"
             color="success"
+            className="border-success"
             invoice={Paid}
             type="Paid"
             amount={8370}
@@ -88,6 +90,7 @@ const Invoice = () => {
             handleTabClick={handleTabClick}
             icon="solar:map-point-wave-linear"
             color="success"
+            className="border-success"
             invoice={Shipped}
             type="Shipped"
             amount={8370}
@@ -97,6 +100,7 @@ const Invoice = () => {
             handleTabClick={handleTabClick}
             icon="solar:camera-rotate-broken"
             color="warning"
+            className="border-warning"
             invoice={Pending}
             type="Pending"
             amount={234}

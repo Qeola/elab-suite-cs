@@ -85,7 +85,7 @@ const columns = (handleDeleteClick: (slug: string) => void) => [
             info.getValue() == "paid"
               ? "lightsuccess"
               : info.getValue() == "pending"
-                ? "lightwarning"
+                ? "lightprimary"
                 : `lighterror`
           }
           className="capitalize"
