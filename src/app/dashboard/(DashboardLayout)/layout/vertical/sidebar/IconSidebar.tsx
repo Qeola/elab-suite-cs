@@ -49,7 +49,7 @@ export const IconSidebar = () => {
             >
               <Button
                 key={index}
-                className={`h-12 w-12 hover:text-primary text-darklink dark:text-white/70 hover:bg-lightprimary rounded-tw flex justify-center items-center mx-auto mb-2 ${
+                className={`h-12 w-12 hover:text-white text-darklink dark:text-white/70 hover:bg-primary rounded-tw flex justify-center items-center mx-auto mb-2 ${
                   links.id === selectedIconId
                     ? "text-white bg-primary hover:text-white dark:hover:text-white"
                     : "text-darklink  bg-transparent"

@@ -9,6 +9,7 @@ const InvoiceHeaderCard = ({
   type,
   color,
   amount,
+  className,
 }: {
   activeTab: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -18,6 +19,7 @@ const InvoiceHeaderCard = ({
   type: string;
   color: string;
   amount: number;
+  className?: string;
 }) => {
   return (
     <div
@@ -27,7 +29,7 @@ const InvoiceHeaderCard = ({
       onClick={() => handleTabClick(type.toString())}
     >
       <div
-        className={`h-14 w-14 rounded-full border-2 border-${color} text-${color} flex justify-center items-center`}
+        className={`h-14 w-14 rounded-full border-2 !border-${color} text-${color} flex justify-center items-center ${className}`}
       >
         <Icon icon={icon} height={25} />
       </div>

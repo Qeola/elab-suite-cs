@@ -54,7 +54,6 @@ const Invoice = () => {
         image="/images/crumbs/invoice.svg"
       />
       <CardBox>
-        <h5 className="card-title mb-3">Sample page 1</h5>
         <div className="sm:flex items-center justify-between mb-4">
           <div className="w-full max-w-md">
             <SearchBar onSearchChange={setSearchTerm} />
@@ -71,6 +70,7 @@ const Invoice = () => {
             handleTabClick={handleTabClick}
             icon="solar:tag-horizontal-broken"
             color="primary"
+            className="border-primary"
             invoice={invoices.length}
             type="All"
             amount={2634}
@@ -80,6 +80,7 @@ const Invoice = () => {
             handleTabClick={handleTabClick}
             icon="solar:map-point-wave-linear"
             color="success"
+            className="border-success"
             invoice={Paid}
             type="Paid"
             amount={8370}
@@ -89,6 +90,7 @@ const Invoice = () => {
             handleTabClick={handleTabClick}
             icon="solar:map-point-wave-linear"
             color="success"
+            className="border-success"
             invoice={Shipped}
             type="Shipped"
             amount={8370}
@@ -98,6 +100,7 @@ const Invoice = () => {
             handleTabClick={handleTabClick}
             icon="solar:camera-rotate-broken"
             color="warning"
+            className="border-warning"
             invoice={Pending}
             type="Pending"
             amount={234}

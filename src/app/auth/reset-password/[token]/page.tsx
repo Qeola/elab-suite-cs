@@ -2,7 +2,6 @@ import Logo from "@/app/dashboard/(DashboardLayout)/layout/shared/logo/Logo";
 import React from "react";
 import LeftSidebarPart from "../../LeftSidebarPart";
 import { Button } from "flowbite-react";
-import Link from "next/link";
 import type { Metadata } from "next";
 import AuthResetPassword from "../../../components/authforms/AuthResetForgotPassword";
 export const metadata: Metadata = {
@@ -15,7 +14,7 @@ const ResetPassword = () => {
     <>
       <div className="relative overflow-hidden h-screen">
         <div className="grid grid-cols-12 gap-3 h-screen bg-white dark:bg-darkgray">
-          <div className="xl:col-span-8 lg:col-span-6 col-span-12 bg-[#060016] lg:block hidden relative overflow-hidden">
+          <div className="xl:col-span-8 lg:col-span-6 col-span-12 bg-[#eefafc] lg:block hidden relative overflow-hidden">
             <LeftSidebarPart image="/images/backgrounds/reset.svg" />
           </div>
           <div className="xl:col-span-4 lg:col-span-6 col-span-12 sm:px-12 px-4">
@@ -30,11 +29,11 @@ const ResetPassword = () => {
                 <AuthResetPassword />
                 <Button
                   color={"lightprimary"}
-                  as={Link}
-                  href="/auth/signin"
-                  className="rounded-md w-full mt-4"
+                  href="/auth/sign-in"
+                  size="md"
+                  className="rounded-md w-full font-bold transition-colors duration-300 mt-4 py-2"
                 >
-                  Back to Signin
+                  Back to Sign In
                 </Button>
               </div>
             </div>

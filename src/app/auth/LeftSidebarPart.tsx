@@ -12,12 +12,12 @@ const LeftSidebarPart = ({ image }: { image: string }) => {
           {/* Content Section */}
           <div>
             <Image src={Bgimg} alt="materilm" className="circle-bottom" />
-            <h2 className="text-white text-[40px] font-bold leading-[normal]">
+            <h2 className="!text-dark text-[40px] font-bold leading-[normal]">
               Welcome to
               <br />
               eLab Suite
             </h2>
-            <p className="opacity-75 text-white my-4 text-base font-medium">
+            <p className="opacity-75 text-dark my-4 text-base font-medium">
               Streamline your workflows, boost your efficiency!
             </p>
           </div>

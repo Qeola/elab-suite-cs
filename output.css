@@ -1371,11 +1371,6 @@ input[type="range"]::-ms-fill-lower {
   margin-bottom: 1rem;
 }
 
-.my-5 {
-  margin-top: 1.25rem;
-  margin-bottom: 1.25rem;
-}
-
 .my-6 {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
@@ -2168,6 +2163,10 @@ input[type="range"]::-ms-fill-lower {
   flex-wrap: wrap;
 }
 
+.flex-nowrap {
+  flex-wrap: nowrap;
+}
+
 .items-start {
   align-items: flex-start;
 }
@@ -2218,10 +2217,6 @@ input[type="range"]::-ms-fill-lower {
 
 .gap-6 {
   gap: 1.5rem;
-}
-
-.gap-\[30px\] {
-  gap: 30px;
 }
 
 .-space-x-4 > :not([hidden]) ~ :not([hidden]) {
@@ -2525,6 +2520,18 @@ input[type="range"]::-ms-fill-lower {
   border-top-width: 4px;
 }
 
+.border-dashed {
+  border-style: dashed;
+}
+
+.border-\[var\(--color-\$\{color\}\)\] {
+  border-color: var(--color-${color});
+}
+
+.border-\[var\(--color-primary\)\] {
+  border-color: var(--color-primary);
+}
+
 .border-blue-500 {
   --tw-border-opacity: 1;
   border-color: rgb(63 131 248 / var(--tw-border-opacity));
@@ -2647,6 +2654,10 @@ input[type="range"]::-ms-fill-lower {
   border-color: rgb(214 31 105 / var(--tw-border-opacity));
 }
 
+.border-primary {
+  border-color: var(--color-primary);
+}
+
 .border-purple-500 {
   --tw-border-opacity: 1;
   border-color: rgb(144 97 249 / var(--tw-border-opacity));
@@ -2677,6 +2688,10 @@ input[type="range"]::-ms-fill-lower {
   border-color: rgb(119 29 29 / var(--tw-border-opacity));
 }
 
+.border-success {
+  border-color: var(--color-success);
+}
+
 .border-teal-300 {
   --tw-border-opacity: 1;
   border-color: rgb(126 220 226 / var(--tw-border-opacity));
@@ -2689,6 +2704,10 @@ input[type="range"]::-ms-fill-lower {
 
 .border-transparent {
   border-color: transparent;
+}
+
+.border-warning {
+  border-color: var(--color-warning);
 }
 
 .border-white {
@@ -2724,9 +2743,13 @@ input[type="range"]::-ms-fill-lower {
   background-color: transparent !important;
 }
 
-.bg-\[\#0A2540\] {
+.bg-\[\#eefafc\] {
   --tw-bg-opacity: 1;
-  background-color: rgb(10 37 64 / var(--tw-bg-opacity));
+  background-color: rgb(238 250 252 / var(--tw-bg-opacity));
+}
+
+.bg-\[var\(--color-\$\{color\}\)\] {
+  background-color: var(--color-${color});
 }
 
 .bg-\[var\(--color-primary\)\] {
@@ -2905,6 +2928,10 @@ input[type="range"]::-ms-fill-lower {
 
 .bg-lightsecondary {
   background-color: var(--color-lightsecondary);
+}
+
+.bg-lightsuccess {
+  background-color: var(--color-lightsuccess);
 }
 
 .bg-lightwarning {
@@ -3332,10 +3359,6 @@ input[type="range"]::-ms-fill-lower {
   padding: 0.75rem;
 }
 
-.p-3\.5 {
-  padding: 0.875rem;
-}
-
 .p-4 {
   padding: 1rem;
 }
@@ -3704,6 +3727,10 @@ input[type="range"]::-ms-fill-lower {
   letter-spacing: 1.5px;
 }
 
+.\!text-dark {
+  color: var(--color-dark) !important;
+}
+
 .\!text-primary {
   color: var(--color-primary) !important;
 }
@@ -3711,6 +3738,14 @@ input[type="range"]::-ms-fill-lower {
 .\!text-white {
   --tw-text-opacity: 1 !important;
   color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
+}
+
+.text-\[var\(--color-\$\{color\}\)\] {
+  color: var(--color-${color});
+}
+
+.text-\[var\(--color-primary\)\] {
+  color: var(--color-primary);
 }
 
 .text-black {
@@ -3721,6 +3756,11 @@ input[type="range"]::-ms-fill-lower {
 .text-blue-500 {
   --tw-text-opacity: 1;
   color: rgb(63 131 248 / var(--tw-text-opacity));
+}
+
+.text-blue-600 {
+  --tw-text-opacity: 1;
+  color: rgb(28 100 242 / var(--tw-text-opacity));
 }
 
 .text-blue-700 {
@@ -4612,6 +4652,18 @@ input[type="range"]::-ms-fill-lower {
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
 }
 
+.hover\:bg-\[var\(--color-\$\{color\}\)\]:hover {
+  background-color: var(--color-${color});
+}
+
+.hover\:bg-\[var\(--color-\$\{color\}-emphasis\)\]:hover {
+  background-color: var(--color-${color}-emphasis);
+}
+
+.hover\:bg-\[var\(--color-primary\)\]:hover {
+  background-color: var(--color-primary);
+}
+
 .hover\:bg-\[var\(--color-primary-emphasis\)\]:hover {
   background-color: var(--color-primary-emphasis);
 }
@@ -4743,6 +4795,14 @@ input[type="range"]::-ms-fill-lower {
 .hover\:\!text-white:hover {
   --tw-text-opacity: 1 !important;
   color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
+}
+
+.hover\:text-\[var\(--color-\$\{color\}-emphasis\)\]:hover {
+  color: var(--color-${color}-emphasis);
+}
+
+.hover\:text-\[var\(--color-primary-emphasis\)\]:hover {
+  color: var(--color-primary-emphasis);
 }
 
 .hover\:text-cyan-700:hover {

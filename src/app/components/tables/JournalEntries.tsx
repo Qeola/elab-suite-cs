@@ -147,7 +147,7 @@ function JournalEntriesTable({ tableData }: { tableData: any }) {
                       {headerGroup.headers.map((header: any) => (
                         <th
                           key={header.id}
-                          className="text-base text-ld font-semibold py-3 text-left border-b border-ld px-4 py-3"
+                          className="text-base text-darklink dark:text-bodytext text-ld font-semibold py-3 text-left border-b border-ld px-4 py-3"
                         >
                           {header.isPlaceholder
                             ? null
@@ -169,7 +169,7 @@ function JournalEntriesTable({ tableData }: { tableData: any }) {
                       {row.getVisibleCells().map((cell: any) => (
                         <td
                           key={cell.id}
-                          className="whitespace-nowrap py-5 px-4"
+                          className="whitespace-nowrap py-5 px-4 text-darklink dark:text-bodytext"
                         >
                           {flexRender(
                             cell.column.columnDef.cell,
@@ -229,7 +229,7 @@ function JournalEntriesTable({ tableData }: { tableData: any }) {
                     size="small"
                     onClick={() => table.setPageIndex(0)}
                     disabled={!table.getCanPreviousPage()}
-                    className="bg-dark hover:bg-lightprimary dark:hover:bg-lightprimary disabled:opacity-50"
+                    className="bg-light dark:bg-dark text-dark dark:text-bodytext hover:bg-lightprimary dark:hover:bg-lightprimary disabled:opacity-50"
                   >
                     <IconChevronsLeft className="text-ld" size={20} />
                   </Button>
@@ -237,7 +237,7 @@ function JournalEntriesTable({ tableData }: { tableData: any }) {
                     size="small"
                     onClick={() => table.previousPage()}
                     disabled={!table.getCanPreviousPage()}
-                    className="bg-dark hover:bg-lightprimary dark:hover:bg-lightprimary disabled:opacity-50"
+                    className="bg-light dark:bg-dark text-dark dark:text-bodytext hover:bg-lightprimary dark:hover:bg-lightprimary disabled:opacity-50"
                   >
                     <IconChevronLeft className="text-ld" size={20} />
                   </Button>
@@ -245,7 +245,7 @@ function JournalEntriesTable({ tableData }: { tableData: any }) {
                     size="small"
                     onClick={() => table.nextPage()}
                     disabled={!table.getCanNextPage()}
-                    className="bg-dark hover:bg-lightprimary dark:hover:bg-lightprimary disabled:opacity-50"
+                    className="bg-light dark:bg-dark text-dark dark:text-bodytext hover:bg-lightprimary dark:hover:bg-lightprimary disabled:opacity-50"
                   >
                     <IconChevronRight className="text-ld" size={20} />
                   </Button>
@@ -253,7 +253,7 @@ function JournalEntriesTable({ tableData }: { tableData: any }) {
                     size="small"
                     onClick={() => table.setPageIndex(table.getPageCount() - 1)}
                     disabled={!table.getCanNextPage()}
-                    className="bg-dark hover:bg-lightprimary dark:hover:bg-lightprimary disabled:opacity-50"
+                    className="bg-light dark:bg-dark text-dark dark:text-bodytext hover:bg-lightprimary dark:hover:bg-lightprimary disabled:opacity-50"
                   >
                     <IconChevronsRight className="text-ld" size={20} />
                   </Button>

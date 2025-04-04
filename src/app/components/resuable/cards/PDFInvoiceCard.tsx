@@ -11,6 +11,7 @@ import { RootState } from "@/utils/stores/store";
 import { useSelector } from "@/utils/stores/hooks";
 import { PDFFormat } from "./PDFFormat";
 import CurrencyFormatter from "@/utils/helpers/CurrencyFormatter";
+import CardBox from "../../shared/CardBox";
 
 const InvoiceCardDetails = () => {
   const [selectedInvoice, setSelectedInvoice]: any = useState(null);
@@ -38,7 +39,7 @@ const InvoiceCardDetails = () => {
   }
 
   return (
-    <>
+    <CardBox>
       <div className="grid grid-cols-12 gap-6 mb-6">
         <div className="md:col-span-6 col-span-12">
           <FullLogo />
@@ -86,7 +87,7 @@ const InvoiceCardDetails = () => {
             <Table.HeadCell className="w-5/6 bg-primary dark:bg-darkprimary">
               Description
             </Table.HeadCell>
-            <Table.HeadCell className="w-1/6 text-end bg-yellow-300 dark:bg-yellow-600">
+            <Table.HeadCell className="w-1/6 text-end text-white bg-[#526B7A] dark:bg-gray-900">
               Rate
             </Table.HeadCell>
           </Table.Head>
@@ -100,7 +101,7 @@ const InvoiceCardDetails = () => {
               </Table.Row>
             ))}
 
-            <Table.Row className="bg-gray-100 dark:bg-gray-500">
+            <Table.Row className="bg-gray-200 dark:bg-gray-500">
               <Table.Cell>
                 <div className="h-full min-h-[8rem]"></div>
               </Table.Cell>
@@ -110,7 +111,7 @@ const InvoiceCardDetails = () => {
             </Table.Row>
 
             {/* Total Amount */}
-            <Table.Row className="bg-gray-100 dark:bg-gray-500">
+            <Table.Row className="bg-gray-200 dark:bg-gray-500">
               <Table.Cell className="font-semibold text-end col-span-10">
                 Total
               </Table.Cell>
@@ -125,11 +126,11 @@ const InvoiceCardDetails = () => {
             </Table.Row>
 
             {/* VAT (7.5%) */}
-            <Table.Row className="bg-gray-100 dark:bg-gray-500">
+            <Table.Row className="">
               <Table.Cell className="font-semibold text-end">
                 VAT (7.5%)
               </Table.Cell>
-              <Table.Cell className="text-end font-semibold bg-gray-400 dark:bg-gray-700">
+              <Table.Cell className="text-end font-semibold">
                 <CurrencyFormatter
                   amount={
                     selectedInvoice.service.reduce(
@@ -146,7 +147,7 @@ const InvoiceCardDetails = () => {
               <Table.Cell className="font-semibold text-end col-span-10 text-xl md:text-2xl">
                 Grand Total
               </Table.Cell>
-              <Table.Cell className="text-end font-semibold col-span-2 bg-gray-400 dark:bg-gray-900 text-lg md:text-xl">
+              <Table.Cell className="text-end font-semibold col-span-2 text-white bg-[#526B7A] dark:bg-gray-900 text-lg md:text-xl">
                 <CurrencyFormatter
                   amount={selectedInvoice.service.reduce(
                     (sum: number, order: any) => sum + order.amount,
@@ -188,7 +189,7 @@ const InvoiceCardDetails = () => {
           )}
         </PDFDownloadLink>
       </div>
-    </>
+    </CardBox>
   );
 };
 
