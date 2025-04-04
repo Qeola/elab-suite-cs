@@ -54,7 +54,6 @@ const Invoice = () => {
         image="/images/crumbs/invoice.svg"
       />
       <CardBox>
-        <h5 className="card-title mb-3">Sample page 1</h5>
         <div className="sm:flex items-center justify-between mb-4">
           <div className="w-full max-w-md">
             <SearchBar onSearchChange={setSearchTerm} />

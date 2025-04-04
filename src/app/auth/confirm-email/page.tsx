@@ -13,7 +13,7 @@ const ConfirmEmail = () => {
     <>
       <div className="relative overflow-hidden h-screen">
         <div className="grid grid-cols-12 gap-3 h-screen bg-white dark:bg-darkgray">
-          <div className="xl:col-span-8 lg:col-span-6 col-span-12 bg-[#060016] lg:block hidden relative overflow-hidden">
+          <div className="xl:col-span-8 lg:col-span-6 col-span-12 bg-[#eefafc] lg:block hidden relative overflow-hidden">
             <LeftSidebarPart image="/images/backgrounds/login.svg" />
           </div>
           <div className="xl:col-span-4 lg:col-span-6 col-span-12 sm:px-12 px-4">
@@ -25,7 +25,7 @@ const ConfirmEmail = () => {
                 {/* <Button
                   color={"lightprimary"}
                   as={Link}
-                  href="/auth/signin"
+                  href="/auth/sign-in"
                   className="rounded-md w-full mt-4"
                 >
                   Back to Signin

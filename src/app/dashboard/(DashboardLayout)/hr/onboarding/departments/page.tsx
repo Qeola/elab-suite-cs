@@ -63,13 +63,13 @@ const OnboardingDepartment = () => {
           <div className="overflow-x-auto">
             <Table hoverable>
               <Table.Head>
-                <Table.HeadCell className="text-base font-semibold py-3">
+                <Table.HeadCell className="text-darklink dark:text-bodytext font-semibold py-3">
                   Name
                 </Table.HeadCell>
-                <Table.HeadCell className="text-base font-semibold py-3">
+                <Table.HeadCell className="text-darklink dark:text-bodytext font-semibold py-3">
                   Total Member
                 </Table.HeadCell>
-                <Table.HeadCell className="text-base font-semibold py-3">
+                <Table.HeadCell className="text-darklink dark:text-bodytext font-semibold py-3">
                   Lead
                 </Table.HeadCell>
                 <Table.HeadCell className="text-base font-semibold py-3"></Table.HeadCell>
@@ -78,10 +78,12 @@ const OnboardingDepartment = () => {
                 {department.map((item, index) => (
                   <Table.Row key={index}>
                     <Table.Cell className="whitespace-nowrap">
-                      <p className="text-bodytext text-sm">{item.name}</p>
+                      <p className="text-darklink dark:text-bodytext text-sm">
+                        {item.name}
+                      </p>
                     </Table.Cell>
                     <Table.Cell className="whitespace-nowrap">
-                      <p className="text-bodytext text-sm">
+                      <p className="text-darklink dark:text-bodytext text-sm">
                         {item.member.length}
                       </p>
                     </Table.Cell>

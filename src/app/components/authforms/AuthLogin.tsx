@@ -7,6 +7,7 @@ import * as Yup from "yup";
 import { HiEye, HiEyeOff } from "react-icons/hi";
 import AuthLoadingButton from "@/app/components/resuable/button/AuthLoading";
 import AuthButton from "@/app/components/resuable/button/AuthButton";
+import { useRouter } from "next/navigation";
 
 interface FormValues {
   email: string;
@@ -16,6 +17,8 @@ interface FormValues {
 const AuthLogin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const router = useRouter();
   const validationSchema = Yup.object({
     email: Yup.string()
       .email("Invalid email format")
@@ -32,6 +35,7 @@ const AuthLogin = () => {
       setLoading(false);
       resetForm();
       console.log("Submitted Data:", values);
+      router.push("/dashboard/hr/onboarding/departments");
     }, 1500);
   };
   return (
@@ -66,7 +70,7 @@ const AuthLogin = () => {
             </div>
 
             {/* Password */}
-            <div className="mb-4">
+            <div className="mb-3">
               <Label
                 htmlFor="password"
                 value="Password *"
@@ -95,7 +99,7 @@ const AuthLogin = () => {
                 className="text-red-500 text-sm mt-1"
               />
             </div>
-            <div className="flex justify-end my-5">
+            <div className="flex justify-end mb-5">
               {/* <div className="flex items-center gap-2">
             <Checkbox id="accept" className="checkbox" />
             <Label
